@@ -1,0 +1,24 @@
+<nav class="navbar navbar-toggleable navbar-light bg-white">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" routerLink="/employeeDashboard" href="#">
+      <img class="app-logo" src="../../assets/logo.jpg" alt="Logo"/>
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active" routerLink="/employeeDashboard">
+                <a class="nav-link">Employee</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" routerLink="/mentorDashboard">
+                <a class="nav-link">Mentor</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" routerLink="/adminDashboard">
+                <a class="nav-link disabled">Admin</a>
+            </li>
+        </ul>
+    </div>
+</nav>

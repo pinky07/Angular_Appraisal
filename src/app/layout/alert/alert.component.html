@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div class="row">
+        <div *ngFor="let alert of alerts" class="col-xs-12 offset-md-2 col-md-8" [@flyInOut]="'in'">
+            <div class="alert alert-dismissible text-container" [ngClass]="alert.type" role="alert">
+                <button (click)="dismissAlert(alert.id)" type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>{{ alert.strong }}</strong> {{ alert.text }}
+            </div>
+        </div>
+    </div>
+</div> 

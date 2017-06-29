@@ -1,0 +1,18 @@
+/*
+ * header.component.scss - version 1.0.0
+ *
+ * Header Component Style
+ *
+ * @author Ruben Jimenez
+ */
+
+.app-header-background {
+    background-image: url("../../../assets/tile.png");
+    background-repeat: repeat;
+    margin-bottom: 20px;
+
+    h1 {
+        margin: 30px 0px;
+        color: white;
+    }
+}

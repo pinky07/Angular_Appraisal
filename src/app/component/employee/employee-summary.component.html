@@ -1,0 +1,17 @@
+<div class="card bg-gray">
+    <div class="card-block">
+        <h4 class="card-title">{{ employee.firstName }} {{ employee.lastName }}</h4>
+    </div>
+    <ul class="list-group list-group-flush bg-gray">
+        <li class="list-group-item bg-gray">
+            <span *ngIf="getEmployeeJobFamily();else loading"><strong>Job Family</strong><br/>{{ getEmployeeJobFamily() }}</span>
+        </li>
+        <li class="list-group-item bg-gray">
+            <span *ngIf="getEmployeeJobLevel();else loading"><strong>Level</strong><br/>{{ getEmployeeJobLevel() }}</span>
+        </li>
+        <li class="list-group-item bg-gray">
+            <span *ngIf="mentor;else loading"><strong>Mentor</strong><br/>{{mentor.firstName}} {{ mentor.lastName}}</span>
+        </li>
+    </ul>
+</div>
+<ng-template #loading>Loading...</ng-template>

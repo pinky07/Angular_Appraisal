@@ -1,0 +1,99 @@
+/**
+ * styles.scss - Version 1.0.0
+ * 
+ * Contains global styles
+ * 
+ * @author Ruben Jimenez
+ */
+
+// =============================================================================
+// == Base styles ==============================================================
+// =============================================================================
+
+body {
+    background: white;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+
+    // Makes 1 rem = 10 px
+    font-size: 62.5%; 
+}
+
+html, body { 
+    height: 100%; 
+    margin: 0px; 
+    padding: 0px; 
+}
+
+.app {
+    height: 100%;
+}
+
+// Use rem to set font sizes in all the application.
+// Later we can set the font-size property in body to change according to the window width
+// enabling scalable fonts to improve readability
+
+h1 {
+    color: rgb(33, 62, 127);
+    font-size: 2.4rem;
+}
+
+h2 {
+    color: #444444;
+    font-size: 2.0rem;
+}
+
+h3 {
+    color: #777777;
+    font-size: 1.8rem;
+}
+
+p, li, a, .text-container {
+    color: #444444;
+    font-size: 1.0rem;
+}
+
+// When using Chrome there's a blue outline when you click on buttons.
+// This disables that
+li, a {
+    outline: none;
+}
+
+// =============================================================================
+// == Bootstrap modifications ==================================================
+// =============================================================================
+
+.card {
+    margin-bottom: 30px;
+}
+
+// =============================================================================
+// == Additional Backgrounds ===================================================
+// =============================================================================
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-gray {
+    background-color: #FBFBFB;
+}
+
+// =============================================================================
+// == Utility classes ==========================================================
+// =============================================================================
+
+.no-padding {
+    padding: 0px;
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+// Based on http://stackoverflow.com/questions/218760/how-do-you-keep-parents-of-floated-elements-from-collapsing
+.clearfix:after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
