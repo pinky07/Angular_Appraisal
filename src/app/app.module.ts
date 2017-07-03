@@ -17,6 +17,7 @@ import { LoginCallbackComponent } from './component/login-callback/login-callbac
 import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { AlertComponent } from './layout/alert/alert.component';
+import { CollapsableCardComponent } from './layout/collapsable-card/collapsable-card.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MenuComponent } from './layout/menu/menu.component';
 import { ActionItemService } from './service/action-item/action-item.service';
@@ -49,7 +50,8 @@ import { TitleService } from './service/title/title.service';
     MentorDashboardComponent,
     AdminDashboardComponent,
     ActionItemsComponent,
-    AppraisalSummaryComponent
+    AppraisalSummaryComponent,
+    CollapsableCardComponent
   ],
   imports: [
     AppRoutingModule,

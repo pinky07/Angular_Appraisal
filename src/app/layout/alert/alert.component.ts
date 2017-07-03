@@ -15,15 +15,13 @@ import { AlertService } from '../../service/alert/alert.service';
     templateUrl: './alert.component.html',
     styleUrls: ['./alert.component.scss'],
     animations: [
-
-
         trigger('flyInOut', [
             state(
                 'in',
                 style(
                     {
                         'transform': 'translateX(0)',
-                        'height': '70px',
+                        'height': '*',
                         'opacity': 1
                     }
                 )

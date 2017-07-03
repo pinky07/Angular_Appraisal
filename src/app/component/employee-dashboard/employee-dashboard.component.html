@@ -1,13 +1,19 @@
-<div class="row">'
+<div class="row">
 	<div class="col-xs-12 col-md-4 offset-md-2">
-		<app-employee-summary [employee]="currentEmployee" [mentor]="mentor"></app-employee-summary>
+		<app-collapsable-card title="{{ getEmployeeName() }}">
+			<app-employee-summary [employee]="currentEmployee" [mentor]="mentor"></app-employee-summary>
+		</app-collapsable-card>
 	</div>
 	<div class="col-xs-12 col-md-4">
-		<app-action-items></app-action-items>
+		<app-collapsable-card title="Action Items">
+			<app-action-items></app-action-items>
+		</app-collapsable-card>
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-md-8 offset-md-2">
-		<app-appraisal-summary></app-appraisal-summary>
+		<app-collapsable-card title="Appraisals">
+			<app-appraisal-summary></app-appraisal-summary>
+		</app-collapsable-card>
 	</div>
 </div>

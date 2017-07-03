@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CollapsableCard } from '../../layout/collapsable-card/collapsable-card';
 import { ActionItem } from '../../model/action-item/action-item';
 import { ActionItemService } from '../../service/action-item/action-item.service';
 
@@ -10,11 +9,10 @@ import { ActionItemService } from '../../service/action-item/action-item.service
     selector: 'app-action-items',
     templateUrl: './action-items.component.html',
     styleUrls: [
-        '../../layout/collapsable-card/collapsable-card.scss',
         './action-items.component.scss'
     ]
 })
-export class ActionItemsComponent extends CollapsableCard implements OnInit {
+export class ActionItemsComponent implements OnInit {
 
     private actionItems: ActionItem[];
 
@@ -22,7 +20,6 @@ export class ActionItemsComponent extends CollapsableCard implements OnInit {
         private actionItemsService: ActionItemService,
         private router: Router
     ) {
-        super();
         this.actionItems = [];
     }
 

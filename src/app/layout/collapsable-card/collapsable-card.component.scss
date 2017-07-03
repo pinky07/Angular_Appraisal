@@ -1,5 +1,5 @@
 /**
- * collapsable-card.scss - Version 1.0.0
+ * collapsable-card.component.scss - Version 1.0.0
  * 
  * Collapsable Card Style
  *
@@ -10,7 +10,11 @@
     position: relative;
 }
 
-button.btn-collapse {
+.collapsable {
+    overflow: hidden;
+}
+
+button.btn.btn-collapse {
     position: absolute;
     top: 5px;
     right: 5px;

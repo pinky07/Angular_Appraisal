@@ -72,11 +72,26 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Returns the name of the current employee
+     * @returns {string} Employee name
+     * @memberof EmployeeDashboardComponent
+     */
+    private getEmployeeName(): string {
+        let result = '';
+        if (this.currentEmployee
+            && this.currentEmployee.firstName
+            && this.currentEmployee.lastName) {
+            result = this.currentEmployee.firstName + ' ' + this.currentEmployee.lastName;
+        }
+        return result;
+    }
+
+    /**
      * Changes the employee currently shown in the summary
      * @param {Employee} employee
      * @memberof EmployeeDashboardComponent
      */
-    public changeCurrentEmployee(employee: Employee) {
+    private changeCurrentEmployee(employee: Employee) {
         this.currentEmployee = employee;
         this.titleService.setTitle(employee.firstName + ' ' + employee.lastName);
     }
@@ -86,7 +101,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
      * @param {Employee} employee
      * @memberof EmployeeDashboardComponent
      */
-    public changeCurrentEmployeeMentor(employee: Employee) {
+    private changeCurrentEmployeeMentor(employee: Employee) {
         this.mentor = employee;
     }
 }

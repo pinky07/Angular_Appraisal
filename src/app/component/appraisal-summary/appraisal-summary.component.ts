@@ -1,7 +1,6 @@
-import { CollapsableCard } from '../../layout/collapsable-card/collapsable-card';
-import { Appraisal } from '../../model/appraisal/appraisal';
-
 import { Component, OnInit } from '@angular/core';
+
+import { Appraisal } from '../../model/appraisal/appraisal';
 
 /**
  * Show a list of Appraisals for the logged in user.
@@ -13,16 +12,14 @@ import { Component, OnInit } from '@angular/core';
     selector: 'app-appraisal-summary',
     templateUrl: 'appraisal-summary.component.html',
     styleUrls: [
-        '../../layout/collapsable-card/collapsable-card.scss',
         './appraisal-summary.component.scss'
     ]
 })
-export class AppraisalSummaryComponent extends CollapsableCard implements OnInit {
+export class AppraisalSummaryComponent implements OnInit {
 
     private appraisals: Appraisal[];
 
     constructor() {
-        super();
         this.appraisals = [];
     }
 

@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { CollapsableCard } from '../../layout/collapsable-card/collapsable-card';
 import { Employee } from '../../model/employee/employee';
-
 
 /**
  * Displays a summary of the Employee information.
@@ -13,11 +11,10 @@ import { Employee } from '../../model/employee/employee';
     selector: 'app-employee-summary',
     templateUrl: './employee-summary.component.html',
     styleUrls: [
-        '../../layout/collapsable-card/collapsable-card.scss',
         './employee-summary.component.scss'
     ]
 })
-export class EmployeeSummaryComponent extends CollapsableCard {
+export class EmployeeSummaryComponent {
 
     // Employee
     @Input()
@@ -31,9 +28,7 @@ export class EmployeeSummaryComponent extends CollapsableCard {
      * Creates an instance of EmployeeSummaryComponent.
      * @memberof EmployeeSummaryComponent
      */
-    public constructor() {
-        super();
-    }
+    public constructor() { }
 
     /**
      * If present, returns the Employee Job Level
