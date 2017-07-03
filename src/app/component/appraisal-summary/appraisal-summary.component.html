@@ -1,0 +1,23 @@
+<div class="card bg-gray">
+    <div class="card-block">
+        <h4 class="card-title">
+            Appraisals
+        </h4>
+        <button (click)="changeCollapseSign()" class="btn btn-collapse" type="button" data-toggle="collapse" data-target="#collapseAppraisalSummary"
+            aria-expanded="false" aria-controls="collapseAppraisalSummary">
+            <i [ngClass]="collapseSign" class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="collapse show" id="collapseAppraisalSummary">
+        <div class="card-block">
+            <ul class="list-group list-group-flush bg-gray">
+                <li *ngIf="appraisals.length <= 0" class="list-group-item bg-gray">
+                    <i>No appraisals for the currently logged in user</i>
+                </li>
+                <li *ngFor="let appraisal of appraisals" class="list-group-item bg-gray">
+                    {{ appraisal.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
 import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
 import { ErrorComponent } from './component/error/error.component';
-import { PageNotFoundComponent } from './component/error/page-not-found.component';
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { LoginCallbackComponent } from './component/login-callback/login-callback.component';
 import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
 import { SilentLoginGuard } from './service/auth/silent-login-guard.service';

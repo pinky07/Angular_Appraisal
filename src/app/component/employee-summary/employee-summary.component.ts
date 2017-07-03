@@ -12,7 +12,10 @@ import { Employee } from '../../model/employee/employee';
 @Component({
     selector: 'app-employee-summary',
     templateUrl: './employee-summary.component.html',
-    styleUrls: ['./employee-summary.component.scss']
+    styleUrls: [
+        '../../layout/collapsable-card/collapsable-card.scss',
+        './employee-summary.component.scss'
+    ]
 })
 export class EmployeeSummaryComponent extends CollapsableCard {
 

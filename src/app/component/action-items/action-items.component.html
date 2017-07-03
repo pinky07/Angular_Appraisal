@@ -8,14 +8,22 @@
     </div>
     <div class="collapse show" id="collapseActionItems">
         <ul class="list-group list-group-flush bg-gray">
+            <li *ngIf="actionItems.length <= 0" class="list-group-item bg-gray">
+                <i>No actions required at the moment</i>
+            </li>
             <li *ngFor="let actionItem of actionItems" class="list-group-item bg-gray">
                 <div *ngIf="actionItem.done" class="done">
                     <i class="fa fa-check-square-o" aria-hidden="true"></i>{{ actionItem.text }}
                 </div>
-                <div *ngIf="!actionItem.done">
-                    <a routerLink="actionItem.url">
+                <div *ngIf="!actionItem.done" class="pending">
+                    <div *ngIf="actionItem.url">
+                        <a (click)="navigate2ActionItem(actionItem.url)">
+                            <i class="fa fa-square-o" aria-hidden="true"></i>{{ actionItem.text }}
+                        </a>
+                    </div>
+                    <div *ngIf="!actionItem.url">
                         <i class="fa fa-square-o" aria-hidden="true"></i>{{ actionItem.text }}
-                    </a>
+                    </div>
                 </div>
             </li>
         </ul>

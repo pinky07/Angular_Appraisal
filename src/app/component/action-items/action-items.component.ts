@@ -1,8 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { CollapsableCard } from '../../layout/collapsable-card/collapsable-card';
 import { ActionItem } from '../../model/action-item/action-item';
 import { ActionItemService } from '../../service/action-item/action-item.service';
 
-import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-action-items',
@@ -17,9 +19,11 @@ export class ActionItemsComponent extends CollapsableCard implements OnInit {
     private actionItems: ActionItem[];
 
     constructor(
-        private actionItemsService: ActionItemService
+        private actionItemsService: ActionItemService,
+        private router: Router
     ) {
         super();
+        this.actionItems = [];
     }
 
     public ngOnInit() {
@@ -29,5 +33,9 @@ export class ActionItemsComponent extends CollapsableCard implements OnInit {
             actionItems => this.actionItems = actionItems,
             error => console.log(error)
             );
+    }
+
+    private navigate2ActionItem(path: string[]): void {
+        this.router.navigate(path);
     }
 }

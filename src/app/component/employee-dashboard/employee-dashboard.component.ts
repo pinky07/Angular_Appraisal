@@ -9,7 +9,7 @@ import { MeService } from '../../service/me/me.service';
 import { TitleService } from '../../service/title/title.service';
 
 /**
- * Employee dashboard
+ * Shows the Employee dashboard.
  * @author Manuel Yepez
  * @author Rubén Jiménez
  * @export
@@ -41,26 +41,38 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
     ) { }
 
     /**
-     * TODO Document this!
+     * Initializes the component.
      * @memberof EmployeeDashboardComponent
      */
     public ngOnInit() {
+
+        // Download employee information
         this.meService
             .getMe()
             .subscribe(
             employee => this.changeCurrentEmployee(employee));
 
+        // Download mentor information
         this.meService
             .getMeMentor()
             .subscribe(employee => this.changeCurrentEmployeeMentor(employee));
     }
 
+
+    /**
+     * Clean up code
+     * @memberof EmployeeDashboardComponent
+     */
     public ngOnDestroy(): void {
+        // Dismiss alerts created by this component
         this.alertService.dismissAll();
+
+        // Set the default title back
+        this.titleService.setDefaultTitle();
     }
 
     /**
-     * TODO Document this!
+     * Changes the employee currently shown in the summary
      * @param {Employee} employee
      * @memberof EmployeeDashboardComponent
      */
@@ -70,7 +82,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * TODO Document this!
+     * Changes the mentor of the employee currently shown in the summary
      * @param {Employee} employee
      * @memberof EmployeeDashboardComponent
      */

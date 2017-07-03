@@ -9,13 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActionItemsComponent } from './component/action-items/action-items.component';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { AppraisalSummaryComponent } from './component/appraisal-summary/appraisal-summary.component';
 import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
 import { EmployeeSummaryComponent } from './component/employee-summary/employee-summary.component';
 import { ErrorComponent } from './component/error/error.component';
-import { PageNotFoundComponent } from './component/error/page-not-found.component';
-import { GridComponent } from './component/grid/grid.component';
 import { LoginCallbackComponent } from './component/login-callback/login-callback.component';
 import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { AlertComponent } from './layout/alert/alert.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MenuComponent } from './layout/menu/menu.component';
@@ -49,7 +49,7 @@ import { TitleService } from './service/title/title.service';
     MentorDashboardComponent,
     AdminDashboardComponent,
     ActionItemsComponent,
-    GridComponent,
+    AppraisalSummaryComponent
   ],
   imports: [
     AppRoutingModule,

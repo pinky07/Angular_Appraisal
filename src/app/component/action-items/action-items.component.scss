@@ -5,3 +5,9 @@
 .done {
     text-decoration: line-through;
 }
+
+.list-group-item > div.pending > div > a:hover {
+    cursor: pointer;
+    color: #014c8c;
+    text-decoration: underline;
+}
