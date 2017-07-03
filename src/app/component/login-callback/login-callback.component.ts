@@ -5,15 +5,16 @@ import { AuthService } from '../../service/auth/auth.service';
 
 
 /**
+ * TODO Document this!
  * @export
  * @class CallbackComponent
  * @implements {OnInit}
  */
 @Component({
-    selector: 'app-callback',
-    templateUrl: './callback.component.html',
+    selector: 'app-login-callback',
+    templateUrl: './login-callback.component.html',
 })
-export class CallbackComponent implements OnInit {
+export class LoginCallbackComponent implements OnInit {
 
     private code: string;
     private state: string;

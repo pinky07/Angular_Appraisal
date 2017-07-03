@@ -1,0 +1,37 @@
+<div class="card bg-gray">
+    <div class="card-block">
+        <h4 class="card-title">
+            <span *ngIf="employee;else defaultTitle"> 
+                {{ employee.firstName }} {{ employee.lastName }}
+            </span>
+        </h4>
+        <button (click)="changeCollapseSign()" class="btn btn-collapse" type="button" data-toggle="collapse" data-target="#collapseEmployeeSummary"
+            aria-expanded="false" aria-controls="collapseEmployeeSummary">
+            <i [ngClass]="collapseSign" class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="collapse show" id="collapseEmployeeSummary">
+        <ul class="list-group list-group-flush bg-gray">
+            <li class="list-group-item bg-gray">
+                <p>
+                    <strong>Job Family</strong><br/>
+                    <span *ngIf="getEmployeeJobFamily();else unassigned">{{ getEmployeeJobFamily() }}</span>
+                </p>
+            </li>
+            <li class="list-group-item bg-gray">
+                <p>
+                    <strong>Level</strong><br/>
+                    <span *ngIf="getEmployeeJobLevel();else unassigned">{{ getEmployeeJobLevel() }}</span>
+                </p>
+            </li>
+            <li class="list-group-item bg-gray">
+                <p>
+                    <strong>Mentor</strong><br/>
+                    <span *ngIf="mentor;else unassigned">{{mentor.firstName}} {{ mentor.lastName}}</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+<ng-template #defaultTitle>Employee</ng-template>
+<ng-template #unassigned>Unassigned</ng-template>

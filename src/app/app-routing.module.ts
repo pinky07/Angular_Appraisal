@@ -1,32 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AdminDashboardComponent } from './component/admin/admin-dashboard.component';
-import { EmployeeDashboardComponent } from './component/employee/employee-dashboard.component';
+import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
 import { ErrorComponent } from './component/error/error.component';
 import { PageNotFoundComponent } from './component/error/page-not-found.component';
-import { CallbackComponent } from './component/login/callback.component';
-import { MentorDashboardComponent } from './component/mentor/mentor-dashboard.component';
+import { LoginCallbackComponent } from './component/login-callback/login-callback.component';
+import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
 import { SilentLoginGuard } from './service/auth/silent-login-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/employeeDashboard', pathMatch: 'full' },
-  { path: 'callback', component: CallbackComponent },
+  { path: 'callback', component: LoginCallbackComponent },
+
+  // All paths below must have the SilentLoginGuard!
   { path: 'error', component: ErrorComponent, canActivate: [SilentLoginGuard] },
   { path: 'employeeDashboard', component: EmployeeDashboardComponent, canActivate: [SilentLoginGuard] },
   { path: 'mentorDashboard', component: MentorDashboardComponent, canActivate: [SilentLoginGuard] },
   { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [SilentLoginGuard] },
-  /* { path: 'employee/:id/peer', component: PeerComponent },
-  { path: 'employee/:employeeId/appraisals', component: AppraisalListComponent },
-  { path: 'employee/:employeeId/appraisal/:id', component: AppraisalDetailComponent },
-  { path: 'employee/:employeeId/appraisals/peer/:id', component: PeerDetailComponent },
-  { path: 'employee/:employeeId/appraisals/mentor/:id', component: AppraisalMentorRevisionComponent },
-  { path: 'employee/:id/admin', component: AdminComponent } */
-  { path: '**', component: PageNotFoundComponent }
+
+  // Default page
+  { path: '**', component: PageNotFoundComponent, canActivate: [SilentLoginGuard] }
 ];
 
 /**
- * TODO Document this!
+ * Module that holds all the application routes.
  * @author Manuel Yepez
  * @author Ruben Jimenez
  * @export

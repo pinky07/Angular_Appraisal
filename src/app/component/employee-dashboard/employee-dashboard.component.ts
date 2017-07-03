@@ -48,13 +48,11 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
         this.meService
             .getMe()
             .subscribe(
-            employee => this.changeCurrentEmployee(employee),
-            error => this.alertService.danger('Error', 'Couldn\'t load personal information'));
+            employee => this.changeCurrentEmployee(employee));
 
         this.meService
             .getMeMentor()
-            .subscribe(employee => this.changeCurrentEmployeeMentor(employee),
-            error => this.alertService.danger('Error', 'Couldn\'t load mentor information'));
+            .subscribe(employee => this.changeCurrentEmployeeMentor(employee));
     }
 
     public ngOnDestroy(): void {
