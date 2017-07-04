@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ActionItemsComponent } from './component/action-items/action-items.component';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { AppraisalDashboardComponent } from './component/appraisal-dashboard/appraisal-dashboard.component';
 import { AppraisalSummaryComponent } from './component/appraisal-summary/appraisal-summary.component';
 import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
 import { EmployeeSummaryComponent } from './component/employee-summary/employee-summary.component';
@@ -51,7 +52,8 @@ import { TitleService } from './service/title/title.service';
     AdminDashboardComponent,
     ActionItemsComponent,
     AppraisalSummaryComponent,
-    CollapsableCardComponent
+    CollapsableCardComponent,
+    AppraisalDashboardComponent
   ],
   imports: [
     AppRoutingModule,

@@ -77,7 +77,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
      * @memberof EmployeeDashboardComponent
      */
     private getEmployeeName(): string {
-        let result = '';
+        let result = 'Unregistered';
         if (this.currentEmployee
             && this.currentEmployee.firstName
             && this.currentEmployee.lastName) {
