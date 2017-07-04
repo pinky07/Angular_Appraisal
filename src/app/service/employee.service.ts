@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 import { Employee } from '../model/employee/employee';
 import { AuthService } from './auth.service';
 import { ErrorHandlerService } from './error-handler.service';
+import { PEERS } from './mock/employee-peers.mock';
 
 /**
  * TODO Document this!
@@ -48,6 +49,16 @@ export class EmployeeService {
             .retry(this.maxRetries)
             .map(response => response.json().data as Employee)
             .catch(this.errorHandlerService.handleError);
+    }
+
+    public getEmployeeByIdPeers(id: number): Observable<Employee[]> {
+        return Observable.of(PEERS);
+        // const url = `${this.employeesUrl}/${id}/peers`;
+        // return this.http
+        //     .get(url, this.authService.getOptionsWithToken())
+        //     .retry(this.maxRetries)
+        //     .map(response => response.json().data as Employee)
+        //     .catch(this.errorHandlerService.handleError);
     }
 
     /**

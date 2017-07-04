@@ -5,8 +5,9 @@ import { AppraisalDashboardComponent } from './component/appraisal-dashboard/app
 import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
 import { ErrorComponent } from './component/error/error.component';
 import { LoginCallbackComponent } from './component/login-callback/login-callback.component';
-import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
+import { MentoringDashboardComponent } from './component/mentoring-dashboard/mentoring-dashboard.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { MentoringDashboardGuard } from './guard/mentoring-dashboard.guard';
 import { SilentLoginGuard } from './guard/silent-login-guard.service';
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   // All paths below must have the SilentLoginGuard!
   { path: 'error', component: ErrorComponent, canActivate: [SilentLoginGuard] },
   { path: 'employeeDashboard', component: EmployeeDashboardComponent, canActivate: [SilentLoginGuard] },
-  { path: 'mentoringDashboard', component: MentorDashboardComponent, canActivate: [SilentLoginGuard] },
+  { path: 'mentoringDashboard', component: MentoringDashboardComponent, canActivate: [SilentLoginGuard, MentoringDashboardGuard] },
   { path: 'appraisalDashboard', component: AppraisalDashboardComponent, canActivate: [SilentLoginGuard] },
 
   // Default page

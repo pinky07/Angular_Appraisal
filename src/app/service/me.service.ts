@@ -71,7 +71,7 @@ export class MeService {
      */
     public getMeMentees(): Observable<Employee[]> {
         return Observable.of(MENTEES);
-        // const url = `${this.meUrl}/mentor`;
+        // const url = `${this.meUrl}/mentees`;
         // return this.http
         //    .get(url, this.authService.getOptionsWithToken())
         //    .retry(this.maxRetries)

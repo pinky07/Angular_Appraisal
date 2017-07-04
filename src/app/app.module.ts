@@ -15,8 +15,9 @@ import { EmployeeDashboardComponent } from './component/employee-dashboard/emplo
 import { EmployeeSummaryComponent } from './component/employee-summary/employee-summary.component';
 import { ErrorComponent } from './component/error/error.component';
 import { LoginCallbackComponent } from './component/login-callback/login-callback.component';
-import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
+import { MentoringDashboardComponent } from './component/mentoring-dashboard/mentoring-dashboard.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { MentoringDashboardGuard } from './guard/mentoring-dashboard.guard';
 import { SilentLoginGuard } from './guard/silent-login-guard.service';
 import { AlertComponent } from './layout/alert/alert.component';
 import { CollapsableCardComponent } from './layout/collapsable-card/collapsable-card.component';
@@ -49,7 +50,7 @@ import { TitleService } from './service/title.service';
     PageNotFoundComponent,
     EmployeeDashboardComponent,
     EmployeeSummaryComponent,
-    MentorDashboardComponent,
+    MentoringDashboardComponent,
     AdminDashboardComponent,
     ActionItemsComponent,
     AppraisalSummaryComponent,
@@ -65,8 +66,9 @@ import { TitleService } from './service/title.service';
     HttpModule
   ],
   providers: [
-    AlertService,
     SilentLoginGuard,
+    MentoringDashboardGuard,
+    AlertService,
     AuthService,
     TitleService,
     EmployeeService,

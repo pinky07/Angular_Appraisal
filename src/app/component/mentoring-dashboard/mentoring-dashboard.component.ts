@@ -13,11 +13,11 @@ import { TitleService } from '../../service/title.service';
  * @implements {OnDestroy}
  */
 @Component({
-    selector: 'app-mentor-dashboard',
-    templateUrl: './mentor-dashboard.component.html',
-    styleUrls: ['./mentor-dashboard.component.scss']
+    selector: 'app-mentoring-dashboard',
+    templateUrl: './mentoring-dashboard.component.html',
+    styleUrls: ['./mentoring-dashboard.component.scss']
 })
-export class MentorDashboardComponent implements OnInit, OnDestroy {
+export class MentoringDashboardComponent implements OnInit, OnDestroy {
 
     private currentMentees: Employee[];
 
