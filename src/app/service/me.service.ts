@@ -6,10 +6,11 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from '../../../environments/environment';
-import { Employee } from '../../model/employee/employee';
-import { AuthService } from '../auth/auth.service';
-import { ErrorHandlerService } from '../error/error-handler.service';
+import { environment } from '../../environments/environment';
+import { Employee } from '../model/employee/employee';
+import { AuthService } from './auth.service';
+import { ErrorHandlerService } from './error-handler.service';
+import { MENTEES } from './mock/me-mentees.mock';
 
 /**
  * Handles web service calls to the /me endpoint
@@ -63,4 +64,18 @@ export class MeService {
             .catch(this.errorHandlerService.handleError);
     }
 
+    /**
+     * Returns the Mentee information for the currently logged in user.
+     * @returns {Promise<Employee>} Mentor information
+     * @memberof MeService
+     */
+    public getMeMentees(): Observable<Employee[]> {
+        return Observable.of(MENTEES);
+        // const url = `${this.meUrl}/mentor`;
+        // return this.http
+        //    .get(url, this.authService.getOptionsWithToken())
+        //    .retry(this.maxRetries)
+        //    .map(response => response.json() as Employee)
+        //    .catch(this.errorHandlerService.handleError);
+    }
 }

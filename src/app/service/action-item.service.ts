@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { ActionItem } from '../../model/action-item/action-item';
-import { Employee } from '../../model/employee/employee';
-import { ACTION_ITEMS } from './action-item.mock';
+import { ActionItem } from '../model/action-item/action-item';
+import { Employee } from '../model/employee/employee';
+import { ACTION_ITEMS } from './mock/action-item.mock';
 
 @Injectable()
 export class ActionItemService {

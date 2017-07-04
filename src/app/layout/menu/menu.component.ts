@@ -1,3 +1,5 @@
+import { MenuService } from '../../service/menu.service';
+
 import { Component, OnInit } from '@angular/core';
 
 /**
@@ -16,8 +18,9 @@ export class MenuComponent implements OnInit {
      * Creates an instance of MenuComponent.
      * @memberof MenuComponent
      */
-    constructor() { }
-
+    constructor(
+        private menuService: MenuService
+    ) { }
 
     /**
      * @memberof MenuComponent

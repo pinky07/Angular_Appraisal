@@ -6,11 +6,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from '../../../environments/environment';
-import { Employee } from '../../model/employee/employee';
-import { AuthService } from '../auth/auth.service';
-import { ErrorHandlerService } from '../error/error-handler.service';
-
+import { environment } from '../../environments/environment';
+import { Employee } from '../model/employee/employee';
+import { AuthService } from './auth.service';
+import { ErrorHandlerService } from './error-handler.service';
 
 /**
  * TODO Document this!

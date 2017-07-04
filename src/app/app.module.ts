@@ -17,18 +17,19 @@ import { ErrorComponent } from './component/error/error.component';
 import { LoginCallbackComponent } from './component/login-callback/login-callback.component';
 import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { SilentLoginGuard } from './guard/silent-login-guard.service';
 import { AlertComponent } from './layout/alert/alert.component';
 import { CollapsableCardComponent } from './layout/collapsable-card/collapsable-card.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MenuComponent } from './layout/menu/menu.component';
-import { ActionItemService } from './service/action-item/action-item.service';
-import { AlertService } from './service/alert/alert.service';
-import { AuthService } from './service/auth/auth.service';
-import { SilentLoginGuard } from './service/auth/silent-login-guard.service';
-import { EmployeeService } from './service/employee/employee.service';
-import { ErrorHandlerService } from './service/error/error-handler.service';
-import { MeService } from './service/me/me.service';
-import { TitleService } from './service/title/title.service';
+import { ActionItemService } from './service/action-item.service';
+import { AlertService } from './service/alert.service';
+import { AuthService } from './service/auth.service';
+import { EmployeeService } from './service/employee.service';
+import { ErrorHandlerService } from './service/error-handler.service';
+import { MeService } from './service/me.service';
+import { MenuService } from './service/menu.service';
+import { TitleService } from './service/title.service';
 
 /**
  * TODO Document this!
@@ -71,7 +72,8 @@ import { TitleService } from './service/title/title.service';
     EmployeeService,
     MeService,
     ErrorHandlerService,
-    ActionItemService
+    ActionItemService,
+    MenuService
   ],
   bootstrap: [AppComponent]
 })

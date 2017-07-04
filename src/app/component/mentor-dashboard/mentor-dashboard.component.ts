@@ -1,15 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { Alert } from '../../model/alert/alert';
-import { AlertService } from '../../service/alert/alert.service';
-import { TitleService } from '../../service/title/title.service';
+import { Employee } from '../../model/employee/employee';
+import { MeService } from '../../service/me.service';
+import { TitleService } from '../../service/title.service';
 
 /**
- * TODO Document this!
+ * Displays Mentee information if the logged on Employee is a Mentor
  * @author Rubén Jiménez
  * @export
  * @class MentorDashboardComponent
  * @implements {OnInit}
+ * @implements {OnDestroy}
  */
 @Component({
     selector: 'app-mentor-dashboard',
@@ -18,16 +19,30 @@ import { TitleService } from '../../service/title/title.service';
 })
 export class MentorDashboardComponent implements OnInit, OnDestroy {
 
+    private currentMentees: Employee[];
+
     public constructor(
-        private alertService: AlertService,
         private titleService: TitleService,
+        private meService: MeService
     ) { }
 
     public ngOnInit() {
-        this.alertService.warning('Unimplemented', 'Mentor dashboard hasn\'t been implemented yet');
+        this.titleService.setTitle('Mentoring Dashboard');
+
+        // Download mentees information
+        this.meService
+            .getMeMentees()
+            .subscribe(
+            employees => this.changeCurrentMentees(employees));
     }
 
     public ngOnDestroy(): void {
-        this.alertService.dismissAll();
+        this.titleService.setDefaultTitle();
+    }
+
+    public changeCurrentMentees(employees: Employee[]): void {
+        this.currentMentees = employees;
+        console.log(this.currentMentees);
     }
 }
+

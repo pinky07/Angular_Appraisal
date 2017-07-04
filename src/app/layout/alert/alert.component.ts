@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 
 import { Alert } from '../../model/alert/alert';
-import { AlertService } from '../../service/alert/alert.service';
+import { AlertService } from '../../service/alert.service';
 
 /**
  * TODO Document this!

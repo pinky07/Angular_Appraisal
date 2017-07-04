@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ActionItem } from '../../model/action-item/action-item';
-import { ActionItemService } from '../../service/action-item/action-item.service';
+import { ActionItemService } from '../../service/action-item.service';
 
 
 @Component({

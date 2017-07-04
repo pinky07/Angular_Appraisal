@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { AlertComponent } from '../../layout/alert/alert.component';
-import { Alert } from '../../model/alert/alert';
+import { AlertComponent } from '../layout/alert/alert.component';
+import { Alert } from '../model/alert/alert';
 
 /**
  * TODO Document this!

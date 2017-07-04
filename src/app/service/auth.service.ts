@@ -10,9 +10,8 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
-import { environment } from '../../../environments/environment';
-import { ErrorHandlerService } from '../error/error-handler.service';
-
+import { environment } from '../../environments/environment';
+import { ErrorHandlerService } from './error-handler.service';
 
 /**
  * TODO Document this!
@@ -55,6 +54,10 @@ export class AuthService {
      * @memberof AuthService
      */
     public authorize() {
+
+        // TODO This can be further optimized if we retrieve the access token from the local storage!!!!
+        // In other words, we have to check if the user has logged in before and if the token is still active
+
         // Build URL
         const url: string = this.oauth2Schema + this.oauth2Host + 'oauth/authorize?'
             + 'client_id=' + this.oauth2ClientId + '&'

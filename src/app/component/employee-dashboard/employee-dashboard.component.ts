@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Alert } from '../../model/alert/alert';
 import { Employee } from '../../model/employee/employee';
-import { AlertService } from '../../service/alert/alert.service';
-import { EmployeeService } from '../../service/employee/employee.service';
-import { MeService } from '../../service/me/me.service';
-import { TitleService } from '../../service/title/title.service';
+import { AlertService } from '../../service/alert.service';
+import { EmployeeService } from '../../service/employee.service';
+import { MeService } from '../../service/me.service';
+import { MenuService } from '../../service/menu.service';
+import { TitleService } from '../../service/title.service';
 
 /**
  * Shows the Employee dashboard.
@@ -37,6 +38,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
         private employeeService: EmployeeService,
         private meService: MeService,
         private titleService: TitleService,
+        private menuService: MenuService,
         private route: ActivatedRoute
     ) { }
 
@@ -92,8 +94,15 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
      * @memberof EmployeeDashboardComponent
      */
     private changeCurrentEmployee(employee: Employee) {
+
+        // Change the field that is presented in the view
         this.currentEmployee = employee;
+
+        // Change the application title
         this.titleService.setTitle(employee.firstName + ' ' + employee.lastName);
+
+        // Activate the Mentoring Dashboard if the current user is a Mentor
+        this.menuService.setMentoringDashboardEnabled(this.currentEmployee.isMentor);
     }
 
     /**

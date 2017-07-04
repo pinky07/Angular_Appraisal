@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HeaderComponent } from '../../layout/header/header.component';
+import { HeaderComponent } from '../layout/header/header.component';
 
 /**
  * Provides a way to modify the Application Title

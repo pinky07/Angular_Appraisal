@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 
 // App imports
-import { HeaderComponent } from '../../layout/header/header.component';
+import { HeaderComponent } from '../layout/header/header.component';
 
 /**
  * TODO Document this!
