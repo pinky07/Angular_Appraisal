@@ -1,0 +1,24 @@
+/**
+ * mentoring-dashboard.component.scss - Version 1.0.0
+ * 
+ * Mentoring Dashboard Style
+ * 
+ * @author Ruben Jimenez
+ */
+
+.list_mentees {
+    display: block;
+}
+
+.list_references {
+    list-style: none;
+}
+
+p {
+    margin: 0px;
+}
+
+.mentee_name {
+    color: black;
+    font-size: 1.1rem;
+}

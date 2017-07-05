@@ -1,7 +1,7 @@
 import { ActionItem } from '../../model/action-item/action-item';
 import { Employee } from '../../model/employee/employee';
 
-export const PEERS: Employee[] = [
+export const REFERENCES: Employee[] = [
     {
         id: 1,
         email: 'peer.1@gft.com',

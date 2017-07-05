@@ -1,8 +1,8 @@
-<ul class="list-group list-group-flush bg-gray">
-    <li *ngIf="actionItems.length <= 0" class="list-group-item bg-gray">
+<ul class="list-group list-group-flush bg-white">
+    <li *ngIf="actionItems.length <= 0" class="list-group-item bg-white">
         <i>No actions required at the moment</i>
     </li>
-    <li *ngFor="let actionItem of actionItems" class="list-group-item bg-gray">
+    <li *ngFor="let actionItem of actionItems" class="list-group-item bg-white">
         <div *ngIf="actionItem.done" class="done">
             <i class="fa fa-check-square-o" aria-hidden="true"></i>{{ actionItem.text }}
         </div>

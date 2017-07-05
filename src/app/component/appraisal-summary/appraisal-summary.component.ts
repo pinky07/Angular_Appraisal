@@ -4,6 +4,7 @@ import { Appraisal } from '../../model/appraisal/appraisal';
 
 /**
  * Show a list of Appraisals for the logged in user.
+ * @author Rubén Jiménez
  * @export
  * @class NameComponent
  * @implements {OnInit}

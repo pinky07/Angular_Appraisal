@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Employee } from '../../model/employee/employee';
+import { EmployeeService } from '../../service/employee.service';
 import { MeService } from '../../service/me.service';
 import { TitleService } from '../../service/title.service';
 
@@ -19,12 +20,16 @@ import { TitleService } from '../../service/title.service';
 })
 export class MentoringDashboardComponent implements OnInit, OnDestroy {
 
-    private currentMentees: Employee[];
+    private mentees: Employee[];
+    private menteeReferencesMap: Map<number, Employee[]>;
 
     public constructor(
         private titleService: TitleService,
-        private meService: MeService
-    ) { }
+        private meService: MeService,
+        private employeeService: EmployeeService
+    ) {
+        this.menteeReferencesMap = new Map();
+    }
 
     public ngOnInit() {
         this.titleService.setTitle('Mentoring Dashboard');
@@ -32,17 +37,25 @@ export class MentoringDashboardComponent implements OnInit, OnDestroy {
         // Download mentees information
         this.meService
             .getMeMentees()
-            .subscribe(
-            employees => this.changeCurrentMentees(employees));
+            .subscribe(employees => this.changeCurrentMentees(employees));
     }
 
     public ngOnDestroy(): void {
         this.titleService.setDefaultTitle();
     }
 
-    public changeCurrentMentees(employees: Employee[]): void {
-        this.currentMentees = employees;
-        console.log(this.currentMentees);
+    private changeCurrentMentees(mentees: Employee[]): void {
+        this.mentees = mentees;
+
+        for (const mentee of this.mentees) {
+            this.employeeService
+                .getEmployeeByIdReferences(mentee.id)
+                .subscribe(references => this.changeMenteeReferences(mentee.id, references));
+        }
+    }
+
+    private changeMenteeReferences(menteeId: number, references: Employee[]) {
+        this.menteeReferencesMap[menteeId] = references;
     }
 }
 

@@ -1,9 +1,9 @@
 <div class="card-block">
-    <ul class="list-group list-group-flush bg-gray">
-        <li *ngIf="appraisals.length <= 0" class="list-group-item bg-gray">
+    <ul class="list-group list-group-flush bg-white">
+        <li *ngIf="appraisals.length <= 0" class="list-group-item bg-white">
             <i>No appraisals for the currently logged in user</i>
         </li>
-        <li *ngFor="let appraisal of appraisals" class="list-group-item bg-gray">
+        <li *ngFor="let appraisal of appraisals" class="list-group-item bg-white">
             {{ appraisal.name }}
         </li>
     </ul>

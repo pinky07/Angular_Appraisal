@@ -1,17 +1,17 @@
-<ul class="list-group list-group-flush bg-gray">
-    <li class="list-group-item bg-gray">
+<ul class="list-group list-group-flush bg-white">
+    <li class="list-group-item bg-white">
         <p>
             <strong>Job Family</strong><br/>
             <span *ngIf="getEmployeeJobFamily();else unassigned">{{ getEmployeeJobFamily() }}</span>
         </p>
     </li>
-    <li class="list-group-item bg-gray">
+    <li class="list-group-item bg-white">
         <p>
             <strong>Level</strong><br/>
             <span *ngIf="getEmployeeJobLevel();else unassigned">{{ getEmployeeJobLevel() }}</span>
         </p>
     </li>
-    <li class="list-group-item bg-gray">
+    <li class="list-group-item bg-white">
         <p>
             <strong>Mentor</strong><br/>
             <span *ngIf="mentor;else unassigned">{{mentor.firstName}} {{ mentor.lastName}}</span>

@@ -1,5 +1,32 @@
 <div class="row">
-	<div class="col-xs-6 offset-md-2 col-md-8">
-        <h1>Mentor Dashboard</h1>
-	</div>
+    <div class="col-xs-6 offset-md-2 col-md-8">
+        <app-collapsable-card title="Mentees">
+            <div class="card-block">
+                <ul class="list-group list-group-flush bg-white list_mentees">
+                    <li *ngIf="mentees && mentees.length <= 0" class="list-group-item bg-white">
+                        <i>No mentees were found</i>
+                    </li>
+                    <li *ngFor="let mentee of mentees" class="list-group-item bg-white">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="mentee_name">{{ mentee.firstName }} {{ mentee.lastName }}</p>
+                                <p class="mentee_job">{{ mentee.jobLevel.name }} {{ mentee.jobLevel.jobFamily.name }}</p>
+                            </div>
+                            <div class="col-5 offset-1">
+                                <p>References</p>
+                                <ul class="list_references">
+                                    <li *ngIf="!menteeReferencesMap[mentee.id] || menteeReferencesMap[mentee.id] && menteeReferencesMap[mentee.id].length <= 0">
+                                        <i>No references were found</i>
+                                    </li>
+                                    <li *ngFor="let reference of menteeReferencesMap[mentee.id]">
+                                        {{ reference.firstName }} {{ reference.lastName }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </app-collapsable-card>
+    </div>
 </div>
