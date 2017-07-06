@@ -8,11 +8,11 @@
                     </li>
                     <li *ngFor="let mentee of mentees" class="list-group-item bg-white">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-xs-12 col-md-5">
                                 <p class="mentee_name">{{ mentee.firstName }} {{ mentee.lastName }}</p>
                                 <p class="mentee_job">{{ mentee.jobLevel.name }} {{ mentee.jobLevel.jobFamily.name }}</p>
                             </div>
-                            <div class="col-5 offset-1">
+                            <div class="col-xs-12 col-md-5 offset-md-1">
                                 <p>References</p>
                                 <ul class="list_references">
                                     <li *ngIf="!menteeReferencesMap[mentee.id] || menteeReferencesMap[mentee.id] && menteeReferencesMap[mentee.id].length <= 0">
