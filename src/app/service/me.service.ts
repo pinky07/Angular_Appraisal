@@ -70,12 +70,11 @@ export class MeService {
      * @memberof MeService
      */
     public getMeMentees(): Observable<Employee[]> {
-        return Observable.of(MENTEES);
-        // const url = `${this.meUrl}/mentees`;
-        // return this.http
-        //    .get(url, this.authService.getOptionsWithToken())
-        //    .retry(this.maxRetries)
-        //    .map(response => response.json() as Employee)
-        //    .catch(this.errorHandlerService.handleError);
+        const url = `${this.meUrl}/mentees`;
+        return this.http
+            .get(url, this.authService.getOptionsWithToken())
+            .retry(this.maxRetries)
+            .map(response => response.json() as Employee)
+            .catch(this.errorHandlerService.handleError);
     }
 }
