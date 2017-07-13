@@ -15,11 +15,11 @@
                             <div class="col-xs-12 col-md-5 offset-md-1">
                                 <p>References</p>
                                 <ul class="list_references">
-                                    <li *ngIf="!menteeReferencesMap[mentee.id] || menteeReferencesMap[mentee.id] && menteeReferencesMap[mentee.id].length <= 0">
+                                    <li *ngIf="!menteeRelationshipsMap[mentee.id] || menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length <= 0">
                                         <i>No references were found</i>
                                     </li>
-                                    <li *ngFor="let reference of menteeReferencesMap[mentee.id]">
-                                        {{ reference.firstName }} {{ reference.lastName }}
+                                    <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]">
+                                        {{ relationship.reference.firstName }} {{ relationship.reference.lastName }} ({{ relationship.relationship.name }})
                                     </li>
                                 </ul>
                             </div>

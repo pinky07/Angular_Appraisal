@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Employee } from '../../model/employee/employee';
+import { EmployeeRelationship } from '../../model/employee/employee-relationship';
 import { EmployeeService } from '../../service/employee.service';
 import { MeService } from '../../service/me.service';
 import { TitleService } from '../../service/title.service';
@@ -21,14 +22,21 @@ import { TitleService } from '../../service/title.service';
 export class MentoringDashboardComponent implements OnInit, OnDestroy {
 
     private mentees: Employee[];
-    private menteeReferencesMap: Map<number, Employee[]>;
+    private menteeRelationshipsMap: Map<number, EmployeeRelationship[]>;
 
+    /**
+     * Creates an instance of MentoringDashboardComponent.
+     * @param {TitleService} titleService Title service
+     * @param {MeService} meService Me service
+     * @param {EmployeeService} employeeService Employee service
+     * @memberof MentoringDashboardComponent
+     */
     public constructor(
         private titleService: TitleService,
         private meService: MeService,
         private employeeService: EmployeeService
     ) {
-        this.menteeReferencesMap = new Map();
+        this.menteeRelationshipsMap = new Map();
     }
 
     public ngOnInit() {
@@ -49,13 +57,14 @@ export class MentoringDashboardComponent implements OnInit, OnDestroy {
 
         for (const mentee of this.mentees) {
             this.employeeService
-                .getEmployeeByIdReferences(mentee.id)
+                .getEmployeeByIdRelationships(mentee.id)
                 .subscribe(references => this.changeMenteeReferences(mentee.id, references));
         }
     }
 
-    private changeMenteeReferences(menteeId: number, references: Employee[]) {
-        this.menteeReferencesMap[menteeId] = references;
+    private changeMenteeReferences(menteeId: number, references: EmployeeRelationship[]) {
+        console.log(references);
+        this.menteeRelationshipsMap[menteeId] = references;
     }
 }
 

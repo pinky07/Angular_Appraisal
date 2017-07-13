@@ -8,12 +8,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../environments/environment';
 import { Employee } from '../model/employee/employee';
+import { EmployeeRelationship } from '../model/employee/employee-relationship';
 import { AuthService } from './auth.service';
 import { ErrorHandlerService } from './error-handler.service';
-import { REFERENCES } from './mock/employee-references.mock';
 
 /**
- * TODO Document this!
+ * Comunicates with /employees endpoints.
  * @author Manuel Yepez
  * @author Ruben Jimenez
  * @export
@@ -37,7 +37,7 @@ export class EmployeeService {
     ) { }
 
     /**
-     * TODO Document this!
+     * Gets the /employees/:id endpoint.
      * @param {number} id
      * @returns {Promise<Employee>}
      * @memberof EmployeeService
@@ -47,22 +47,27 @@ export class EmployeeService {
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
-            .map(response => response.json().data as Employee)
+            .map(response => response.json() as Employee)
             .catch(this.errorHandlerService.handleError);
     }
 
-    public getEmployeeByIdReferences(id: number): Observable<Employee[]> {
-        return Observable.of(REFERENCES);
-        // const url = `${this.employeesUrl}/${id}/peers`;
-        // return this.http
-        //     .get(url, this.authService.getOptionsWithToken())
-        //     .retry(this.maxRetries)
-        //     .map(response => response.json().data as Employee)
-        //     .catch(this.errorHandlerService.handleError);
+    /**
+     * Gets the /employees/:id/relationships endpoint.
+     * @param {number} id Employee Id
+     * @returns {Observable<EmployeeRelationship[]>} List of Employee Relationships
+     * @memberof EmployeeService
+     */
+    public getEmployeeByIdRelationships(id: number): Observable<EmployeeRelationship[]> {
+        const url = `${this.employeesUrl}/${id}/relationships`;
+        return this.http
+            .get(url, this.authService.getOptionsWithToken())
+            .retry(this.maxRetries)
+            .map(response => response.json() as EmployeeRelationship)
+            .catch(this.errorHandlerService.handleError);
     }
 
     /**
-     * TODO Document this!
+     * Gets the /employees/:id/mentor endpoint.
      * @param {number} id
      * @returns {Promise<Employee>}
      * @memberof EmployeeService
@@ -72,7 +77,7 @@ export class EmployeeService {
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
-            .map(response => response.json().data as Employee)
+            .map(response => response.json() as Employee)
             .catch(this.errorHandlerService.handleError);
     }
 }

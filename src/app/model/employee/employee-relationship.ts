@@ -1,3 +1,4 @@
+import { Employee } from './employee';
 import { Relationship } from './relationship';
 
 /**
@@ -9,10 +10,10 @@ import { Relationship } from './relationship';
  */
 export class EmployeeRelationship {
     public constructor(
-        public peerId: number,
-        public employeeId: number,
+        public id: number,
+        public reference: Employee,
+        public relationship: Relationship,
         public startDate: string,
-        public endDate: string,
-        public relationship: Relationship
+        public endDate: string
     ) { }
 }
