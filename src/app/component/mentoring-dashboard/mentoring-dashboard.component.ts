@@ -63,7 +63,6 @@ export class MentoringDashboardComponent implements OnInit, OnDestroy {
     }
 
     private changeMenteeReferences(menteeId: number, references: EmployeeRelationship[]) {
-        console.log(references);
         this.menteeRelationshipsMap[menteeId] = references;
     }
 }
