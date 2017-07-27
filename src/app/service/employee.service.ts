@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 
 /**
- * Comunicates with /employees endpoints.
+ * Communicates with /employees endpoints.
  * @author Manuel Yepez
  * @author Ruben Jimenez
  * @export
@@ -32,8 +32,7 @@ export class EmployeeService {
      */
     public constructor(
         private http: Http,
-        private authService: AuthService,
-        private errorHandlerService: ErrorHandlerService
+        private authService: AuthService
     ) { }
 
     /**
@@ -48,7 +47,7 @@ export class EmployeeService {
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as Employee)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 
     /**
@@ -63,12 +62,12 @@ export class EmployeeService {
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as EmployeeRelationship)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 
     /**
      * Gets the /employees/:id/mentor endpoint.
-     * @param {number} id
+     * @param {number} id Internal lookup ID for the Employee
      * @returns {Promise<Employee>}
      * @memberof EmployeeService
      */
@@ -78,6 +77,6 @@ export class EmployeeService {
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as Employee)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 }

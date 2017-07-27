@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
 import { Employee } from '../model/employee/employee';
 import { AuthService } from './auth.service';
 import { ErrorHandlerService } from './error-handler.service';
-import { MENTEES } from './mock/me-mentees.mock';
 
 /**
  * Handles web service calls to the /me endpoint
@@ -47,7 +46,7 @@ export class MeService {
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as Employee)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 
     /**
@@ -61,7 +60,7 @@ export class MeService {
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as Employee)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 
     /**
@@ -75,6 +74,6 @@ export class MeService {
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as Employee)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 }

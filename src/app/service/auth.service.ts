@@ -27,11 +27,12 @@ export class AuthService {
     private redirectUrl = '/';
 
     private oauth2Schema = environment.protocol;
-    private oauth2Host = 'localhost:8888/uaa/';
+    private oauth2Host = environment.oauth2Host + ':' + environment.proxyPort + '/uaa/';
     private oauth2ClientId = 'app';
     private oauth2ClientSecret = 'app-secret-password';
     private oauth2Scope = 'EMPLOYEE+APPRAISAL';
-    private oauth2RedirectURI = 'http://localhost:4200/callback'; // This should be the URL of this application
+    // This should be the URL of this application
+    private oauth2RedirectURI = environment.protocol + environment.appHost + ':' + environment.appPort + '/callback';
     private oauth2ResponseType = 'code';
     private oauth2GrantType = 'authorization_code';
 
@@ -130,7 +131,7 @@ export class AuthService {
                     // Redirect the user to the Employee Dashboard
                     this.router.navigate(['/employeeDashboard/']);
                 },
-                this.errorHandlerService.handleError
+                ErrorHandlerService.handleError
             );
         } else {
             console.error('Attack alert!');
@@ -232,8 +233,7 @@ export class AuthService {
      */
     public getOptionsWithToken(): RequestOptions {
         const headers = new Headers({ 'Authorization': 'Bearer ' + this.encodedAccessToken() });
-        const options = new RequestOptions({ headers: headers });
-        return options;
+        return new RequestOptions({headers: headers});
     }
 
     /**
@@ -259,7 +259,7 @@ export class AuthService {
      * @memberof AuthService
      */
     public isLoggedIn(): boolean {
-        // TODO Here we should check if there is an access token in local storage. 
+        // TODO Here we should check if there is an access token in local storage.
         // If there is, and it hasn't expired, the user is already logged in.
         return this.loggedIn;
     }
