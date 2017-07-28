@@ -10,7 +10,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.dev';
 import { ErrorHandlerService } from './error-handler.service';
 
 /**
@@ -26,8 +26,7 @@ export class AuthService {
     private loggedIn = false;
     private redirectUrl = '/';
 
-    private oauth2Schema = environment.protocol;
-    private oauth2Host = 'localhost:8888/uaa/';
+    private oauth2Url = environment.oauth2Url;
     private oauth2ClientId = 'app';
     private oauth2ClientSecret = 'app-secret-password';
     private oauth2Scope = 'EMPLOYEE+APPRAISAL';
@@ -59,7 +58,7 @@ export class AuthService {
         // In other words, we have to check if the user has logged in before and if the token is still active
 
         // Build URL
-        const url: string = this.oauth2Schema + this.oauth2Host + 'oauth/authorize?'
+        const url: string = this.oauth2Url + '/oauth/authorize?'
             + 'client_id=' + this.oauth2ClientId + '&'
             + 'scope=' + this.oauth2Scope + '&'
             + 'state=' + this.generateStateValue() + '&'
@@ -83,8 +82,7 @@ export class AuthService {
 
         if (this.compareStateValue(state)) {
             const url: string =
-                this.oauth2Schema
-                + this.oauth2Host + 'oauth/token';
+                this.oauth2Url + '/oauth/token';
 
             const query: string =
                 'client_id=' + this.oauth2ClientId + '&'
@@ -259,7 +257,7 @@ export class AuthService {
      * @memberof AuthService
      */
     public isLoggedIn(): boolean {
-        // TODO Here we should check if there is an access token in local storage. 
+        // TODO Here we should check if there is an access token in local storage.
         // If there is, and it hasn't expired, the user is already logged in.
         return this.loggedIn;
     }

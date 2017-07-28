@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  oauth2Url: 'http://localhost:8888/uaa',
-  employeeUrl: 'http://localhost:8888/employees',
-  meUrl: 'http://localhost:8888/me',
+  oauth2Url: 'http://criprj:11001/uaa',
+  employeeUrl: 'http://criprj:11001/employees',
+  meUrl: 'http://criprj:11001/me',
   maxRetries: 3
 };
