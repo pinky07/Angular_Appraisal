@@ -30,8 +30,8 @@
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
-        "local": "environments/environment.ts",
-        "dev": "environments/environment.dev.ts"
+        "dev": "environments/environment.ts",
+        "ci": "environments/environment.dev.ts"
       }
     }
   ],

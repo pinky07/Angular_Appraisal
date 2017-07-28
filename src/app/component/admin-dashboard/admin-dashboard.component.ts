@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { Alert } from '../../model/alert/alert';
-import { AlertService } from '../../service/alert.service';
-import { TitleService } from '../../service/title.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AlertService} from '../../service/alert.service';
+import {TitleService} from '../../service/title.service';
 
 /**
  * TODO Document this!

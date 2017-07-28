@@ -10,7 +10,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
-import { environment } from '../../environments/environment.dev';
+import { environment } from '../../environments/environment';
 import { ErrorHandlerService } from './error-handler.service';
 
 /**
@@ -30,7 +30,8 @@ export class AuthService {
     private oauth2ClientId = 'app';
     private oauth2ClientSecret = 'app-secret-password';
     private oauth2Scope = 'EMPLOYEE+APPRAISAL';
-    private oauth2RedirectURI = 'http://localhost:4200/callback'; // This should be the URL of this application
+    // This should be the URL of this application
+    private oauth2RedirectURI = environment.oauth2Callback;
     private oauth2ResponseType = 'code';
     private oauth2GrantType = 'authorization_code';
 
@@ -44,8 +45,7 @@ export class AuthService {
      */
     public constructor(
         private router: Router,
-        private http: Http,
-        private errorHandlerService: ErrorHandlerService
+        private http: Http
     ) { }
 
     /**
@@ -128,7 +128,7 @@ export class AuthService {
                     // Redirect the user to the Employee Dashboard
                     this.router.navigate(['/employeeDashboard/']);
                 },
-                this.errorHandlerService.handleError
+                ErrorHandlerService.handleError
             );
         } else {
             console.error('Attack alert!');
@@ -230,8 +230,7 @@ export class AuthService {
      */
     public getOptionsWithToken(): RequestOptions {
         const headers = new Headers({ 'Authorization': 'Bearer ' + this.encodedAccessToken() });
-        const options = new RequestOptions({ headers: headers });
-        return options;
+        return new RequestOptions({headers: headers});
     }
 
     /**

@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 
 /**
- * Comunicates with /employees endpoints.
+ * Communicates with /employees endpoints.
  * @author Manuel Yepez
  * @author Ruben Jimenez
  * @export
@@ -23,7 +23,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class EmployeeService {
 
     private maxRetries: number = environment.maxRetries;
-    private employeesUrl = environment.employeeUrl;
+    private employeeUrl = environment.employeeUrl;
 
     /**
      * Creates an instance of EmployeeService.
@@ -32,8 +32,7 @@ export class EmployeeService {
      */
     public constructor(
         private http: Http,
-        private authService: AuthService,
-        private errorHandlerService: ErrorHandlerService
+        private authService: AuthService
     ) { }
 
     /**
@@ -43,12 +42,12 @@ export class EmployeeService {
      * @memberof EmployeeService
      */
     public getEmployeeById(id: number): Observable<Employee> {
-        const url = `${this.employeesUrl}/${id}`;
+        const url = `${this.employeeUrl}/${id}`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as Employee)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 
     /**
@@ -58,26 +57,26 @@ export class EmployeeService {
      * @memberof EmployeeService
      */
     public getEmployeeByIdRelationships(id: number): Observable<EmployeeRelationship[]> {
-        const url = `${this.employeesUrl}/${id}/relationships`;
+        const url = `${this.employeeUrl}/${id}/relationships`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as EmployeeRelationship)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 
     /**
      * Gets the /employees/:id/mentor endpoint.
-     * @param {number} id
+     * @param {number} id Internal lookup ID for the Employee
      * @returns {Promise<Employee>}
      * @memberof EmployeeService
      */
     public getMentor(id: number): Observable<Employee> {
-        const url = `${this.employeesUrl}/${id}/mentor`;
+        const url = `${this.employeeUrl}/${id}/mentor`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as Employee)
-            .catch(this.errorHandlerService.handleError);
+            .catch(ErrorHandlerService.handleError);
     }
 }

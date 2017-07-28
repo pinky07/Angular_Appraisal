@@ -6,7 +6,7 @@ export const ACTION_ITEMS: ActionItem[] = [
         done: true,
         category: 'Appraisal 2017',
         text: 'Complete Appraisal 2017 form',
-        url: undefined 
+        url: undefined
     },
     {
         id: 2,

@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   oauth2Url: 'http://criprj:11001/uaa',
+  oauth2Callback: 'http://criprj:11009/callback',
   employeeUrl: 'http://criprj:11001/employees',
   meUrl: 'http://criprj:11001/me',
   maxRetries: 3

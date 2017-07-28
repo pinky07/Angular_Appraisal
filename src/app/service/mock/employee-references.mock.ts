@@ -1,5 +1,4 @@
-import { ActionItem } from '../../model/action-item/action-item';
-import { Employee } from '../../model/employee/employee';
+import {Employee} from '../../model/employee/employee';
 
 export const REFERENCES: Employee[] = [
     {
