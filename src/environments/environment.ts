@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   oauth2Url: 'http://localhost:8888/uaa',
   oauth2Callback: 'http://localhost:4200/callback',
-  employeeUrl: 'http://localhost:8888/employees',
+  employeeUrl: 'http://localhost:8888/employeeAppraisals',
   meUrl: 'http://localhost:8888/me',
   maxRetries: 3
 };
