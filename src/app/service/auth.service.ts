@@ -32,7 +32,7 @@ export class AuthService {
     private oauth2ClientSecret = 'app-secret-password';
     private oauth2Scope = 'EMPLOYEE+APPRAISAL';
     // This should be the URL of this application
-    private oauth2RedirectURI = environment.protocol + environment.appHost + ':' + environment.appPort + '/callback';
+    private oauth2RedirectURI = this.oauth2Schema + environment.appHost + ':' + environment.appPort + '/callback';
     private oauth2ResponseType = 'code';
     private oauth2GrantType = 'authorization_code';
 
@@ -46,8 +46,7 @@ export class AuthService {
      */
     public constructor(
         private router: Router,
-        private http: Http,
-        private errorHandlerService: ErrorHandlerService
+        private http: Http
     ) { }
 
     /**

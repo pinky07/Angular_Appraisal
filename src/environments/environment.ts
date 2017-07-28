@@ -11,7 +11,7 @@ export const environment = {
   oauth2Host: 'localhost',
   proxyPort: 8888,
   apiVersion: 'v1',
-  employeeUrl: 'http://localhost:8888/employees',
+  employeeAppraisalsUrl: 'http://localhost:8888/employeeAppraisals',
   meUrl: 'http://localhost:8888/me',
   maxRetries: 3
 };
