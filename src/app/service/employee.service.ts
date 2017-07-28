@@ -23,7 +23,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class EmployeeService {
 
     private maxRetries: number = environment.maxRetries;
-    private employeeAppraisalsUrl = environment.employeeAppraisalsUrl;
+    private employeeUrl = environment.employeeUrl;
 
     /**
      * Creates an instance of EmployeeService.
@@ -42,7 +42,7 @@ export class EmployeeService {
      * @memberof EmployeeService
      */
     public getEmployeeById(id: number): Observable<Employee> {
-        const url = `${this.employeeAppraisalsUrl}/${id}`;
+        const url = `${this.employeeUrl}/${id}`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
@@ -57,7 +57,7 @@ export class EmployeeService {
      * @memberof EmployeeService
      */
     public getEmployeeByIdRelationships(id: number): Observable<EmployeeRelationship[]> {
-        const url = `${this.employeeAppraisalsUrl}/${id}/relationships`;
+        const url = `${this.employeeUrl}/${id}/relationships`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
@@ -72,7 +72,7 @@ export class EmployeeService {
      * @memberof EmployeeService
      */
     public getMentor(id: number): Observable<Employee> {
-        const url = `${this.employeeAppraisalsUrl}/${id}/mentor`;
+        const url = `${this.employeeUrl}/${id}/mentor`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)

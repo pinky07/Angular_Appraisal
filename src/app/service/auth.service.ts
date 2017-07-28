@@ -26,13 +26,12 @@ export class AuthService {
     private loggedIn = false;
     private redirectUrl = '/';
 
-    private oauth2Schema = environment.protocol;
-    private oauth2Host = environment.oauth2Host + ':' + environment.proxyPort + '/uaa/';
+    private oauth2Url = environment.oauth2Url;
     private oauth2ClientId = 'app';
     private oauth2ClientSecret = 'app-secret-password';
     private oauth2Scope = 'EMPLOYEE+APPRAISAL';
     // This should be the URL of this application
-    private oauth2RedirectURI = this.oauth2Schema + environment.appHost + ':' + environment.appPort + '/callback';
+    private oauth2RedirectURI = environment.oauth2Callback;
     private oauth2ResponseType = 'code';
     private oauth2GrantType = 'authorization_code';
 
@@ -59,7 +58,7 @@ export class AuthService {
         // In other words, we have to check if the user has logged in before and if the token is still active
 
         // Build URL
-        const url: string = this.oauth2Schema + this.oauth2Host + 'oauth/authorize?'
+        const url: string = this.oauth2Url + '/oauth/authorize?'
             + 'client_id=' + this.oauth2ClientId + '&'
             + 'scope=' + this.oauth2Scope + '&'
             + 'state=' + this.generateStateValue() + '&'
@@ -83,8 +82,7 @@ export class AuthService {
 
         if (this.compareStateValue(state)) {
             const url: string =
-                this.oauth2Schema
-                + this.oauth2Host + 'oauth/token';
+                this.oauth2Url + '/oauth/token';
 
             const query: string =
                 'client_id=' + this.oauth2ClientId + '&'
