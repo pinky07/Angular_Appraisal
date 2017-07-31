@@ -51,8 +51,13 @@ fi
 # 2. Compile application.
 #
 
+echo 'Installing Node dependencies...'
 npm install
+echo 'Successful'
+
+echo 'Compiling Angular application...'
 ./node_modules/@angular/cli/bin/ng build --prod --env=ci
+echo 'Successful'
 
 #
 # 3. Build new image.
@@ -64,8 +69,7 @@ echo 'Successful'
 
 #
 # 4. Instantiate a new container from the new image.
-#
-
+echo 'Successful'
 echo 'Launching new container based on image' $IMAGE_NAME '...'
-docker run -d -p 11009:4200 $IMAGE_NAME
+docker run -d -p 11009:80 $IMAGE_NAME --autorestart
 echo 'Successful'
