@@ -51,9 +51,8 @@ fi
 # 2. Compile application.
 #
 
-npm install -g @angular/cli 
 npm install
-ng build --prod --env=ci
+./node_modules/@angular/cli/bin/ng build --prod --env=ci
 
 #
 # 3. Build new image.
