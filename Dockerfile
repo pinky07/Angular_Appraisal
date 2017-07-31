@@ -9,4 +9,3 @@ RUN httpd -M
 
 RUN ls -al /usr/local/apache2/htdocs/
 RUN ls -al /usr/local/apache2/conf/httpd.conf
-RUN ls -al /etc/apache2/mods-enabled/
