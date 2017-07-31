@@ -71,5 +71,5 @@ echo 'Successful'
 # 4. Instantiate a new container from the new image.
 echo 'Successful'
 echo 'Launching new container based on image' $IMAGE_NAME '...'
-docker run -d -p 11009:80 $IMAGE_NAME --autorestart
+docker run -d -p 11009:80 $IMAGE_NAME
 echo 'Successful'
