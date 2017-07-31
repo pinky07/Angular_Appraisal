@@ -9,4 +9,4 @@ COPY . .
 RUN npm install -g @angular/cli \
   && npm install
 
-ENTRYPOINT ["ng", "--prod", "--env=ci"]
+ENTRYPOINT ["ng", "serve", "--prod", "--env=ci"]
