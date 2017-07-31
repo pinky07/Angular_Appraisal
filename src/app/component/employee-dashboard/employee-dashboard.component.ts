@@ -22,8 +22,8 @@ import {TitleService} from '../../service/title.service';
 })
 export class EmployeeDashboardComponent implements OnInit, OnDestroy {
 
-    private currentEmployee: Employee;
-    private mentor: Employee;
+    public currentEmployee: Employee;
+    public mentor: Employee;
 
     /**
      * Creates an instance of EmployeeDashboardComponent.
@@ -76,7 +76,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
      * @returns {string} Employee name
      * @memberof EmployeeDashboardComponent
      */
-    private getEmployeeName(): string {
+    public getEmployeeName(): string {
         let result = 'Unregistered';
         if (this.currentEmployee
             && this.currentEmployee.firstName

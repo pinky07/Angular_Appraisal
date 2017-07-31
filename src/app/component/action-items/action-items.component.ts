@@ -14,7 +14,7 @@ import { ActionItemService } from '../../service/action-item.service';
 })
 export class ActionItemsComponent implements OnInit {
 
-    private actionItems: ActionItem[];
+    public actionItems: ActionItem[];
 
     constructor(
         private actionItemsService: ActionItemService,

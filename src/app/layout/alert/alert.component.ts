@@ -59,7 +59,7 @@ import { AlertService } from '../../service/alert.service';
 })
 export class AlertComponent implements OnInit {
 
-    private alerts: Alert[];
+    public alerts: Alert[];
     private id: number;
 
     /**

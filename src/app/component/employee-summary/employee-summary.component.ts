@@ -18,11 +18,11 @@ export class EmployeeSummaryComponent {
 
     // Employee
     @Input()
-    private employee: Employee;
+    public employee: Employee;
 
     // Employee's mentor
     @Input()
-    private mentor: Employee;
+    public mentor: Employee;
 
     /**
      * Creates an instance of EmployeeSummaryComponent.

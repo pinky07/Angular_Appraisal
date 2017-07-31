@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
      * @memberof MenuComponent
      */
     constructor(
-        private menuService: MenuService
+        public menuService: MenuService
     ) { }
 
     /**

@@ -41,12 +41,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CollapsableCardComponent implements OnInit {
 
     @Input()
-    private title: string;
+    public title: string;
 
-    private collapseState: string;
+    public collapseState: string;
 
     // Collapse sign current class. Can be either 'fa-plus' or 'fa-minus'
-    private collapseSign: string;
+    public collapseSign: string;
 
     /**
      * Creates an instance of CollapsableCardComponent.

@@ -14,7 +14,7 @@ import { TitleService } from '../../service/title.service';
 })
 export class HeaderComponent implements OnInit {
 
-    private title: string;
+    public title: string;
 
     /**
      * Creates an instance of HeaderComponent.

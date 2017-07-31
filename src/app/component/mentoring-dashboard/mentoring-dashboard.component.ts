@@ -21,7 +21,7 @@ import { TitleService } from '../../service/title.service';
 })
 export class MentoringDashboardComponent implements OnInit, OnDestroy {
 
-    private mentees: Employee[];
+    public mentees: Employee[];
     private menteeRelationshipsMap: Map<number, EmployeeRelationship[]>;
 
     /**

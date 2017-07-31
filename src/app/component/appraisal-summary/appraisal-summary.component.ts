@@ -18,7 +18,7 @@ import { Appraisal } from '../../model/appraisal/appraisal';
 })
 export class AppraisalSummaryComponent implements OnInit {
 
-    private appraisals: Appraisal[];
+    public appraisals: Appraisal[];
 
     constructor() {
         this.appraisals = [];

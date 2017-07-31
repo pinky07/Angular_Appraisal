@@ -60,5 +60,5 @@ echo 'Successful'
 #
 
 echo 'Launching new container based on image' $IMAGE_NAME '...'
-docker run -d -p 11009:11009 $IMAGE_NAME
+docker run -d -p 11009:4200 $IMAGE_NAME
 echo 'Successful'
