@@ -1,12 +1,3 @@
-FROM node:alpine
+FROM httpd:alpine
 
-ENV APP_PATH /app
-
-WORKDIR $APP_PATH
-
-COPY . .
-
-RUN npm install -g @angular/cli \
-  && npm install
-
-ENTRYPOINT ["ng", "serve", "--prod", "--env=ci"]
+COPY ./dist/ /usr/local/apache2/htdocs/

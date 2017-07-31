@@ -48,7 +48,15 @@ else
 fi
 
 #
-# 2. Build new image.
+# 2. Compile application.
+#
+
+npm install -g @angular/cli 
+npm install
+ng build --prod --env=ci
+
+#
+# 3. Build new image.
 #
 
 echo 'Building a new Docker image...'
@@ -56,7 +64,7 @@ docker build -t $IMAGE_NAME .
 echo 'Successful'
 
 #
-# 3. Instantiate a new container from the new image.
+# 4. Instantiate a new container from the new image.
 #
 
 echo 'Launching new container based on image' $IMAGE_NAME '...'
