@@ -31,7 +31,7 @@
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "ci": "environments/environment.dev.ts"
+        "ci": "environments/environment.ci.ts"
       }
     }
   ],
