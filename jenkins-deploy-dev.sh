@@ -5,7 +5,7 @@
 # 1. Variables
 # 
 
-IMAGE_NAME='com.gft/fe-appraisal-tool-angular-client:0.0.1-SNAPSHOT' 
+IMAGE_NAME='com.gft.appraisal-tool:latest' 
 
 #
 # 1. Stop previous containers.
@@ -71,5 +71,5 @@ echo 'Successful'
 # 4. Instantiate a new container from the new image.
 echo 'Successful'
 echo 'Launching new container based on image' $IMAGE_NAME '...'
-docker run -d -p 11009:80 $IMAGE_NAME
+docker run -d -p 11000:80 $IMAGE_NAME
 echo 'Successful'
