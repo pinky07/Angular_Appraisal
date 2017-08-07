@@ -82,6 +82,8 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
             && this.currentEmployee.firstName
             && this.currentEmployee.lastName) {
             result = this.currentEmployee.firstName + ' ' + this.currentEmployee.lastName;
+        } else {
+          this.menuService.setAppraisalDashboardEnabled(false);
         }
         return result;
     }

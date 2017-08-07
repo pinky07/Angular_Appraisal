@@ -9,6 +9,7 @@ import { MentoringDashboardComponent } from './component/mentoring-dashboard/men
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { MentoringDashboardGuard } from './guard/mentoring-dashboard.guard';
 import { SilentLoginGuard } from './guard/silent-login-guard.service';
+import { AppraisalDashboardGuard } from './guard/appraisal-dashboard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/employeeDashboard', pathMatch: 'full' },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent, canActivate: [SilentLoginGuard] },
   { path: 'employeeDashboard', component: EmployeeDashboardComponent, canActivate: [SilentLoginGuard] },
   { path: 'mentoringDashboard', component: MentoringDashboardComponent, canActivate: [SilentLoginGuard, MentoringDashboardGuard] },
-  { path: 'appraisalDashboard', component: AppraisalDashboardComponent, canActivate: [SilentLoginGuard] },
+  { path: 'appraisalDashboard', component: AppraisalDashboardComponent, canActivate: [SilentLoginGuard, AppraisalDashboardGuard] },
 
   // Default page
   { path: '**', component: PageNotFoundComponent, canActivate: [SilentLoginGuard] }

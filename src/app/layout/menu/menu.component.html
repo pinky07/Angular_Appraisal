@@ -13,10 +13,12 @@
             <li class="nav-item" routerLinkActive="active" routerLink="/employeeDashboard">
                 <a class="nav-link">Employee</a>
             </li>
-            <li *ngIf="menuService.isMentoringDashboardEnabled()" class="nav-item" routerLinkActive="active" routerLink="/mentoringDashboard">
+            <li *ngIf="menuService.isMentoringDashboardEnabled()" class="nav-item" routerLinkActive="active"
+                routerLink="/mentoringDashboard">
                 <a class="nav-link">Mentoring</a>
             </li>
-            <li class="nav-item" routerLinkActive="active" routerLink="/appraisalDashboard">
+            <li *ngIf="menuService.isAppraisalDashboardEnabled()" class="nav-item" routerLinkActive="active"
+                routerLink="/appraisalDashboard">
                 <a class="nav-link">Appraisal</a>
             </li>
         </ul>
