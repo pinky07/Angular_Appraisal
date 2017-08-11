@@ -3,13 +3,13 @@
 
 #
 # 1. Variables
-# 
+#
 
-IMAGE_NAME='com.gft.appraisal-tool:latest' 
+IMAGE_NAME='com.gft.appraisal-tool:latest'
 
 #
 # 1. Stop previous containers.
-# 
+#
 
 echo 'Stopping containers based on' $IMAGE_NAME '...'
 
@@ -56,7 +56,7 @@ npm install
 echo 'Successful'
 
 echo 'Compiling Angular application...'
-./node_modules/@angular/cli/bin/ng build --prod --env=ci
+./node_modules/@angular/cli/bin/ng build --build-optimizer --prod --env=ci
 echo 'Successful'
 
 #
