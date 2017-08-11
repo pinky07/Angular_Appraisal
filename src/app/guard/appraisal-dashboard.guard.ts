@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 
-import { MenuService } from '../service/menu.service';
+import {MenuService} from '../service/menu.service';
 
 /**
  * Protects the /appraisalDashboard route
  * @author Manuel Yepez
  * @export
- * @class MentoringDashboardGuard
+ * @class AppraisalDashboardGuard
  * @implements {CanActivate}
  */
 @Injectable()
