@@ -11,7 +11,7 @@ import { Relationship } from './relationship';
 export class EmployeeRelationship {
     public constructor(
         public id: number,
-        public reference: Employee,
+        public referred: Employee,
         public relationship: Relationship,
         public startDate: string,
         public endDate: string

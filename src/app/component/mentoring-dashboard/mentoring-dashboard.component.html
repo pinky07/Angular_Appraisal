@@ -19,7 +19,7 @@
                                         <i>No references were found</i>
                                     </li>
                                     <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]">
-                                        {{ relationship.reference.firstName }} {{ relationship.reference.lastName }} ({{ relationship.relationship.name }})
+                                        {{ relationship.referred.firstName }} {{ relationship.referred.lastName }} ({{ relationship.relationship.name }})
                                     </li>
                                 </ul>
                             </div>
