@@ -32,6 +32,8 @@ import {MeService} from './service/me.service';
 import {MenuService} from './service/menu.service';
 import {TitleService} from './service/title.service';
 import {AppraisalDashboardGuard} from './guard/appraisal-dashboard.guard';
+import {AddReferencesComponent} from './component/add-references/add-references.component';
+import {EmployeeRelationshipService} from './service/employee-relationship.service';
 
 /**
  * TODO Document this!
@@ -56,7 +58,8 @@ import {AppraisalDashboardGuard} from './guard/appraisal-dashboard.guard';
     ActionItemsComponent,
     AppraisalSummaryComponent,
     CollapsableCardComponent,
-    AppraisalDashboardComponent
+    AppraisalDashboardComponent,
+    AddReferencesComponent
   ],
   imports: [
     AppRoutingModule,
@@ -74,6 +77,7 @@ import {AppraisalDashboardGuard} from './guard/appraisal-dashboard.guard';
     AuthService,
     TitleService,
     EmployeeService,
+    EmployeeRelationshipService,
     MeService,
     ErrorHandlerService,
     ActionItemService,

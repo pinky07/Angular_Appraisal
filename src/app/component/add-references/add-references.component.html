@@ -1,0 +1,18 @@
+<form class="form-inline mt-2">
+  <div class="form-group mr-1">
+    <input id="typeahead-mentee" type="text" placeholder="Mentee" class="form-control form-control-sm"/>
+  </div>
+  <div class="form-group btn-group-sm">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary btn-sm" id="relationshipTypes" ngbDropdownToggle>Relationship types</button>
+      <div ngbDropdownMenu aria-labelledby="relationshipTypes">
+        <button class="dropdown-item btn-sm">LEAD</button>
+        <button class="dropdown-item btn-sm">PEER</button>
+        <button class="dropdown-item btn-sm">OTHER</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-group ml-1">
+    <button (click)="addReference()" class="btn btn-primary btn-sm">+</button>
+  </div>
+</form>

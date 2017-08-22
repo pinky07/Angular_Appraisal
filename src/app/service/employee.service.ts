@@ -2,15 +2,15 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
-import { environment } from '../../environments/environment';
-import { Employee } from '../model/employee/employee';
-import { EmployeeRelationship } from '../model/employee/employee-relationship';
-import { AuthService } from './auth.service';
-import { ErrorHandlerService } from './error-handler.service';
+import {environment} from '../../environments/environment';
+import {Employee} from '../model/employee/employee';
+import {EmployeeRelationship} from '../model/employee/employee-relationship';
+import {AuthService} from './auth.service';
+import {ErrorHandlerService} from './error-handler.service';
 
 /**
  * Communicates with /employees endpoints.
@@ -28,12 +28,27 @@ export class EmployeeService {
     /**
      * Creates an instance of EmployeeService.
      * @param {Http} http
+     * @param authService
      * @memberof EmployeeService
      */
     public constructor(
         private http: Http,
         private authService: AuthService
     ) { }
+
+    /**
+     * Gets the /employees/ endpoint.
+     * @returns {Promise<Employee>}
+     * @memberof EmployeeService
+     */
+    public getAllEmployees(): Observable<Employee[]> {
+      const url = `${this.employeeUrl}/`;
+      return this.http
+        .get(url, this.authService.getOptionsWithToken())
+        .retry(this.maxRetries)
+        .map(response => response.json() as Employee[])
+        .catch(ErrorHandlerService.handleError);
+    }
 
     /**
      * Gets the /employees/:id endpoint.

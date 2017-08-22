@@ -8,19 +8,23 @@
                     </li>
                     <li *ngFor="let mentee of mentees" class="list-group-item bg-white">
                         <div class="row">
-                            <div class="col-xs-12 col-md-5">
+                            <div class="col-xs-12 col-md-4">
                                 <p class="mentee_name">{{ mentee.firstName }} {{ mentee.lastName }}</p>
                                 <p class="mentee_job">{{ mentee.jobLevel.name }} {{ mentee.jobLevel.jobFamily.name }}</p>
                             </div>
-                            <div class="col-xs-12 col-md-5 ml-md-auto">
+                            <div class="col-xs-12 col-md-6 ml-md-auto">
                                 <p>References</p>
                                 <ul class="list_references">
                                     <li *ngIf="!menteeRelationshipsMap[mentee.id] || menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length <= 0">
                                         <i>No references were found</i>
                                     </li>
-                                    <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]">
+                                    <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]" class="mb-1">
+                                      <button class="btn btn-danger btm-sm mr-1">&times;</button>
+                                      <span class="align-middle">
                                         {{ relationship.referred.firstName }} {{ relationship.referred.lastName }} ({{ relationship.relationship.name }})
+                                      </span>
                                     </li>
+                                    <app-add-references></app-add-references>
                                 </ul>
                             </div>
                         </div>
