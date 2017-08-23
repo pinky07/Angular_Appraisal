@@ -115,7 +115,7 @@ removeImage() {
 
 IMAGE_NAME='com.gft.appraisal-tool'
 IMAGE_VERSION='latest'
-IMAGE='com.gft.appraisal-tool:latest'
+IMAGE_FULL='com.gft.appraisal-tool:latest'
 
 #
 # 1. Stop previous containers.
@@ -145,14 +145,14 @@ echo 'Successful'
 # 3. Build new image.
 #
 
-echo 'Building a new Docker image' ${IMAGE} '...'
-docker build -t ${IMAGE} .
+echo 'Building a new Docker image' ${IMAGE_FULL} '...'
+docker build -t ${IMAGE_FULL} .
 echo 'Successful'
 
 #
 # 4. Instantiate a new container from the new image.
 #
 
-echo 'Launching new container based on image' ${IMAGE} '...'
-docker run -d -p 11000:80 ${IMAGE}
+echo 'Launching new container based on image' ${IMAGE_FULL} '...'
+docker run -d -p 11000:80 ${IMAGE_FULL}
 echo 'Successful'
