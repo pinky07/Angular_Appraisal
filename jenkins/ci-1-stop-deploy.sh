@@ -6,9 +6,9 @@
 #
 
 cleanUpDocker() {
-	echo 'Looking for dangling images...' 
+	echo 'Looking for dangling images...'
 	DANGLING_IMAGES=`docker images -f dangling=true -q`
-	
+
 	if test -n "$DANGLING_IMAGES";
 	then
 
@@ -16,9 +16,9 @@ cleanUpDocker() {
 		DANGLING_IMAGES_REMOVED=`docker rmi ${DANGLING_IMAGES}`
 
 		if test -n "$DANGLING_IMAGES_REMOVED";
-		then 
+		then
 			echo 'Successful'
-		else 
+		else
 			echo "ERROR: Couldn't remove dangling images!"
 		fi
 	else
@@ -35,13 +35,13 @@ cleanUpDocker() {
 		DANGLING_VOLUMES_REMOVED=`docker volume rm $DANGLING_VOLUMES`
 
 		if test  -n "$DANGLING_VOLUMES_REMOVED";
-		then 
+		then
 			echo 'Successful'
-		else 
+		else
 			echo "ERROR: Couldn't remove dangling volumes!"
 		fi
 
-	else 
+	else
 		echo 'No dangling volumes were found'
 	fi
 }
@@ -95,12 +95,12 @@ removeImage() {
 		IMAGE_REMOVED=`echo ${IMAGE} | xargs docker rmi`
 
 		if test -n "$IMAGE_REMOVED";
-		then 
+		then
 			echo "Successful"
-		else 
+		else
 			echo "ERROR: Couldn't remove the image found"
 		fi
-	else 
+	else
 		echo "No image was found"
 	fi
 }
@@ -115,8 +115,7 @@ removeImage() {
 
 IMAGE_NAME='com.gft.appraisal-tool'
 IMAGE_VERSION='latest'
-IMAGE="$IMAGE_NAME:$IMAGE_VERSION"
-
+IMAGE='com.gft.appraisal-tool:latest'
 
 #
 # 1. Stop previous containers.
@@ -146,7 +145,7 @@ echo 'Successful'
 # 3. Build new image.
 #
 
-echo 'Building a new Docker image...'
+echo 'Building a new Docker image' $IMAGE '...'
 docker build -t $IMAGE .
 echo 'Successful'
 

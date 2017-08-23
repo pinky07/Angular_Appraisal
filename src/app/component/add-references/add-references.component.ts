@@ -32,7 +32,7 @@ export class AddReferencesComponent implements OnInit {
     // this.employeeService.getAllEmployees().map(employees => this.mentees = employees);
   }
 
-  addReference(reference: string): void {
+  addReference(): void {
 
   }
 
