@@ -32,7 +32,7 @@ cleanUpDocker() {
 	then
 
 		echo 'Attempting to remove dangling volumes...'
-		DANGLING_VOLUMES_REMOVED=`docker volume rm $DANGLING_VOLUMES`
+		DANGLING_VOLUMES_REMOVED=`docker volume rm ${DANGLING_VOLUMES}`
 
 		if test  -n "$DANGLING_VOLUMES_REMOVED";
 		then
@@ -126,8 +126,8 @@ cleanUpDocker
 
 # Stop application
 echo 'Removing previous image and containers...'
-removeContainer $IMAGE_NAME $IMAGE_VERSION
-removeImage $IMAGE_NAME $IMAGE_VERSION
+removeContainer ${IMAGE_NAME} ${IMAGE_VERSION}
+removeImage ${IMAGE_NAME} ${IMAGE_VERSION}
 
 #
 # 2. Compile application.
@@ -145,14 +145,14 @@ echo 'Successful'
 # 3. Build new image.
 #
 
-echo 'Building a new Docker image' $IMAGE '...'
-docker build -t $IMAGE .
+echo 'Building a new Docker image' ${IMAGE} '...'
+docker build -t ${IMAGE} .
 echo 'Successful'
 
 #
 # 4. Instantiate a new container from the new image.
 #
 
-echo 'Launching new container based on image' $IMAGE '...'
-docker run -d -p 11000:80 $IMAGE
+echo 'Launching new container based on image' ${IMAGE} '...'
+docker run -d -p 11000:80 ${IMAGE}
 echo 'Successful'
