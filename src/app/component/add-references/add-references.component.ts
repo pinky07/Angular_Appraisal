@@ -24,7 +24,7 @@ export class AddReferencesComponent implements OnInit {
 
   public relationshipTypes: Relationship[];
 
-  selectedRelationshipId: number;
+  selectedRelationship: Relationship;
   public references: Employee[];
 
   /* searchMentee = (text$: Observable<Employee>) =>
@@ -44,32 +44,26 @@ export class AddReferencesComponent implements OnInit {
     this.relationshipService.getRelationships().subscribe(res => this.relationshipTypes = res);
   }
 
-  addReference(reference: string): void {
-    if (reference && this.selectedRelationshipId) {
+  addReference(): void {
+    if (this.selectedRelationship) {
       const employee = new Employee(0,
         'test@test.com',
-        reference,
-        reference,
+        'Test',
+        'reference',
         'AAAA',
         false,
         false,
-        false,
+        this.selectedRelationship.id === 5, // PEER Relationship
         null,
         null);
 
-      this.relationshipService.getRelationshipById(this.selectedRelationshipId)
-        .subscribe(r => this.menteeRelationships.push(new EmployeeRelationship(
+      this.menteeRelationships.push(new EmployeeRelationship(
           0,
           employee,
-          r,
-          '',
+          this.selectedRelationship,
           ''
-        )));
+        ));
     }
-  }
-
-  setRelationshipValue(relationship: number): void {
-    this.selectedRelationshipId = relationship;
   }
 
 }
