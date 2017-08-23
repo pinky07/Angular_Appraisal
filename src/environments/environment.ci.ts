@@ -8,6 +8,7 @@ export const environment = {
   oauth2Url: 'http://10.200.202.122:11002/uaa',
   oauth2Callback: 'http://10.200.202.122:11000/callback',
   employeeUrl: 'http://10.200.202.122:11002/employees',
+  relationshipUrl: 'http://10.200.122:11002/relationships',
   meUrl: 'http://10.200.202.122:11002/me',
   maxRetries: 3
 };

@@ -9,5 +9,6 @@ export const environment = {
   oauth2Callback: 'http://localhost:4200/callback',
   employeeUrl: 'http://localhost:8888/employees',
   meUrl: 'http://localhost:8888/me',
+  relationshipUrl: 'http://localhost:8888/relationships',
   maxRetries: 3
 };

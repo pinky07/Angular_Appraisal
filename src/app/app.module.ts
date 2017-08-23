@@ -34,6 +34,7 @@ import {TitleService} from './service/title.service';
 import {AppraisalDashboardGuard} from './guard/appraisal-dashboard.guard';
 import {AddReferencesComponent} from './component/add-references/add-references.component';
 import {EmployeeRelationshipService} from './service/employee-relationship.service';
+import {RelationshipService} from './service/relationship.service';
 
 /**
  * TODO Document this!
@@ -78,6 +79,7 @@ import {EmployeeRelationshipService} from './service/employee-relationship.servi
     TitleService,
     EmployeeService,
     EmployeeRelationshipService,
+    RelationshipService,
     MeService,
     ErrorHandlerService,
     ActionItemService,

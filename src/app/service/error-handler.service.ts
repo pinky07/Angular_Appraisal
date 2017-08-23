@@ -1,11 +1,11 @@
 // Angular imports
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 /**
  * TODO Document this!
  * @author Ruben Jimenez
  * @export
- * @class TitleService
+ * @class ErrorHandlerService
  */
 @Injectable()
 export class ErrorHandlerService {
@@ -15,7 +15,7 @@ export class ErrorHandlerService {
      * @private
      * @param {*} error
      * @returns {Promise<any>}
-     * @memberof EmployeeService
+     * @memberof ErrorHandlerService
      */
     public static handleError(error: any): Promise<any> {
         console.error('An error occurred', error);

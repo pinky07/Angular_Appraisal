@@ -19,12 +19,14 @@
                                         <i>No references were found</i>
                                     </li>
                                     <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]" class="mb-1">
-                                      <button class="btn btn-danger btm-sm mr-1">&times;</button>
+                                      <button class="btn btn-danger btn-sm mr-1">&times;</button>
                                       <span class="align-middle">
                                         {{ relationship.referred.firstName }} {{ relationship.referred.lastName }} ({{ relationship.relationship.name }})
                                       </span>
                                     </li>
-                                    <app-add-references></app-add-references>
+                                    <li *ngIf="menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length > 0">
+                                      <app-add-references [menteeRelationships]="menteeRelationshipsMap[mentee.id]"></app-add-references>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
