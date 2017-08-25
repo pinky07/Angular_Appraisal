@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { Employee } from '../../model/employee/employee';
-import { EmployeeRelationship } from '../../model/employee/employee-relationship';
-import { EmployeeService } from '../../service/employee.service';
-import { MeService } from '../../service/me.service';
-import { TitleService } from '../../service/title.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Employee} from '../../model/employee/employee';
+import {EmployeeRelationship} from '../../model/employee/employee-relationship';
+import {EmployeeService} from '../../service/employee.service';
+import {MeService} from '../../service/me.service';
+import {TitleService} from '../../service/title.service';
 
 /**
  * Displays Mentee information if the logged on Employee is a Mentor
@@ -29,12 +29,14 @@ export class MentoringDashboardComponent implements OnInit, OnDestroy {
      * @param {TitleService} titleService Title service
      * @param {MeService} meService Me service
      * @param {EmployeeService} employeeService Employee service
+     * @param {NgbModal} modalService Modal window service
      * @memberof MentoringDashboardComponent
      */
     public constructor(
         private titleService: TitleService,
         private meService: MeService,
-        private employeeService: EmployeeService
+        private employeeService: EmployeeService,
+        private modalService: NgbModal
     ) {
         this.menteeRelationshipsMap = new Map();
     }
@@ -64,6 +66,17 @@ export class MentoringDashboardComponent implements OnInit, OnDestroy {
 
     private changeMenteeReferences(menteeId: number, references: EmployeeRelationship[]) {
         this.menteeRelationshipsMap[menteeId] = references;
+    }
+
+    openModal(content: any, reference: EmployeeRelationship) {
+      this.modalService.open(content).result.then((menteeId) => {
+        this.removeReference(menteeId, reference.id);
+      }, () => {});
+    }
+
+    removeReference(menteeId: number, referenceId: number) {
+      this.changeMenteeReferences(menteeId,
+        this.menteeRelationshipsMap[menteeId].filter(er => er.id !== referenceId));
     }
 }
 

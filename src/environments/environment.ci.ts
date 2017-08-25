@@ -17,5 +17,6 @@ export const environment = {
   employeeUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/employees',
   meUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/me',
   relationshipUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/relationships',
-  maxRetries: 3
+  maxRetries: 3,
+  maxMenteeReferences: 5
 };

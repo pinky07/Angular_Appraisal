@@ -6,6 +6,7 @@ import {EmployeeRelationship} from '../../model/employee/employee-relationship';
 import {RelationshipService} from '../../service/relationship.service';
 import {Relationship} from '../../model/employee/relationship';
 import {Observable} from 'rxjs/Observable';
+import {environment} from '../../../environments/environment';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -49,7 +50,8 @@ export class AddReferencesComponent implements OnInit {
   }
 
   addReference(model: Employee): void {
-    if (this.selectedRelationship) {
+    if (this.selectedRelationship &&
+      this.menteeRelationships.length < environment.maxMenteeReferences) {
       console.log('Added model: ', model);
       this.menteeRelationships.push(new EmployeeRelationship(
           0,
