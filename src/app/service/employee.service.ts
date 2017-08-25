@@ -41,8 +41,11 @@ export class EmployeeService {
      * @returns {Promise<Employee>}
      * @memberof EmployeeService
      */
-    public getAllEmployees(): Observable<Employee[]> {
-      const url = `${this.employeeUrl}/`;
+    public getAllEmployees(searchTerm?: string): Observable<Employee[]> {
+      let url = `${this.employeeUrl}/`;
+      if (searchTerm) {
+        url += '?searchTerm=' + searchTerm;
+      }
       return this.http
         .get(url, this.authService.getOptionsWithToken())
         .retry(this.maxRetries)

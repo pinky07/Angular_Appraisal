@@ -3,12 +3,19 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+const serverConfig = {
+  protocol: 'http',
+  host: 'localhost',
+  servicePort: '8888',
+  appPort: '4200'
+};
+
 export const environment = {
   production: false,
-  oauth2Url: 'http://localhost:8888/uaa',
-  oauth2Callback: 'http://localhost:4200/callback',
-  employeeUrl: 'http://localhost:8888/employees',
-  meUrl: 'http://localhost:8888/me',
-  relationshipUrl: 'http://localhost:8888/relationships',
+  oauth2Url: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/uaa',
+  oauth2Callback: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.appPort + '/callback',
+  employeeUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/employees',
+  meUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/me',
+  relationshipUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/relationships',
   maxRetries: 3
 };

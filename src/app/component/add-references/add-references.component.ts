@@ -1,14 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EmployeeRelationshipService} from '../../service/employee-relationship.service';
 import {Employee} from '../../model/employee/employee';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
 import {EmployeeService} from '../../service/employee.service';
 import {EmployeeRelationship} from '../../model/employee/employee-relationship';
 import {RelationshipService} from '../../service/relationship.service';
 import {Relationship} from '../../model/employee/relationship';
+import {Observable} from 'rxjs/Observable';
+
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-add-references',
@@ -25,14 +28,15 @@ export class AddReferencesComponent implements OnInit {
   public relationshipTypes: Relationship[];
 
   selectedRelationship: Relationship;
-  public references: Employee[];
 
-  /* searchMentee = (text$: Observable<Employee>) =>
+  searchTerm = (text$: Observable<string>) =>
     text$
       .debounceTime(200)
       .distinctUntilChanged()
-      .map(term => term.firstName.length < 4 ? [] : this.mentees
-        .filter(m => m.firstName.toLowerCase().indexOf(term.firstName.toLowerCase()) > -1).slice(0, 10)); */
+      .switchMap(term => term.length < 4 ? [] : this.employeeService.getAllEmployees(term));
+
+  formatter = (x: { firstName: string, lastName: string }) =>
+    x.firstName + ' ' + x.lastName;
 
   constructor(
     private employeeService: EmployeeService,
@@ -44,22 +48,12 @@ export class AddReferencesComponent implements OnInit {
     this.relationshipService.getRelationships().subscribe(res => this.relationshipTypes = res);
   }
 
-  addReference(): void {
+  addReference(model: Employee): void {
     if (this.selectedRelationship) {
-      const employee = new Employee(0,
-        'test@test.com',
-        'Test',
-        'reference',
-        'AAAA',
-        false,
-        false,
-        this.selectedRelationship.id === 5, // PEER Relationship
-        null,
-        null);
-
+      console.log('Added model: ', model);
       this.menteeRelationships.push(new EmployeeRelationship(
           0,
-          employee,
+          model,
           this.selectedRelationship,
           ''
         ));
