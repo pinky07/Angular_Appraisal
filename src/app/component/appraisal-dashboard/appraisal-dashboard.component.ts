@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
         './appraisal-dashboard.component.scss'
     ]
 })
-
 export class AppraisalDashboardComponent implements OnInit {
     constructor() { }
 

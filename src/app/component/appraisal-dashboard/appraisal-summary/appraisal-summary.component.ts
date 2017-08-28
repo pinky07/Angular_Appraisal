@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Appraisal } from '../../model/appraisal/appraisal';
+import { Appraisal } from '../../../model/appraisal/appraisal';
 
 /**
  * Show a list of Appraisals for the logged in user.

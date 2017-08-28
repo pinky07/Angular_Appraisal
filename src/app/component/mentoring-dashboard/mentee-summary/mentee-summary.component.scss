@@ -1,0 +1,29 @@
+/**
+ * mentee-summary.component.scss - Version 1.0.0
+ * 
+ * Mentee Summary Style
+ * 
+ * @author Ruben Jimenez
+ */
+
+ .list_mentees {
+    display: block;
+
+    li {
+        display: block;
+    }
+}
+
+.list_references {
+    list-style: none;
+    padding: 0px 0px 0px 10px;
+}
+
+p {
+    margin: 0px;
+}
+
+.mentee_name {
+    color: black;
+    font-size: 1.1rem;
+}

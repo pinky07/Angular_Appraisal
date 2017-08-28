@@ -3,14 +3,11 @@
     <ng-template #rt let-r="result" let-t="searchTerm">
       {{r.firstName}} {{r.lastName}} ({{r.email}})
     </ng-template>
-    <input id="typeaheadReference" name="typeaheadReference" type="text" placeholder="Reference"
-           class="form-control form-control-sm" [(ngModel)]="model" [resultTemplate]="rt"
-           [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" required/>
+    <input id="typeaheadReference" name="typeaheadReference" type="text" placeholder="Reference" class="form-control form-control-sm"
+      [(ngModel)]="model" [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" required/>
   </div>
   <div class="form-group">
-    <select class="form-control-sm" id="relTypes"
-            name="relTypes" [(ngModel)]="selectedRelationship"
-            #relTypes="ngModel" required>
+    <select class="form-control-sm" id="relTypes" name="relTypes" [(ngModel)]="selectedRelationship" #relTypes="ngModel" required>
       <option *ngFor="let relationshipType of relationshipTypes" [ngValue]="relationshipType">
         {{relationshipType.name}}
       </option>

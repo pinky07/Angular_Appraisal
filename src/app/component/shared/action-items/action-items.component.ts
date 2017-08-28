@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ActionItem } from '../../model/action-item/action-item';
-import { ActionItemService } from '../../service/action-item.service';
-
+import { ActionItem } from '../../../model/action-item/action-item';
+import { ActionItemService } from '../../../service/action-item.service';
 
 @Component({
     selector: 'app-action-items',
