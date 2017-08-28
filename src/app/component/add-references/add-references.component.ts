@@ -7,6 +7,7 @@ import {RelationshipService} from '../../service/relationship.service';
 import {Relationship} from '../../model/employee/relationship';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../environments/environment';
+import * as _ from 'lodash';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/filter';
@@ -56,7 +57,8 @@ export class AddReferencesComponent implements OnInit {
 
   addReference(model: Employee): void {
     if (this.selectedRelationship &&
-      this.menteeRelationships.length < environment.maxMenteeReferences) {
+      this.menteeRelationships.length < environment.maxMenteeReferences &&
+      _.has(model, 'id')) {
       console.log('Added model: ', model);
       this.menteeRelationships.push(new EmployeeRelationship(
           0,
