@@ -3,8 +3,14 @@
     <ng-template #rt let-r="result" let-t="searchTerm">
       {{r.firstName}} {{r.lastName}} ({{r.email}})
     </ng-template>
-    <input id="typeaheadReference" name="typeaheadReference" type="text" placeholder="Reference" class="form-control form-control-sm"
-      [(ngModel)]="model" [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" required/>
+    <input id="typeaheadReference" name="typeaheadReference" type="text" placeholder="Reference"
+           class="form-control form-control-sm" [(ngModel)]="model" [resultTemplate]="rt"
+           [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" #typeaheadRef="ngModel" required/>
+    <div *ngIf="typeaheadRef.errors && (typeaheadRef.dirty || typeaheadRef.touched)" class="alert alert-danger mt-2">
+      <div *ngIf="typeaheadRef.errors.required">
+        Please select an employee.
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <select class="form-control-sm" id="relTypes" name="relTypes" [(ngModel)]="selectedRelationship" #relTypes="ngModel" required>

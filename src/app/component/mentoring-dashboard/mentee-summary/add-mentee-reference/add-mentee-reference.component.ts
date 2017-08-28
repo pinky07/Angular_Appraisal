@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
 import { Component, Input, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../../../../environments/environment';
@@ -57,7 +58,8 @@ export class AddReferencesComponent implements OnInit {
 
   addReference(model: Employee): void {
     if (this.selectedRelationship &&
-      this.menteeRelationships.length < environment.maxMenteeReferences) {
+      this.menteeRelationships.length < environment.maxMenteeReferences &&
+      _.has(model, 'id')) {
       console.log('Added model: ', model);
       this.menteeRelationships.push(new EmployeeRelationship(
         0,
