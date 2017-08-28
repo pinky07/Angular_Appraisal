@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../environments/environment';
 
 import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
@@ -30,11 +30,16 @@ export class AddReferencesComponent implements OnInit {
 
   selectedRelationship: Relationship;
 
+  employeeFilter = (employees) =>
+    employees.filter(e => this.menteeRelationships.map(mr => mr.referred)
+      .map(mre => mre.id).indexOf(e.id) < 0 );
+
   searchTerm = (text$: Observable<string>) =>
     text$
       .debounceTime(200)
       .distinctUntilChanged()
-      .switchMap(term => term.length < 4 ? [] : this.employeeService.getAllEmployees(term));
+      .switchMap(term => term.length < 4 ? [] : this.employeeService.getAllEmployees(term)
+        .map(employees => this.employeeFilter(employees)));
 
   formatter = (x: { firstName: string, lastName: string }) =>
     x.firstName + ' ' + x.lastName;
