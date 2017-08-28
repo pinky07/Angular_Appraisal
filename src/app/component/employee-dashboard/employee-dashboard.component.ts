@@ -5,7 +5,6 @@ import { Employee } from '../../model/employee/employee';
 import { AlertService } from '../../service/alert.service';
 import { EmployeeService } from '../../service/employee.service';
 import { MeService } from '../../service/me.service';
-import { MenuService } from '../../service/menu.service';
 import { TitleService } from '../../service/title.service';
 
 /**
@@ -37,7 +36,6 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
         private employeeService: EmployeeService,
         private meService: MeService,
         private titleService: TitleService,
-        private menuService: MenuService,
         private route: ActivatedRoute
     ) { }
 
@@ -45,7 +43,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
      * Initializes the component.
      * @memberof EmployeeDashboardComponent
      */
-    public ngOnInit() {
+    public ngOnInit(): void {
 
         // Download employee information
         this.meService
@@ -83,9 +81,6 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
             && this.currentEmployee.firstName
             && this.currentEmployee.lastName) {
             result = this.currentEmployee.firstName + ' ' + this.currentEmployee.lastName;
-          this.menuService.setAppraisalDashboardEnabled(true);
-        } else if (!this.currentEmployee) {
-          this.menuService.setAppraisalDashboardEnabled(false);
         }
         return result;
     }
@@ -96,15 +91,11 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
      * @memberof EmployeeDashboardComponent
      */
     private changeCurrentEmployee(employee: Employee) {
-
         // Change the field that is presented in the view
         this.currentEmployee = employee;
 
         // Change the application title
         this.titleService.setTitle(employee.firstName + ' ' + employee.lastName);
-
-        // Activate the Mentoring Dashboard if the current user is a Mentor
-        this.menuService.setMentoringDashboardEnabled(this.currentEmployee.isMentor);
     }
 
     /**

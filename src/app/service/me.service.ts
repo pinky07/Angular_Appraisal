@@ -24,6 +24,10 @@ export class MeService {
     private maxRetries: number = environment.maxRetries;
     private meUrl: string = environment.meUrl;
 
+    private getMeObservable: Observable<Employee>;
+    private getMeMentorObservable: Observable<Employee>;
+    private getMeMenteesObservable: Observable<Employee[]>;
+
     /**
      * Creates an instance of MeService.
      * @param {Http} http
@@ -41,12 +45,18 @@ export class MeService {
      * @memberof MeService
      */
     public getMe(): Observable<Employee> {
-        const url = `${this.meUrl}`;
-        return this.http
-            .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
-            .map(response => response.json() as Employee)
-            .catch(ErrorHandlerService.handleError);
+        // TODO Determine if it's necessary to clear this cache and when
+        if (!this.getMeObservable) {
+            const url = `${this.meUrl}`;
+            this.getMeObservable = this.http
+                .get(url, this.authService.getOptionsWithToken())
+                .retry(this.maxRetries)
+                .map(response => response.json() as Employee)
+                .publishReplay(1)
+                .refCount()
+                .catch(ErrorHandlerService.handleError);
+        }
+        return this.getMeObservable;
     }
 
     /**
@@ -55,12 +65,16 @@ export class MeService {
      * @memberof MeService
      */
     public getMeMentor(): Observable<Employee> {
-        const url = `${this.meUrl}/mentor`;
-        return this.http
-            .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
-            .map(response => response.json() as Employee)
-            .catch(ErrorHandlerService.handleError);
+        // TODO Determine if it's necessary to clear this cache and when
+        if (!this.getMeMentorObservable) {
+            const url = `${this.meUrl}/mentor`;
+            this.getMeMentorObservable = this.http
+                .get(url, this.authService.getOptionsWithToken())
+                .retry(this.maxRetries)
+                .map(response => response.json() as Employee)
+                .catch(ErrorHandlerService.handleError);
+        }
+        return this.getMeMentorObservable;
     }
 
     /**
@@ -69,11 +83,15 @@ export class MeService {
      * @memberof MeService
      */
     public getMeMentees(): Observable<Employee[]> {
-        const url = `${this.meUrl}/mentees`;
-        return this.http
-            .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
-            .map(response => response.json() as Employee)
-            .catch(ErrorHandlerService.handleError);
+        // TODO Determine if it's necessary to clear this cache and when
+        if (!this.getMeMenteesObservable) {
+            const url = `${this.meUrl}/mentees`;
+            this.getMeMenteesObservable = this.http
+                .get(url, this.authService.getOptionsWithToken())
+                .retry(this.maxRetries)
+                .map(response => response.json() as Employee)
+                .catch(ErrorHandlerService.handleError);
+        }
+        return this.getMeMenteesObservable;
     }
 }

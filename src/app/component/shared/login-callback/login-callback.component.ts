@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../../service/auth.service';
 
@@ -26,8 +28,13 @@ export class LoginCallbackComponent implements OnInit {
      */
     public constructor(
         private authService: AuthService,
-        private route: ActivatedRoute
-    ) { }
+        private router: Router,
+        private route: ActivatedRoute,
+        private location: Location
+    ) {
+        // This ensures that the code and state are not saved to the browser's history
+        this.location.replaceState('callback');
+    }
 
 
     /**
@@ -38,7 +45,13 @@ export class LoginCallbackComponent implements OnInit {
             .subscribe(params => {
                 this.code = params['code'];
                 this.state = params['state'];
-                this.authService.getToken(this.code, this.state);
+                if (!this.code || !this.state) {
+                    // If no code or state are received, navigate to the Employee Dashboard
+                    // This will force the user to authenticate again
+                    this.router.navigate(['/employeeDashboard'])
+                } else {
+                    this.authService.getToken(this.code, this.state);
+                }
             });
     }
 }

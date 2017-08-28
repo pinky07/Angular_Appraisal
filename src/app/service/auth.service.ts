@@ -126,7 +126,8 @@ export class AuthService {
                     this.setLoggedIn(true);
 
                     // Redirect the user to the Employee Dashboard
-                    this.router.navigate(['/employeeDashboard/']);
+                    // console.log('Redirecting to: ' + this.getRedirectUrl());
+                    this.router.navigate([this.getRedirectUrl()]);
                 },
                 ErrorHandlerService.handleError
             );
@@ -230,7 +231,7 @@ export class AuthService {
      */
     public getOptionsWithToken(): RequestOptions {
         const headers = new Headers({ 'Authorization': 'Bearer ' + this.encodedAccessToken() });
-        return new RequestOptions({headers: headers});
+        return new RequestOptions({ headers: headers });
     }
 
     /**
@@ -262,21 +263,21 @@ export class AuthService {
     }
 
     /**
-     * TODO Document this!
-     * @param {string} url
+     * Saves the URL previous to the authentication redirect.
+     * @param {string} url Redirect URL
      * @memberof AuthService
      */
     public setRedirectUrl(url: string): void {
-        this.redirectUrl = url;
+        localStorage.setItem('redirectURL', url);
     }
 
 
     /**
-     * TODO Document this!
-     * @returns {string}
+     * Returns the URL previous to the authentication redirect.
+     * @returns {string} Redirect URL
      * @memberof AuthService
      */
     public getRedirectUrl(): string {
-        return this.redirectUrl;
+        return localStorage.getItem('redirectURL')
     }
 }

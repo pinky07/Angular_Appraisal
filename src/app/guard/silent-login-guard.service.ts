@@ -51,6 +51,7 @@ export class SilentLoginGuard implements CanActivate {
     private checkLogin(url: string): boolean {
         const isLoggedIn: boolean = this.authService.isLoggedIn();
         if (!isLoggedIn) {
+            // console.log('Redirect URL:' + url);
             this.authService.setRedirectUrl(url);
             this.authService.authorize();
         }
