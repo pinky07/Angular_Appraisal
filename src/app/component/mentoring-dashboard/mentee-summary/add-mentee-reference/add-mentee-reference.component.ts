@@ -1,23 +1,24 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {EmployeeRelationshipService} from '../../service/employee-relationship.service';
-import {Employee} from '../../model/employee/employee';
-import {EmployeeService} from '../../service/employee.service';
-import {EmployeeRelationship} from '../../model/employee/employee-relationship';
-import {RelationshipService} from '../../service/relationship.service';
-import {Relationship} from '../../model/employee/relationship';
-import {Observable} from 'rxjs/Observable';
-import {environment} from '../../../environments/environment';
-
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { environment } from '../../../../../environments/environment';
+import { Employee } from '../../../../model/employee/employee';
+import { EmployeeRelationship } from '../../../../model/employee/employee-relationship';
+import { Relationship } from '../../../../model/employee/relationship';
+import { EmployeeRelationshipService } from '../../../../service/employee-relationship.service';
+import { EmployeeService } from '../../../../service/employee.service';
+import { RelationshipService } from '../../../../service/relationship.service';
+
 @Component({
-  selector: 'app-add-references',
-  templateUrl: './add-references.component.html',
-  styleUrls: ['./add-references.component.scss']
+  selector: 'app-add-mentee-reference',
+  templateUrl: './add-mentee-reference.component.html',
+  styleUrls: ['./add-mentee-reference.component.scss']
 })
 export class AddReferencesComponent implements OnInit {
 
@@ -59,12 +60,11 @@ export class AddReferencesComponent implements OnInit {
       this.menteeRelationships.length < environment.maxMenteeReferences) {
       console.log('Added model: ', model);
       this.menteeRelationships.push(new EmployeeRelationship(
-          0,
-          model,
-          this.selectedRelationship,
-          ''
-        ));
+        0,
+        model,
+        this.selectedRelationship,
+        ''
+      ));
     }
   }
-
 }

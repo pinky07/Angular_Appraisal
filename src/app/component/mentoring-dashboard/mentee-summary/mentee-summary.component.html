@@ -1,0 +1,50 @@
+<app-collapsable-card title="Mentees">
+    <div class="card-block">
+        <ul class="list-group list-group-flush bg-white list_mentees">
+            <li *ngIf="mentees && mentees.length <= 0" class="list-group-item bg-white">
+                <i>No mentees were found</i>
+            </li>
+            <li *ngFor="let mentee of mentees" class="list-group-item bg-white">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <p class="mentee_name">{{ mentee.firstName }} {{ mentee.lastName }}</p>
+                        <p class="mentee_job">{{ mentee.jobLevel.name }} {{ mentee.jobLevel.jobFamily.name }}</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6 ml-md-auto">
+                        <p>References</p>
+                        <ul class="list_references">
+                            <li *ngIf="!menteeRelationshipsMap[mentee.id] || menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length <= 0">
+                                <i>No references were found</i>
+                            </li>
+                            <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]" class="mb-1">
+                                <ng-template #content let-c="close" let-d="dismiss">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Delete confirmation</h4>
+                                        <button type="button" class="close" aria-label="Close" (click)="d()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete {{ relationship.referred.firstName }} {{
+                                            relationship.referred.lastName }} from the reference list?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-dark" (click)="d()">Cancel</button>
+                                        <button type="button" class="btn btn-outline-primary" (click)="c(mentee.id)">Confirm</button>
+                                    </div>
+                                </ng-template>
+                                <button (click)="openModal(content, relationship)" class="btn btn-danger btn-sm mr-1">&times;</button>
+                                <span class="align-middle">
+                                {{ relationship.referred.firstName }} {{ relationship.referred.lastName }} ({{ relationship.relationship.name }})
+                              </span>
+                            </li>
+                            <li *ngIf="menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length > 0">
+                                <app-add-mentee-reference [menteeRelationships]="menteeRelationshipsMap[mentee.id]"></app-add-mentee-reference>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</app-collapsable-card>

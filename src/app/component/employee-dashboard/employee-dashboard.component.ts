@@ -1,11 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Employee} from '../../model/employee/employee';
-import {AlertService} from '../../service/alert.service';
-import {EmployeeService} from '../../service/employee.service';
-import {MeService} from '../../service/me.service';
-import {MenuService} from '../../service/menu.service';
-import {TitleService} from '../../service/title.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Employee } from '../../model/employee/employee';
+import { AlertService } from '../../service/alert.service';
+import { EmployeeService } from '../../service/employee.service';
+import { MeService } from '../../service/me.service';
+import { MenuService } from '../../service/menu.service';
+import { TitleService } from '../../service/title.service';
 
 /**
  * Shows the Employee dashboard.
