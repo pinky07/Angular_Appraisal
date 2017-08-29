@@ -5,7 +5,7 @@
 
 const serverConfig = {
   protocol: 'http',
-  host: '10.200.202.122',
+  host: '10.200.220.130',
   servicePort: '11002',
   appPort: '11000'
 };
