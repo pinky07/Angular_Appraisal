@@ -2,15 +2,15 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
-import { environment } from '../../environments/environment';
-import { Employee } from '../model/employee/employee';
-import { EmployeeRelationship } from '../model/employee/employee-relationship';
-import { AuthService } from './auth.service';
-import { ErrorHandlerService } from './error-handler.service';
+import {environment} from '../../environments/environment';
+import {Employee} from '../model/employee/employee';
+import {EmployeeRelationship} from '../model/employee/employee-relationship';
+import {AuthService} from './auth.service';
+import {ErrorHandlerService} from './error-handler.service';
 
 /**
  * Communicates with /employees endpoints.
@@ -80,35 +80,6 @@ export class EmployeeService {
             .get(url, this.authService.getOptionsWithToken())
             .retry(this.maxRetries)
             .map(response => response.json() as EmployeeRelationship[])
-            .catch(ErrorHandlerService.handleError);
-    }
-
-    /**
-     * Post to the /employees/:id/relationships endpoint to create a new EmployeeRelationship.
-     * @param {number} id Employee Id
-     * @returns {Observable<EmployeeRelationship>} New EmployeeRelationship
-     * @memberof EmployeeService
-     */
-    public postEmployeesByIdRelationships(id: number, employeeRelationship: EmployeeRelationship): Observable<EmployeeRelationship> {
-        const url = `${this.employeeUrl}/${id}/relationships`;
-        return this.http
-            .post(url, employeeRelationship, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
-            .map(response => response.json().data as EmployeeRelationship)
-            .catch(ErrorHandlerService.handleError);
-    }
-
-    /**
-     * Delete to the /employees/:id/relationships/:id endpoint to delete an existing EmployeeRelationship.
-     * @param {number} employeeId Employee Id
-     * @param {number} relationshipId EmployeeRelationship Id
-     * @memberof EmployeeService
-     */
-    public deleteEmployeesByIdRelationshipsById(employeeId: number, relationshipId: number): Observable<any> {
-        const url = `${this.employeeUrl}/${employeeId}/relationships/${relationshipId}`;
-        return this.http
-            .delete(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
             .catch(ErrorHandlerService.handleError);
     }
 

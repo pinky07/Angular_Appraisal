@@ -21,15 +21,31 @@ export class EmployeeRelationshipService {
               private authService: AuthService) {}
 
   /**
-   *
-   * @param {number} id
-   * @param {EmployeeRelationship} employeeRelationship
-   * @returns {Observable<void>}
+   * Post to the /employees/:id/relationships endpoint to create a new EmployeeRelationship.
+   * @param {number} id Employee Id
+   * @param employeeRelationship Employee Relationship object
+   * @returns {Observable<EmployeeRelationship>} New EmployeeRelationship
+   * @memberof EmployeeRelationshipService
    */
-  public addRelationship(id: number, employeeRelationship: EmployeeRelationship): Observable<void> {
+  public postEmployeesByIdRelationships(id: number, employeeRelationship: EmployeeRelationship): Observable<EmployeeRelationship> {
     const url = `${this.employeeUrl}/${id}/relationships`;
     return this.http
-      .put(url, JSON.stringify(employeeRelationship), this.authService.getOptionsWithToken())
+      .post(url, employeeRelationship, this.authService.getOptionsWithToken())
+      .retry(this.maxRetries)
+      .map(response => response.json().data as EmployeeRelationship)
+      .catch(ErrorHandlerService.handleError);
+  }
+
+  /**
+   * Delete to the /employees/:id/relationships/:id endpoint to delete an existing EmployeeRelationship.
+   * @param {number} employeeId Employee Id
+   * @param {number} relationshipId EmployeeRelationship Id
+   * @memberof EmployeeRelationshipService
+   */
+  public deleteEmployeesByIdRelationshipsById(employeeId: number, relationshipId: number): Observable<any> {
+    const url = `${this.employeeUrl}/${employeeId}/relationships/${relationshipId}`;
+    return this.http
+      .delete(url, this.authService.getOptionsWithToken())
       .retry(this.maxRetries)
       .catch(ErrorHandlerService.handleError);
   }

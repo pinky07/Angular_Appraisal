@@ -1,11 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
-import { Employee } from '../../../model/employee/employee';
-import { EmployeeRelationship } from '../../../model/employee/employee-relationship';
-import { EmployeeService } from '../../../service/employee.service';
-import { MeService } from '../../../service/me.service';
-import { TitleService } from '../../../service/title.service';
+import {Employee} from '../../../model/employee/employee';
+import {EmployeeRelationship} from '../../../model/employee/employee-relationship';
+import {EmployeeService} from '../../../service/employee.service';
+import {MeService} from '../../../service/me.service';
+import {TitleService} from '../../../service/title.service';
+import {EmployeeRelationshipService} from '../../../service/employee-relationship.service';
 
 /**
  * Displays Mentee information if the logged on Employee is a Mentor
@@ -30,6 +31,7 @@ export class MenteeSummaryComponent implements OnInit, OnDestroy {
      * @param {TitleService} titleService Title service
      * @param {MeService} meService Me service
      * @param {EmployeeService} employeeService Employee service
+     * @param employeeRelationshipService EmployeeRelationship service
      * @param {NgbModal} modalService Modal window service
      * @memberof MentoringDashboardComponent
      */
@@ -37,6 +39,7 @@ export class MenteeSummaryComponent implements OnInit, OnDestroy {
         private titleService: TitleService,
         private meService: MeService,
         private employeeService: EmployeeService,
+        private employeeRelationshipService: EmployeeRelationshipService,
         private modalService: NgbModal
     ) {
         this.menteeRelationshipsMap = new Map();
@@ -58,7 +61,7 @@ export class MenteeSummaryComponent implements OnInit, OnDestroy {
 
     public deleteMenteeReference(deleteConfirmation: any, mentee: Employee, employeeRelationship: EmployeeRelationship) {
         this.modalService.open(deleteConfirmation).result.then(
-            () => this.employeeService.deleteEmployeesByIdRelationshipsById(mentee.id, employeeRelationship.id)
+            () => this.employeeRelationshipService.deleteEmployeesByIdRelationshipsById(mentee.id, employeeRelationship.id)
                 .subscribe(() => this.deleteMenteeReferenceCallback(mentee, employeeRelationship)),
             () => { });
     }
