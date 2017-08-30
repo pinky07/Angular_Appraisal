@@ -22,7 +22,7 @@ export class ActionItemsComponent implements OnInit {
         this.actionItems = [];
     }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.actionItemsService
             .getActionItems()
             .subscribe(

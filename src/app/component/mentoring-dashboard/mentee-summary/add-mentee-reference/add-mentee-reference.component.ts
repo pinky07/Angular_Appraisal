@@ -60,7 +60,7 @@ export class AddReferencesComponent implements OnInit {
   }
 
   public addMenteeReference(referred: Employee): void {
-    console.log('addMenteeReference', referred);
+    // console.log('addMenteeReference', referred);
     if (this.selectedRelationship
       && this.menteeRelationships.length < environment.maxMenteeReferences
       && _.has(referred, 'id')) {
@@ -72,7 +72,7 @@ export class AddReferencesComponent implements OnInit {
   }
 
   private addMenteeReferenceCallback(employeeRelationship: EmployeeRelationship) {
-    console.log('addMenteeReferenceCallback', employeeRelationship)
+    // console.log('addMenteeReferenceCallback', employeeRelationship)
     this.menteeRelationships.push(employeeRelationship);
   }
 }
