@@ -4,17 +4,17 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
-import {environment} from '../../../../../environments/environment';
-import {Employee} from '../../../../model/employee/employee';
-import {EmployeeRelationship} from '../../../../model/employee/employee-relationship';
-import {Relationship} from '../../../../model/employee/relationship';
-import {EmployeeRelationshipService} from '../../../../service/employee-relationship.service';
-import {EmployeeService} from '../../../../service/employee.service';
-import {RelationshipService} from '../../../../service/relationship.service';
+import { environment } from '../../../../../environments/environment';
+import { Employee } from '../../../../model/employee/employee';
+import { EmployeeRelationship } from '../../../../model/employee/employee-relationship';
+import { Relationship } from '../../../../model/employee/relationship';
+import { EmployeeRelationshipService } from '../../../../service/employee-relationship.service';
+import { EmployeeService } from '../../../../service/employee.service';
+import { RelationshipService } from '../../../../service/relationship.service';
 
 @Component({
   selector: 'app-add-mentee-reference',
@@ -63,20 +63,20 @@ export class AddReferencesComponent implements OnInit {
   }
 
   public addMenteeReference(referred: Employee): void {
-    console.log('addMenteeReference', referred);
+    // console.log('addMenteeReference', referred);
     if (this.selectedRelationship
       && this.menteeRelationships.length < environment.maxMenteeReferences
       && _.has(referred, 'id')) {
 
       const newEmployeeRelationship = new EmployeeRelationship(referred, this.selectedRelationship);
-      console.log('newEmployeeRelationship', newEmployeeRelationship);
+     // console.log('newEmployeeRelationship', newEmployeeRelationship);
       this.employeeRelationshipService.postEmployeesByIdRelationships(this.mentee.id, newEmployeeRelationship)
         .subscribe(employeeRelationship => this.addMenteeReferenceCallback(employeeRelationship));
     }
   }
 
   private addMenteeReferenceCallback(employeeRelationship: EmployeeRelationship) {
-    console.log('addMenteeReferenceCallback', employeeRelationship);
+    // console.log('addMenteeReferenceCallback', employeeRelationship)
     this.menteeRelationships.push(employeeRelationship);
   }
 }
