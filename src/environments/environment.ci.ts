@@ -11,7 +11,7 @@ const serverConfig = {
 };
 
 export const environment = {
-  production: false,
+  production: true,
   oauth2Url: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/uaa',
   oauth2Callback: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.appPort + '/callback',
   employeeUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/employees',
