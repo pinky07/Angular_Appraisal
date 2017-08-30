@@ -1,5 +1,5 @@
-import { Employee } from './employee';
-import { Relationship } from './relationship';
+import {Employee} from './employee';
+import {Relationship} from './relationship';
 
 /**
  * Models an Employee Relationship
@@ -14,7 +14,7 @@ export class EmployeeRelationship {
         public referred: Employee,
         public relationship: Relationship,
         public id?: number,
-        public startDate?: string,
-        public endDate?: string
+        public startDate?: Date,
+        public endDate?: Date
     ) { }
 }
