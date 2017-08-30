@@ -26,7 +26,6 @@ export class MenuService {
     constructor(
         private meService: MeService
     ) {
-        console.log('MenuService.constructor()');
         this.appraisalDashboardEnabled = false;
         this.mentoringDashboardEnabled = false;
         this.meService

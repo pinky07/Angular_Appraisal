@@ -6,7 +6,7 @@
  * @author Ruben Jimenez
  */
 
- .list_mentees {
+.list_mentees {
     display: block;
 
     li {
@@ -26,4 +26,21 @@ p {
 .mentee_name {
     color: black;
     font-size: 1.1rem;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    padding: 2px;
+    margin: 2px 2px 3px 2px;
+    line-height: 12px;
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+    border-radius: 25%;
+    border: 0px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }

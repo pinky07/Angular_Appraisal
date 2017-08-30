@@ -55,9 +55,24 @@ export class MenteeSummaryComponent implements OnInit, OnDestroy {
         this.titleService.setDefaultTitle();
     }
 
+
+    public deleteMenteeReference(deleteConfirmation: any, mentee: Employee, employeeRelationship: EmployeeRelationship) {
+        this.modalService.open(deleteConfirmation).result.then(
+            () => this.employeeService.deleteEmployeesByIdRelationshipsById(mentee.id, employeeRelationship.id)
+                .subscribe(() => this.deleteMenteeReferenceCallback(mentee, employeeRelationship)),
+            () => { });
+    }
+
+    private deleteMenteeReferenceCallback(mentee: Employee, deletedEmployeeRelationship: EmployeeRelationship) {
+        this.changeMenteeReferences(
+            mentee.id,
+            this.menteeRelationshipsMap[mentee.id].filter(
+                employeeRelationship => employeeRelationship.id !== deletedEmployeeRelationship.id));
+
+    }
+
     private changeCurrentMentees(mentees: Employee[]): void {
         this.mentees = mentees;
-
         for (const mentee of this.mentees) {
             this.employeeService
                 .getEmployeeByIdRelationships(mentee.id)
@@ -67,17 +82,6 @@ export class MenteeSummaryComponent implements OnInit, OnDestroy {
 
     private changeMenteeReferences(menteeId: number, references: EmployeeRelationship[]) {
         this.menteeRelationshipsMap[menteeId] = references;
-    }
-
-    openModal(content: any, reference: EmployeeRelationship) {
-        this.modalService.open(content).result.then((menteeId) => {
-            this.removeReference(menteeId, reference.id);
-        }, () => { });
-    }
-
-    removeReference(menteeId: number, referenceId: number) {
-        this.changeMenteeReferences(menteeId,
-            this.menteeRelationshipsMap[menteeId].filter(er => er.id !== referenceId));
     }
 }
 

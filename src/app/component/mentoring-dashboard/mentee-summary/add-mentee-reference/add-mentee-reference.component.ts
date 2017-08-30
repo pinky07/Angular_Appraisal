@@ -23,18 +23,21 @@ import { RelationshipService } from '../../../../service/relationship.service';
 })
 export class AddReferencesComponent implements OnInit {
 
-  public model: Employee;
+  @Input()
+  public mentee: Employee;
 
   @Input()
   public menteeRelationships: EmployeeRelationship[];
 
+  public model: Employee;
+
   public relationshipTypes: Relationship[];
 
-  selectedRelationship: Relationship;
+  public selectedRelationship: Relationship;
 
   employeeFilter = (employees) =>
     employees.filter(e => this.menteeRelationships.map(mr => mr.referred)
-      .map(mre => mre.id).indexOf(e.id) < 0 );
+      .map(mre => mre.id).indexOf(e.id) < 0);
 
   searchTerm = (text$: Observable<string>) =>
     text$
@@ -52,21 +55,24 @@ export class AddReferencesComponent implements OnInit {
     private relationshipService: RelationshipService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.relationshipService.getRelationships().subscribe(res => this.relationshipTypes = res);
   }
 
-  addReference(model: Employee): void {
-    if (this.selectedRelationship &&
-      this.menteeRelationships.length < environment.maxMenteeReferences &&
-      _.has(model, 'id')) {
-      console.log('Added model: ', model);
-      this.menteeRelationships.push(new EmployeeRelationship(
-        0,
-        model,
-        this.selectedRelationship,
-        ''
-      ));
+  public addMenteeReference(referred: Employee): void {
+    console.log('addMenteeReference', referred);
+    if (this.selectedRelationship
+      && this.menteeRelationships.length < environment.maxMenteeReferences
+      && _.has(referred, 'id')) {
+
+      const newEmployeeRelationship = new EmployeeRelationship(referred, this.selectedRelationship);
+      this.employeeService.postEmployeesByIdRelationships(this.mentee.id, newEmployeeRelationship)
+        .subscribe(employeeRelationship => this.addMenteeReferenceCallback(employeeRelationship))
     }
+  }
+
+  private addMenteeReferenceCallback(employeeRelationship: EmployeeRelationship) {
+    console.log('addMenteeReferenceCallback', employeeRelationship)
+    this.menteeRelationships.push(employeeRelationship);
   }
 }

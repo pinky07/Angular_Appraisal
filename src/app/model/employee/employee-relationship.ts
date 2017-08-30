@@ -1,5 +1,5 @@
-import {Employee} from './employee';
-import {Relationship} from './relationship';
+import { Employee } from './employee';
+import { Relationship } from './relationship';
 
 /**
  * Models an Employee Relationship
@@ -9,11 +9,12 @@ import {Relationship} from './relationship';
  * @class EmployeeRelationship
  */
 export class EmployeeRelationship {
+
     public constructor(
-        public id: number,
         public referred: Employee,
         public relationship: Relationship,
-        public startDate: string,
+        public id?: number,
+        public startDate?: string,
         public endDate?: string
     ) { }
 }

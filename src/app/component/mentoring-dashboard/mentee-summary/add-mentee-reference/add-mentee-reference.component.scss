@@ -1,0 +1,23 @@
+/**
+ * add-mentee-reference.component.scss - Version 1.0.0
+ * 
+ * Add Mentee Reference Style
+ * 
+ * @author Ruben Jimenez
+ */
+
+.btn-add {
+    background: #28a745;
+    color: white;
+    padding: 6px;
+    line-height: 17px;
+    font-size: 17px;
+    height: 31px;
+    width: 31px;
+    border-radius: 25%;
+    border: 0px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

@@ -1,30 +1,36 @@
 <form *ngIf="menteeRelationships" class="form-inline mt-2">
-  <div class="form-group mr-1">
+
+  <div class="form-group mr-2">
     <ng-template #rt let-r="result" let-t="searchTerm">
       {{r.firstName}} {{r.lastName}} ({{r.email}})
     </ng-template>
-    <input id="typeaheadReference" name="typeaheadReference" type="text" placeholder="Reference"
-           class="form-control form-control-sm" [(ngModel)]="model" [resultTemplate]="rt"
-           [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" #typeaheadRef="ngModel" required/>
+    <input id="typeaheadReference" name="typeaheadReference" type="text" placeholder="Reference" class="form-control form-control-sm"
+      [(ngModel)]="referred" [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" #typeaheadRef="ngModel"
+      required/>
     <div *ngIf="typeaheadRef.errors && (typeaheadRef.dirty || typeaheadRef.touched)" class="alert alert-danger mt-2">
       <div *ngIf="typeaheadRef.errors.required">
         Please select an employee.
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <select class="form-control-sm" id="relTypes" name="relTypes" [(ngModel)]="selectedRelationship" #relTypes="ngModel" required>
+
+  <div class="form-group mr-2">
+    <select class="form-control-sm" name="relationshipTypesRef" [(ngModel)]="selectedRelationship" #relationshipTypesRef="ngModel"
+      required>
       <option *ngFor="let relationshipType of relationshipTypes" [ngValue]="relationshipType">
         {{relationshipType.name}}
       </option>
     </select>
   </div>
-  <div class="form-group ml-1">
-    <button (click)="addReference(model)" class="btn btn-success btn-sm">+</button>
+
+  <div class="form-group">
+    <button (click)="addMenteeReference(referred)" class="btn btn-add btn-sm">+</button>
   </div>
-  <div *ngIf="relTypes.errors && relTypes.touched" class="alert alert-danger mt-2">
-    <div *ngIf="relTypes.errors.required">
+
+  <div *ngIf="relationshipTypesRef.errors && relationshipTypesRef.touched" class="alert alert-danger mt-2">
+    <div *ngIf="relationshipTypesRef.errors.required">
       Please select a relationship type.
     </div>
   </div>
+
 </form>
