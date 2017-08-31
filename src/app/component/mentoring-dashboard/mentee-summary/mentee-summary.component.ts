@@ -21,7 +21,7 @@ import {EmployeeRelationshipService} from '../../../service/employee-relationshi
     templateUrl: './mentee-summary.component.html',
     styleUrls: ['./mentee-summary.component.scss']
 })
-export class MenteeSummaryComponent implements OnInit, OnDestroy {
+export class MenteeSummaryComponent implements OnInit {
 
     public mentees: Employee[];
     private menteeRelationshipsMap: Map<number, EmployeeRelationship[]>;
@@ -36,7 +36,6 @@ export class MenteeSummaryComponent implements OnInit, OnDestroy {
      * @memberof MentoringDashboardComponent
      */
     public constructor(
-        private titleService: TitleService,
         private meService: MeService,
         private employeeService: EmployeeService,
         private employeeRelationshipService: EmployeeRelationshipService,
@@ -46,18 +45,11 @@ export class MenteeSummaryComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit() {
-        this.titleService.setTitle('Mentoring Dashboard');
-
         // Download mentees information
         this.meService
             .getMeMentees()
             .subscribe(employees => this.changeCurrentMentees(employees));
     }
-
-    public ngOnDestroy(): void {
-        this.titleService.setDefaultTitle();
-    }
-
 
     public deleteMenteeReference(deleteConfirmation: any, mentee: Employee, employeeRelationship: EmployeeRelationship) {
         this.modalService.open(deleteConfirmation).result.then(

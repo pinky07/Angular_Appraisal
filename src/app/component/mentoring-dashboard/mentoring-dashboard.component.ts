@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { TitleService } from '../../service/title.service';
 
 /**
  * Displays Mentee information if the logged on Employee is a Mentor
@@ -13,5 +15,17 @@ import { Component } from '@angular/core';
     templateUrl: './mentoring-dashboard.component.html',
     styleUrls: ['./mentoring-dashboard.component.scss']
 })
-export class MentoringDashboardComponent {
+export class MentoringDashboardComponent implements OnInit, OnDestroy {
+
+    public constructor(
+        private titleService: TitleService
+    ) { }
+
+    public ngOnInit() {
+        this.titleService.setTitle('Mentoring Dashboard');
+    }
+
+    public ngOnDestroy(): void {
+        this.titleService.setDefaultTitle();
+    }
 }

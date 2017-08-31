@@ -1,36 +1,46 @@
-<form *ngIf="menteeRelationships" class="form-inline mt-2">
-
-  <div class="form-group mr-2">
-    <ng-template #rt let-r="result" let-t="searchTerm">
-      {{r.firstName}} {{r.lastName}} ({{r.email}})
-    </ng-template>
-    <input id="typeaheadReference" name="typeaheadReference" type="text" placeholder="Reference" class="form-control form-control-sm"
-      [(ngModel)]="referred" [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" #typeaheadRef="ngModel"
-      required/>
-    <div *ngIf="typeaheadRef.errors && (typeaheadRef.dirty || typeaheadRef.touched)" class="alert alert-danger mt-2">
-      <div *ngIf="typeaheadRef.errors.required">
-        Please select an employee.
+<form *ngIf="menteeRelationships">
+  <div class="row">
+    <div class="col-1 text-left">
+    </div>
+    <div class="col-5 text-left">
+      <div class="form-group mr-2">
+        <ng-template #resultTemplateRef let-r="result" let-t="searchTerm">
+          {{r.firstName}} {{r.lastName}} ({{r.email}})
+        </ng-template>
+        <input name="typeaheadReference" type="text" placeholder="Reference" class="form-control form-control-sm" [(ngModel)]="referred"
+          [resultTemplate]="resultTemplateRef" [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" #typeaheadRef="ngModel"
+          required/>
+      </div>
+    </div>
+    <div class="col-2 text-left">
+      <div class="form-group mr-2">
+        <select class="form-control-sm" name="relationshipTypesRef" [(ngModel)]="selectedRelationship" #relationshipTypesRef="ngModel"
+          required>
+          <option *ngFor="let relationshipType of relationshipTypes" [ngValue]="relationshipType">
+            {{relationshipType.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-3 text-right">
+      <div class="form-group">
+        <button (click)="addMenteeReference(referred)" class="btn btn-add btn-sm" placement="top" ngbTooltip="Add Mentee Reference">+</button>
       </div>
     </div>
   </div>
-
-  <div class="form-group mr-2">
-    <select class="form-control-sm" name="relationshipTypesRef" [(ngModel)]="selectedRelationship" #relationshipTypesRef="ngModel"
-      required>
-      <option *ngFor="let relationshipType of relationshipTypes" [ngValue]="relationshipType">
-        {{relationshipType.name}}
-      </option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <button (click)="addMenteeReference(referred)" class="btn btn-add btn-sm">+</button>
-  </div>
-
-  <div *ngIf="relationshipTypesRef.errors && relationshipTypesRef.touched" class="alert alert-danger mt-2">
-    <div *ngIf="relationshipTypesRef.errors.required">
-      Please select a relationship type.
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="typeaheadRef.errors && (typeaheadRef.dirty || typeaheadRef.touched) || relationshipTypesRef.errors && (relationshipTypesRef.dirty || relationshipTypesRef.touched)"
+        class="alert alert-danger">
+        <ul class="list_errors">
+          <li *ngIf="typeaheadRef.errors && (typeaheadRef.dirty || typeaheadRef.touched) && typeaheadRef.errors.required">
+            Please select an employee.
+          </li>
+          <li *ngIf="relationshipTypesRef.errors && (relationshipTypesRef.dirty || relationshipTypesRef.touched) && relationshipTypesRef.errors.required">
+            Please select a relationship type.
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-
 </form>

@@ -1,68 +1,52 @@
-<app-collapsable-card title="Mentees">
-    <div class="card-block">
-        <ul class="list-group list-group-flush bg-white list_mentees">
-            <li *ngIf="mentees && mentees.length <= 0" class="list-group-item bg-white">
-                <i>No mentees were found</i>
-            </li>
-            <li *ngFor="let mentee of mentees" class="list-group-item bg-white">
-                <div class="row">
-                    <div class="col-xs-12 col-md-5">
-                        <p class="mentee_name">{{ mentee.firstName }} {{ mentee.lastName }}</p>
-                        <p class="mentee_job">{{ mentee.jobLevel.name }} {{ mentee.jobLevel.jobFamily.name }}</p>
-                    </div>
-                    <div class="col-xs-12 col-md-7">
-                        <p>References</p>
-                        <ul class="list_references">
-                            <li *ngIf="!menteeRelationshipsMap[mentee.id] || menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length <= 0">
-                                <i>No references were found</i>
-                            </li>
-                            <li *ngIf="menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length > 0">
-                              <table class="table table-hover table-sm table-responsive">
-                                <tr class="align-middle" *ngFor="let relationship of menteeRelationshipsMap[mentee.id]">
-                                  <td>
-                                    <ng-template #deleteConfirmation let-c="close" let-d="dismiss">
-                                      <div class="modal-header">
-                                        <h4 class="modal-title">Delete confirmation</h4>
-                                        <button type="button" class="close" aria-label="Close" (click)="d()">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <p>Are you sure you want to delete {{ relationship.referred.firstName }} {{ relationship.referred.lastName
-                                          }} from the reference list?</p>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-dark" (click)="d()">Cancel</button>
-                                        <button type="button" class="btn btn-outline-primary" (click)="c(mentee.id)">Confirm</button>
-                                      </div>
-                                    </ng-template>
-                                  </td>
-                                  <td>
-                                    <button (click)="deleteMenteeReference(deleteConfirmation, mentee, relationship)" class="btn btn-delete btn-sm mr-1">&times;</button>
-                                  </td>
-                                  <td>
-                                    {{ relationship.referred.firstName }}
-                                  </td>
-                                  <td>
-                                    {{ relationship.referred.lastName }}
-                                  </td>
-                                  <td>
-                                    ({{ relationship.relationship.name }})
-                                  </td>
-                                  <td>
-                                    {{ relationship.startDate | date:'y-MMM-d hh:mm a Z' }}
-                                  </td>
-                                </tr>
-                              </table>
-                            </li>
-                            <li *ngIf="menteeRelationshipsMap[mentee.id]">
-                                <app-add-mentee-reference [mentee]="mentee" [menteeRelationships]="menteeRelationshipsMap[mentee.id]">
-                                </app-add-mentee-reference>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
+<ul class="list_mentees">
+  <li *ngIf="mentees && mentees.length <= 0">
+    <i>No mentees were found</i>
+  </li>
+  <li *ngFor="let mentee of mentees">
+    <app-collapsable-card title="{{ mentee.firstName }} {{ mentee.lastName }}" collapseState="hide">
+      <div class="mentee_information">
+        <p class="mentee_job">{{ mentee.jobLevel.name }} {{ mentee.jobLevel.jobFamily.name }}</p>
+        <h2>References</h2>
+        <ul class="list_references">
+          <li *ngIf="!menteeRelationshipsMap[mentee.id] || menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length <= 0">
+            <i>No references were found</i>
+          </li>
+          <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]">
+            <ng-template #deleteConfirmation let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title">Delete confirmation</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete {{ relationship.referred.firstName }} {{ relationship.referred.lastName }}
+                  from the reference list?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="d()">Cancel</button>
+                <button type="button" class="btn btn-outline-primary" (click)="c(mentee.id)">Confirm</button>
+              </div>
+            </ng-template>
+            <div class="row">
+              <div class="col-1 text-left">
+                <button (click)="deleteMenteeReference(deleteConfirmation, mentee, relationship)" class="btn btn-delete btn-sm mr-1" placement="top" ngbTooltip="Delete Mentee Reference">&times;</button>
+              </div>
+              <div class="col-5 text-left">
+                <p>{{ relationship.referred.firstName }} {{ relationship.referred.lastName }}</p>
+              </div>
+              <div class="col-2 text-left">
+                <p>{{ relationship.relationship.name }}</p>
+              </div>
+              <div class="col-3 text-right">
+                <p>{{ relationship.startDate | date:'yy-MMM-d' }}</p>
+              </div>
+            </div>
+          </li>
+          <app-add-mentee-reference *ngIf="menteeRelationshipsMap[mentee.id]" [mentee]="mentee" [menteeRelationships]="menteeRelationshipsMap[mentee.id]">
+          </app-add-mentee-reference>
         </ul>
-    </div>
-</app-collapsable-card>
+      </div>
+    </app-collapsable-card>
+  </li>
+</ul>

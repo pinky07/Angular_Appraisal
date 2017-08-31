@@ -7,12 +7,29 @@
  */
 
 .card {
-    position: relative;
+    margin: 0;
 }
 
-.collapsable {
-    overflow: hidden;
+.card-body {
+    position: relative;
+    padding: 0px;
 }
+
+.card-title {
+    padding: 20px;
+    margin: 0;
+    
+    &:hover {
+        cursor: pointer;
+        background: #f5f5f5;
+    }
+}
+
+/**
+.collapsable {
+    overflow: hidden;    
+}
+**/
 
 button.btn.btn-collapse {
     position: absolute;

@@ -11,7 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
                 'show',
                 style(
                     {
-                        'height': '*',
+                        'height': '*'
                     }
                 )
             ),
@@ -20,6 +20,7 @@ import { Component, Input, OnInit } from '@angular/core';
                 style(
                     {
                         'height': '0',
+                        'overflow': 'hidden'
                     }
                 )
             ),
@@ -43,6 +44,7 @@ export class CollapsableCardComponent implements OnInit {
     @Input()
     public title: string;
 
+    @Input()
     public collapseState: string;
 
     // Collapse sign current class. Can be either 'fa-plus' or 'fa-minus'
@@ -53,15 +55,19 @@ export class CollapsableCardComponent implements OnInit {
      * @memberof CollapsableCardComponent
      */
     public constructor() {
-        this.collapseState = 'show';
-        this.collapseSign = 'fa-minus';
     }
 
     /**
      * Initializes the compoenent
      * @memberof CollapsableCardComponent
      */
-    public ngOnInit(): void { }
+    public ngOnInit(): void {
+        if (this.collapseState === 'show') {
+            this.collapseSign = 'fa-minus';
+        } else {
+            this.collapseSign = 'fa-plus';
+        }
+    }
 
     /**
      * Changes the collapse sign from plus to minus and viceversa.
@@ -69,12 +75,12 @@ export class CollapsableCardComponent implements OnInit {
      * @memberof CollapsableCard
      */
     public showHideCollapse(): void {
-        if (this.collapseSign === 'fa-plus') {
-            this.collapseSign = 'fa-minus';
-            this.collapseState = 'show';
-        } else {
+        if (this.collapseState === 'show') {
             this.collapseSign = 'fa-plus';
             this.collapseState = 'hide';
+        } else {
+            this.collapseSign = 'fa-minus';
+            this.collapseState = 'show';
         }
     }
 }

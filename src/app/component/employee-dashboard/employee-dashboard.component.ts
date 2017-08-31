@@ -55,6 +55,8 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
         this.meService
             .getMeMentor()
             .subscribe(employee => this.changeCurrentEmployeeMentor(employee));
+
+        this.titleService.setTitle('Employee Dashboard');            
     }
 
 
@@ -93,9 +95,6 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
     private changeCurrentEmployee(employee: Employee) {
         // Change the field that is presented in the view
         this.currentEmployee = employee;
-
-        // Change the application title
-        this.titleService.setTitle(employee.firstName + ' ' + employee.lastName);
     }
 
     /**
