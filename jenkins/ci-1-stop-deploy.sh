@@ -113,9 +113,9 @@ removeImage() {
 # 1. Variables
 #
 
-IMAGE_NAME='com.gft.appraisal-tool'
+IMAGE_NAME='com.gft.appraisal-tool.ci'
 IMAGE_VERSION='latest'
-IMAGE_FULL='com.gft.appraisal-tool:latest'
+IMAGE_FULL='com.gft.appraisal-tool.ci:latest'
 
 #
 # 1. Stop previous containers.
