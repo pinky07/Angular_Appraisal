@@ -76,6 +76,7 @@ export class MenteeSummaryComponent implements OnInit {
     }
 
     private changeMenteeReferences(menteeId: number, references: EmployeeRelationship[]) {
+      console.log('mentee references', references);
         this.menteeRelationshipsMap[menteeId] = references;
     }
 }
