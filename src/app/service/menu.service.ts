@@ -1,6 +1,6 @@
-import { Employee } from '../model/employee/employee';
-import { MeService } from './me.service';
-import { Injectable, OnInit } from '@angular/core';
+import {Employee} from '../model/employee/employee';
+import {MeService} from './me.service';
+import {Injectable, OnInit} from '@angular/core';
 
 
 /**
@@ -16,6 +16,7 @@ export class MenuService {
     private currentEmployee: Employee;
     private appraisalDashboardEnabled: boolean;
     private mentoringDashboardEnabled: boolean;
+    private adminDashboardEnabled: boolean;
 
     /**
      * Creates an instance of MenuService. Uses the MeService to identify the logged in user and
@@ -28,6 +29,7 @@ export class MenuService {
     ) {
         this.appraisalDashboardEnabled = false;
         this.mentoringDashboardEnabled = false;
+        this.adminDashboardEnabled = false;
         this.meService
             .getMe()
             .subscribe(
@@ -45,9 +47,11 @@ export class MenuService {
         if (this.currentEmployee) {
             this.setAppraisalDashboardEnabled(true);
             this.setMentoringDashboardEnabled(this.currentEmployee.isMentor);
+            this.setAdminDashboardEnabled(this.currentEmployee.isAdmin);
         } else {
             this.setAppraisalDashboardEnabled(false);
             this.setMentoringDashboardEnabled(false);
+            this.setAdminDashboardEnabled(false);
         }
     }
 
@@ -91,4 +95,24 @@ export class MenuService {
     public isAppraisalDashboardEnabled(): boolean {
         return this.appraisalDashboardEnabled;
     }
+
+  /**
+   * To enable/disable the Admin Dashboard.
+   * Keep this method private to ensure that this service is self contain and can decide on its own.
+   * @private
+   * @param {boolean} enabled Whether to enable or disable
+   * @memberof MenuService
+   */
+  private setAdminDashboardEnabled(enabled: boolean) {
+    this.adminDashboardEnabled = enabled;
+  }
+
+  /**
+   * Whether the Appraisal Dashboard should be enabled.
+   * @returns {boolean} True if the Appraisal Dashboard should be enabled
+   * @memberof MenuService
+   */
+  public isAdminDashboardEnabled(): boolean {
+    return this.adminDashboardEnabled;
+  }
 }

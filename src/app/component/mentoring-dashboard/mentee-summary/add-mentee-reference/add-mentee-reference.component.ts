@@ -4,24 +4,24 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
-import { environment } from '../../../../../environments/environment';
-import { Employee } from '../../../../model/employee/employee';
-import { EmployeeRelationship } from '../../../../model/employee/employee-relationship';
-import { Relationship } from '../../../../model/employee/relationship';
-import { EmployeeRelationshipService } from '../../../../service/employee-relationship.service';
-import { EmployeeService } from '../../../../service/employee.service';
-import { RelationshipService } from '../../../../service/relationship.service';
+import {environment} from '../../../../../environments/environment';
+import {Employee} from '../../../../model/employee/employee';
+import {EmployeeRelationship} from '../../../../model/employee/employee-relationship';
+import {Relationship} from '../../../../model/employee/relationship';
+import {EmployeeRelationshipService} from '../../../../service/employee-relationship.service';
+import {EmployeeService} from '../../../../service/employee.service';
+import {RelationshipService} from '../../../../service/relationship.service';
 
 @Component({
   selector: 'app-add-mentee-reference',
   templateUrl: './add-mentee-reference.component.html',
   styleUrls: ['./add-mentee-reference.component.scss']
 })
-export class AddReferencesComponent implements OnInit {
+export class AddMenteeReferencesComponent implements OnInit {
 
   @Input()
   public mentee: Employee;

@@ -19,6 +19,10 @@
                 routerLink="/appraisalDashboard">
                 <a class="nav-link">Appraisal</a>
             </li>
+          <li *ngIf="menuService.isAdminDashboardEnabled()" class="nav-item" routerLinkActive="active"
+              routerLink="/adminDashboard">
+              <a class="nav-link">Admin</a>
+          </li>
         </ul>
     </div>
 </nav>

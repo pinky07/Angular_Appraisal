@@ -1,0 +1,6 @@
+<ng-template #resultTemplateRef let-r="result" let-t="searchTerm">
+  {{r.firstName}} {{r.lastName}} ({{r.email}})
+</ng-template>
+<input name="typeaheadMentor" #typeaheadMentor type="text" placeholder="Mentor" class="form-control form-control-sm"
+       [(ngModel)]="employee" (selectItem)="selectEmployee($event, typeaheadMentor)" [resultTemplate]="resultTemplateRef"
+       [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" required/>

@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import { AlertService } from '../../service/alert.service';
-import { TitleService } from '../../service/title.service';
+import {AlertService} from '../../service/alert.service';
+import {TitleService} from '../../service/title.service';
+import {Employee} from '../../model/employee/employee';
 
 /**
  * TODO Document this!
  * @author Rubén Jiménez
  * @export
- * @class AdminDashboardCsomponent
+ * @class AdminDashboardComponent
  * @implements {OnInit}
  */
 @Component({
@@ -17,16 +18,23 @@ import { TitleService } from '../../service/title.service';
 })
 export class AdminDashboardComponent implements OnInit, OnDestroy {
 
-    public constructor(
-        private alertService: AlertService,
-        private titleService: TitleService,
-    ) { }
+  public mentor: Employee;
 
-    public ngOnInit(): void {
-        this.alertService.warning('Unimplemented', 'Admin dashboard hasn\'t been implemented yet');
-    }
+  public constructor(
+      private alertService: AlertService,
+      private titleService: TitleService,
+  ) { }
 
-    public ngOnDestroy(): void {
-        this.alertService.dismissAll();
-    }
+  public ngOnInit(): void {
+      // this.alertService.warning('Unimplemented', 'Admin dashboard hasn\'t been implemented yet');
+  }
+
+  public ngOnDestroy(): void {
+      // this.alertService.dismissAll();
+  }
+
+  setMentor(item: Employee) {
+    this.mentor = item;
+    console.log('mentor', this.mentor);
+  }
 }
