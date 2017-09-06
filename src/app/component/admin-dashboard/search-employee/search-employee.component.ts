@@ -1,14 +1,13 @@
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EmployeeService} from '../../../service/employee.service';
 import {Employee} from '../../../model/employee/employee';
 import {Observable} from 'rxjs/Observable';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-search-employee',
@@ -25,9 +24,9 @@ export class SearchEmployeeComponent implements OnInit {
   // Behavior for the typeahead: Triggers after 200ms, after 3 letters and waits for changes on the input.
   searchTerm = (text$: Observable<string>) =>
     text$
-      .debounceTime(200)
+      .debounceTime(environment.typeaheadDebounceTime)
       .distinctUntilChanged()
-      .switchMap(term => term.length < 3 ? [] : this.employeeService.getAllEmployees(term));
+      .switchMap(term => term.length < environment.typeaheadActivationChars ? [] : this.employeeService.getAllEmployees(term));
 
   // Formats the selected employee in the input
   formatter = (x: { firstName: string, lastName: string }) =>

@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div class="col-5 text-left">
-        <div class="form-group mr-2">
+        <div class="form-group mr-2" *ngIf="mentor">
           <app-add-mentees [mentor]="mentor"></app-add-mentees>
         </div>
       </div>

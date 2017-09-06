@@ -18,5 +18,7 @@ export const environment = {
   meUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/me',
   relationshipUrl: serverConfig.protocol + '://' + serverConfig.host + ':' + serverConfig.servicePort + '/relationships',
   maxRetries: 3,
-  maxMenteeReferences: 5
+  maxMenteeReferences: 5,
+  typeaheadActivationChars: 3,
+  typeaheadDebounceTime: 200
 };

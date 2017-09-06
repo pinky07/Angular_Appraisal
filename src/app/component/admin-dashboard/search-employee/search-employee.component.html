@@ -3,4 +3,4 @@
 </ng-template>
 <input name="typeaheadMentor" #typeaheadMentor type="text" placeholder="Mentor" class="form-control form-control-sm"
        [(ngModel)]="employee" (selectItem)="selectEmployee($event, typeaheadMentor)" [resultTemplate]="resultTemplateRef"
-       [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" required/>
+       [inputFormatter]="formatter" [ngbTypeahead]="searchTerm"/>

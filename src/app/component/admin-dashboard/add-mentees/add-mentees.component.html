@@ -1,5 +1,8 @@
-<p *ngIf="mentor">
-  <app-collapsable-card title="{{ mentor.firstName }} {{ mentor.lastName }}" collapseState="show">
+<app-collapsable-card title="{{ mentor.firstName }} {{ mentor.lastName }}" collapseState="show">
+  <div *ngIf="mentees">
+    <ul *ngFor="let mentee of mentees">
+      <li>{{mentee.firstName}} {{mentee.lastName}}</li>
+    </ul>
+  </div>
+</app-collapsable-card>
 
-  </app-collapsable-card>
-</p>

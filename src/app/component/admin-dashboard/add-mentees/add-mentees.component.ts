@@ -12,11 +12,15 @@ export class AddMenteesComponent implements OnInit {
   @Input()
   public mentor: Employee;
 
+  mentees: Employee[];
+
   constructor(
     private employeeService: EmployeeService
   ) { }
 
   ngOnInit() {
+    this.employeeService.getMentees(this.mentor.id)
+      .subscribe(mentees => this.mentees = mentees);
   }
 
 }

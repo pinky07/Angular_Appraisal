@@ -37,9 +37,9 @@ export class AddMenteeReferencesComponent implements OnInit {
   // Behavior for the typeahead: Triggers after 200ms, after 3 letters and waits for changes on the input.
   public searchTerm = (text$: Observable<string>) =>
     text$
-      .debounceTime(200)
+      .debounceTime(environment.typeaheadDebounceTime)
       .distinctUntilChanged()
-      .switchMap(term => term.length < 3 ? [] : this.employeeService.getAllEmployees(term)
+      .switchMap(term => term.length < environment.typeaheadActivationChars ? [] : this.employeeService.getAllEmployees(term)
         .map(employees => this.employeeFilter(employees)));
 
   // Formats the selected employee in the input

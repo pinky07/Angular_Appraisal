@@ -38,7 +38,7 @@ export class EmployeeService {
 
     /**
      * Gets the /employees/ endpoint.
-     * @returns {Promise<Employee>}
+     * @returns {Observable<Employee[]>}
      * @memberof EmployeeService
      */
     public getAllEmployees(searchTerm?: string): Observable<Employee[]> {
@@ -56,7 +56,7 @@ export class EmployeeService {
     /**
      * Gets the /employees/:id endpoint.
      * @param {number} id
-     * @returns {Promise<Employee>}
+     * @returns {Observable<Employee>}
      * @memberof EmployeeService
      */
     public getEmployeeById(id: number): Observable<Employee> {
@@ -86,7 +86,7 @@ export class EmployeeService {
     /**
      * Gets the /employees/:id/mentor endpoint.
      * @param {number} id Internal lookup ID for the Employee
-     * @returns {Promise<Employee>}
+     * @returns {Observable<Employee>}
      * @memberof EmployeeService
      */
     public getMentor(id: number): Observable<Employee> {
@@ -97,4 +97,19 @@ export class EmployeeService {
             .map(response => response.json() as Employee)
             .catch(ErrorHandlerService.handleError);
     }
+
+  /**
+   * Gets the /employees/:id/mentees endpoint.
+   * @param {number} id Internal lookup ID for the Employee
+   * @returns {Observable<Employee[]>}
+   * @memberof EmployeeService
+   */
+  public getMentees(id: number): Observable<Employee[]> {
+    const url = `${this.employeeUrl}/${id}/mentees`;
+    return this.http
+      .get(url, this.authService.getOptionsWithToken())
+      .retry(this.maxRetries)
+      .map(response => response.json() as Employee[])
+      .catch(ErrorHandlerService.handleError);
+  }
 }
