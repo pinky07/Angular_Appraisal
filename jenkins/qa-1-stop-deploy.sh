@@ -113,9 +113,9 @@ removeImage() {
 # 1. Variables
 #
 
-IMAGE_NAME='com.gft.appraisal-tool.ci'
+IMAGE_NAME='com.gft.appraisal-tool.qa'
 IMAGE_VERSION='latest'
-IMAGE_FULL='com.gft.appraisal-tool.ci:latest'
+IMAGE_FULL='com.gft.appraisal-tool.qa:latest'
 
 #
 # 1. Stop previous containers.
@@ -138,7 +138,7 @@ npm install
 echo 'Successful'
 
 echo 'Compiling Angular application...'
-./node_modules/@angular/cli/bin/ng build --build-optimizer --prod --env=ci
+./node_modules/@angular/cli/bin/ng build --build-optimizer --prod --env=qa
 echo 'Successful'
 
 #
@@ -154,5 +154,5 @@ echo 'Successful'
 #
 
 echo 'Launching new container based on image' ${IMAGE_FULL} '...'
-docker run -d -p 11000:80 ${IMAGE_FULL}
+docker run -d -p 11020:80 ${IMAGE_FULL}
 echo 'Successful'
