@@ -5,8 +5,9 @@ import {TitleService} from '../../service/title.service';
 import {Employee} from '../../model/employee/employee';
 
 /**
- * TODO Document this!
+ * Shows the Admin dashboard.
  * @author Rubén Jiménez
+ * @author Manuel Yepez
  * @export
  * @class AdminDashboardComponent
  * @implements {OnInit}
@@ -35,6 +36,5 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
   setMentor(item: Employee) {
     this.mentor = item;
-    console.log('mentor', this.mentor);
   }
 }

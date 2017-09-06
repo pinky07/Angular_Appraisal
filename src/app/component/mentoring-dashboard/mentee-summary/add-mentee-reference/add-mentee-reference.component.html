@@ -1,4 +1,4 @@
-<form *ngIf="menteeRelationships">
+<form #menteeReference="ngForm" *ngIf="menteeRelationships">
   <div class="row">
     <div class="col-1 text-left">
     </div>
@@ -7,7 +7,7 @@
         <ng-template #resultTemplateRef let-r="result" let-t="searchTerm">
           {{r.firstName}} {{r.lastName}} ({{r.email}})
         </ng-template>
-        <input name="typeaheadReference" type="text" placeholder="Reference" class="form-control form-control-sm" [(ngModel)]="referred"
+        <input name="typeaheadReference" type="text" placeholder="Reference" class="form-control form-control-sm" [(ngModel)]="model"
           [resultTemplate]="resultTemplateRef" [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" #typeaheadRef="ngModel"
           required/>
       </div>
@@ -24,7 +24,7 @@
     </div>
     <div class="col-3 text-right">
       <div class="form-group">
-        <button (click)="addMenteeReference(referred)" class="btn btn-add btn-sm" placement="top" ngbTooltip="Add Mentee Reference">+</button>
+        <button (click)="addMenteeReference(model, menteeReference)" class="btn btn-add btn-sm" placement="top" ngbTooltip="Add Mentee Reference">+</button>
       </div>
     </div>
   </div>

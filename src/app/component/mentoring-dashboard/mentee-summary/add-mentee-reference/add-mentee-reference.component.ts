@@ -15,6 +15,7 @@ import {Relationship} from '../../../../model/employee/relationship';
 import {EmployeeRelationshipService} from '../../../../service/employee-relationship.service';
 import {EmployeeService} from '../../../../service/employee.service';
 import {RelationshipService} from '../../../../service/relationship.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-mentee-reference',
@@ -60,7 +61,7 @@ export class AddMenteeReferencesComponent implements OnInit {
     this.relationshipService.getRelationships().subscribe(res => this.relationshipTypes = res);
   }
 
-  public addMenteeReference(referred: Employee): void {
+  public addMenteeReference(referred: Employee, form: NgForm): void {
     // console.log('addMenteeReference', referred);
     if (this.selectedRelationship
       && this.menteeRelationships.length < environment.maxMenteeReferences
@@ -70,6 +71,8 @@ export class AddMenteeReferencesComponent implements OnInit {
       this.employeeRelationshipService.postEmployeesByIdRelationships(this.mentee.id, newEmployeeRelationship)
         .subscribe(employeeRelationship => this.addMenteeReferenceCallback(employeeRelationship));
     }
+
+    form.resetForm();
   }
 
   private addMenteeReferenceCallback(employeeRelationship: EmployeeRelationship) {
