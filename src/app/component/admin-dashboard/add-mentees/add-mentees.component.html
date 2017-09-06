@@ -1,8 +1,20 @@
 <app-collapsable-card title="{{ mentor.firstName }} {{ mentor.lastName }}" collapseState="show">
-  <div *ngIf="mentees">
+  <div class="row" *ngIf="mentees">
     <ul *ngFor="let mentee of mentees">
       <li>{{mentee.firstName}} {{mentee.lastName}}</li>
     </ul>
+  </div>
+  <div class="row ml-3">
+    <form>
+      <div class="form-group">
+        <ng-template #resultTemplateRef let-r="result" let-t="searchTerm">
+          {{r.firstName}} {{r.lastName}} ({{r.email}})
+        </ng-template>
+        <input name="typeaheadMentee" #typeaheadMentee type="text" placeholder="Mentee" class="form-control"
+               [(ngModel)]="mentee" [resultTemplate]="resultTemplateRef"
+               [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" required/>
+      </div>
+    </form>
   </div>
 </app-collapsable-card>
 

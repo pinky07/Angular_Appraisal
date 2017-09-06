@@ -3,14 +3,14 @@
     <h1>Mentee Management</h1>
     <div class="row">
       <div class="col-5 text-left">
-        <div class="form-group mr-2">
+        <div class="mr-2 mb-2">
           <app-search-employee (onEmployeeSelected)="setMentor($event)"></app-search-employee>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-5 text-left">
-        <div class="form-group mr-2" *ngIf="mentor">
+        <div class="mr-2" *ngIf="mentor">
           <app-add-mentees [mentor]="mentor"></app-add-mentees>
         </div>
       </div>
