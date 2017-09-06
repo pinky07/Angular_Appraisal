@@ -1,0 +1,15 @@
+.btn-add {
+  background: #28a745;
+  color: white;
+  padding: 6px;
+  line-height: 17px;
+  font-size: 17px;
+  height: 31px;
+  width: 31px;
+  border-radius: 25%;
+  border: 0px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

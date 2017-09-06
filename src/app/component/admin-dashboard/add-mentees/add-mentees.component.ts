@@ -4,11 +4,14 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
+import * as _ from 'lodash';
+
 import {Component, Input, OnInit} from '@angular/core';
 import {Employee} from '../../../model/employee/employee';
 import {EmployeeService} from '../../../service/employee.service';
 import {environment} from '../../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-mentees',
@@ -48,4 +51,13 @@ export class AddMenteesComponent implements OnInit {
       .subscribe(mentees => this.mentees = mentees);
   }
 
+  addMentee(mentee: Employee, form: NgForm) {
+    if (this.mentees.length < environment.maxMenteeReferences
+      && _.has(mentee, 'id')) {
+      console.log('menteeAdd', mentee);
+      this.mentees.push(mentee);
+    }
+
+    form.resetForm();
+  }
 }
