@@ -1,7 +1,7 @@
 <app-collapsable-card title="{{ mentor.firstName }} {{ mentor.lastName }}" collapseState="show">
   <div class="row" *ngIf="mentees">
-    <ul *ngFor="let mentee of mentees">
-      <li>{{mentee.firstName}} {{mentee.lastName}}</li>
+    <ul *ngFor="let m of mentees">
+      <li>{{m.firstName}} {{m.lastName}}</li>
     </ul>
   </div>
   <div class="row ml-3 mb-3">

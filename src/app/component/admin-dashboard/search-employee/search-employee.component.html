@@ -2,5 +2,5 @@
   {{r.firstName}} {{r.lastName}} ({{r.email}})
 </ng-template>
 <input name="typeaheadMentor" #typeaheadMentor type="text" placeholder="Mentor" class="form-control"
-       [(ngModel)]="employee" (selectItem)="selectEmployee($event, typeaheadMentor)" [resultTemplate]="resultTemplateRef"
+       [(ngModel)]="selectedEmployee" (selectItem)="selectEmployee($event, typeaheadMentor)" [resultTemplate]="resultTemplateRef"
        [inputFormatter]="formatter" [ngbTypeahead]="searchTerm"/>
