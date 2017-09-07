@@ -23,6 +23,7 @@ export class AddMenteesComponent implements OnInit {
   @Input()
   public mentor: Employee;
 
+  mentee: Employee;
   mentees: Employee[];
 
   // Behavior for the typeahead: Triggers after 200ms, after 3 letters and waits for changes on the input.
