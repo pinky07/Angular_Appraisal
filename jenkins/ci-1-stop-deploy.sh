@@ -139,21 +139,26 @@ echo 'Successful'
 
 echo 'Compiling Angular application...'
 ./node_modules/@angular/cli/bin/ng build --build-optimizer --prod --env=ci
-echo $?
-echo 'Successful'
+if [ $? -eq 0 ]
+then
+  echo 'Successful'
+  #
+  # 3. Build new image.
+  #
 
-#
-# 3. Build new image.
-#
+  echo 'Building a new Docker image' ${IMAGE_FULL} '...'
+  docker build -t ${IMAGE_FULL} .
+  echo 'Successful'
 
-echo 'Building a new Docker image' ${IMAGE_FULL} '...'
-docker build -t ${IMAGE_FULL} .
-echo 'Successful'
+  #
+  # 4. Instantiate a new container from the new image.
+  #
 
-#
-# 4. Instantiate a new container from the new image.
-#
-
-echo 'Launching new container based on image' ${IMAGE_FULL} '...'
-docker run -d -p 11000:80 ${IMAGE_FULL}
-echo 'Successful'
+  echo 'Launching new container based on image' ${IMAGE_FULL} '...'
+  docker run -d -p 11000:80 ${IMAGE_FULL}
+  echo 'Successful'
+  exit 0
+else
+  echo 'Angular build failed'
+  exit 1
+fi
