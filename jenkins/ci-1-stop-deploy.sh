@@ -139,6 +139,7 @@ echo 'Successful'
 
 echo 'Compiling Angular application...'
 ./node_modules/@angular/cli/bin/ng build --build-optimizer --prod --env=ci
+echo $?
 echo 'Successful'
 
 #
