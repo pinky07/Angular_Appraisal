@@ -1,6 +1,12 @@
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/retryWhen';
+import 'rxjs/add/operator/take';
+
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
@@ -93,9 +99,42 @@ export class EmployeeService {
         const url = `${this.employeeUrl}/${id}/mentor`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
+            .retryWhen(errors => {
+              return errors
+                .mergeMap(error => (error.status === 404) ? Observable.throw(error) : Observable.of(error))
+                .take(this.maxRetries);
+            })
             .map(response => response.json() as Employee)
             .catch(ErrorHandlerService.handleError);
+    }
+
+    /**
+     * Put /employees/:id/mentor endpoint.
+     * @param {number} id Internal lookup ID for the Mentee
+     * @param {mentor} mentor Mentor to be associated
+     * @returns {Observable<Employee>}
+     * @memberof EmployeeService
+     */
+    public putMentor(id: number, mentor: Employee): Observable<any> {
+      const url = `${this.employeeUrl}/${id}/mentor`;
+      return this.http
+        .put(url, mentor, this.authService.getOptionsWithToken())
+        .retry(this.maxRetries)
+        .catch(ErrorHandlerService.handleError);
+    }
+
+    /**
+     * Delete /employees/:id/mentor endpoint.
+     * @param {number} id Internal lookup ID for the Mentee
+     * @returns {Observable<Employee>}
+     * @memberof EmployeeService
+     */
+    public deleteMentor(id: number): Observable<any> {
+      const url = `${this.employeeUrl}/${id}/mentor`;
+      return this.http
+        .delete(url, this.authService.getOptionsWithToken())
+        .retry(this.maxRetries)
+        .catch(ErrorHandlerService.handleError);
     }
 
   /**

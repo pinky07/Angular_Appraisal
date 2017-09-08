@@ -1,8 +1,32 @@
 <app-collapsable-card title="{{ mentor.firstName }} {{ mentor.lastName }}" collapseState="show">
   <div class="row" *ngIf="mentees">
-    <ul *ngFor="let m of mentees">
-      <li>{{m.firstName}} {{m.lastName}}</li>
-    </ul>
+    <div class="mentee_information" *ngFor="let m of mentees">
+      <ng-template #deleteConfirmation let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete confirmation</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete {{ m.firstName }} {{ m.lastName }}
+            from the mentee list?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="d()">Cancel</button>
+          <button type="button" class="btn btn-outline-primary" (click)="c(m.id)">Confirm</button>
+        </div>
+      </ng-template>
+      <div class="row">
+        <div class="col-1 text-left">
+          <button (click)="deleteMentee(deleteConfirmation, m, menteeForm)" class="btn btn-delete mr-1"
+                  ngbTooltip="Delete Mentee">&times;</button>
+        </div>
+        <div class="col-auto text-left ml-3 mt-2">
+          <p>{{ m.firstName }} {{ m.lastName }}</p>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row ml-3 mb-3">
     <form #menteeForm="ngForm" class="form-inline">
@@ -15,8 +39,25 @@
                [inputFormatter]="formatter" [ngbTypeahead]="searchTerm" required/>
       </div>
       <div class="form-group">
+        <ng-template #addConfirmation let-c="close" let-d="dismiss" >
+          <div class="modal-header">
+            <h4 class="modal-title">Mentor substitution</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" *ngIf="existingMentor && mentee && mentor">
+            <p>Mentee {{ mentee.firstName }} {{ mentee.lastName }} already has {{existingMentor.firstName}} {{existingMentor.lastName}}
+              as a Mentor. Are you sure you want to override it with {{mentor.firstName}} {{mentor.lastName}}?</p>
+          </div>
+          <div class="modal-footer" *ngIf="mentee">
+            <button type="button" class="btn btn-outline-dark" (click)="d()">Cancel</button>
+            <button type="button" class="btn btn-outline-primary" (click)="c(mentee.id)">Confirm</button>
+          </div>
+        </ng-template>
+        <ng-template #loading>Loading User Data...</ng-template>
         <div class="col-3 text-right">
-          <button (click)="addMentee(mentee, menteeForm)" class="btn btn-add btn-sm" placement="top" ngbTooltip="Add Mentee">+</button>
+          <button (click)="addMentee(addConfirmation, mentee, menteeForm)" class="btn btn-add btn-sm" ngbTooltip="Add Mentee">+</button>
         </div>
       </div>
       <div class="row">
@@ -24,7 +65,7 @@
           <div *ngIf="typeaheadMentee.errors && (typeaheadMentee.dirty || typeaheadMentee.touched)"
                class="alert alert-danger">
             <ul class="list_errors">
-              <li *ngIf="typeaheadMentee.errors.required">
+              <li *ngIf="typeaheadMentee.errors && (typeaheadMentee.dirty || typeaheadMentee.touched) && typeaheadMentee.errors.required">
                 Please select an employee.
               </li>
             </ul>

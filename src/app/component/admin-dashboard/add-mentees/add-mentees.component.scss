@@ -7,9 +7,30 @@
   height: 31px;
   width: 31px;
   border-radius: 25%;
-  border: 0px;
+  border: 0;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+  padding: 2px;
+  margin: 2px;
+  line-height: 15px;
+  font-size: 15px;
+  height: 31px;
+  width: 31px;
+  border-radius: 25%;
+  border: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.mentee_information {
+  padding: 0 30px 20px 20px;
 }

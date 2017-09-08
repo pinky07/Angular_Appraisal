@@ -30,7 +30,8 @@
             </ng-template>
             <div class="row">
               <div class="col-1 text-left">
-                <button (click)="deleteMenteeReference(deleteConfirmation, mentee, relationship)" class="btn btn-delete btn-sm mr-1" placement="top" ngbTooltip="Delete Mentee Reference">&times;</button>
+                <button (click)="deleteMenteeReference(deleteConfirmation, mentee, relationship)"
+                        class="btn btn-delete btn-sm mr-1" ngbTooltip="Delete Mentee Reference">&times;</button>
               </div>
               <div class="col-5 text-left">
                 <p>{{ relationship.referred.firstName }} {{ relationship.referred.lastName }}</p>
