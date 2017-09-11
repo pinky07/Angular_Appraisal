@@ -11,6 +11,21 @@
           <li *ngIf="!menteeRelationshipsMap[mentee.id] || menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length <= 0">
             <i>No references were found</i>
           </li>
+          <li *ngIf="menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length > 0">
+            <div class="row">
+              <div class="col-1">
+              </div>
+              <div class="col-5 text-left">
+                <h6>Reference name</h6>
+              </div>
+              <div class="col-2 text-left">
+                <h6>Relationship type</h6>
+              </div>
+              <div class="col-3 text-right">
+                <h6>Referral start date</h6>
+              </div>
+            </div>
+          </li>
           <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]">
             <ng-template #deleteConfirmation let-c="close" let-d="dismiss">
               <div class="modal-header">
@@ -40,7 +55,7 @@
                 <p>{{ relationship.relationship.name }}</p>
               </div>
               <div class="col-3 text-right">
-                <p>{{ relationship.startDate | date:'yy-MMM-d' }}</p>
+                <p>{{ relationship.startDate | date:'y-MMM-d' }}</p>
               </div>
             </div>
           </li>
