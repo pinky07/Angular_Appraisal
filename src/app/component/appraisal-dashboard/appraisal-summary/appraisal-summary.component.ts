@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Appraisal } from '../../../model/appraisal/appraisal';
+import {Appraisal} from '../../../model/appraisal/appraisal';
+import {AppraisalService} from '../../../service/appraisal.service';
 
 /**
  * Show a list of Appraisals for the logged in user.
  * @author Rubén Jiménez
+ * @author Manuel Yepez
  * @export
- * @class NameComponent
+ * @class AppraisalSummaryComponent
  * @implements {OnInit}
  */
 @Component({
@@ -20,9 +22,12 @@ export class AppraisalSummaryComponent implements OnInit {
 
     public appraisals: Appraisal[];
 
-    constructor() {
-        this.appraisals = [];
-    }
+    constructor(
+      private appraisalService: AppraisalService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+      this.appraisalService.getMeAppraisals()
+        .subscribe(appraisals => this.appraisals = appraisals);
+    }
 }

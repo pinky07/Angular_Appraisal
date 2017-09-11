@@ -39,6 +39,7 @@ import {TitleService} from './service/title.service';
 import {AdminDashboardGuard} from './guard/admin-dashboard.guard';
 import {SearchEmployeeComponent} from './component/admin-dashboard/search-employee/search-employee.component';
 import {AddMenteesComponent} from './component/admin-dashboard/add-mentees/add-mentees.component';
+import {AppraisalService} from './service/appraisal.service';
 
 /**
  * TODO Document this!
@@ -91,6 +92,7 @@ import {AddMenteesComponent} from './component/admin-dashboard/add-mentees/add-m
     MeService,
     ErrorHandlerService,
     ActionItemService,
+    AppraisalService,
     MenuService
   ],
   bootstrap: [AppComponent]
