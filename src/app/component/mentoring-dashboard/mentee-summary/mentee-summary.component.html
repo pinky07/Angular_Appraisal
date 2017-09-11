@@ -26,7 +26,7 @@
               </div>
             </div>
           </li>
-          <li *ngFor="let relationship of menteeRelationshipsMap[mentee.id]">
+          <li *ngFor="let relationshipType of menteeRelationshipsMap[mentee.id]">
             <ng-template #deleteConfirmation let-c="close" let-d="dismiss">
               <div class="modal-header">
                 <h4 class="modal-title">Delete confirmation</h4>
@@ -35,7 +35,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p>Are you sure you want to delete {{ relationship.referred.firstName }} {{ relationship.referred.lastName }}
+                <p>Are you sure you want to delete {{ relationshipType.referred.firstName }} {{ relationshipType.referred.lastName }}
                   from the reference list?</p>
               </div>
               <div class="modal-footer">
@@ -45,17 +45,17 @@
             </ng-template>
             <div class="row">
               <div class="col-1 text-left">
-                <button (click)="deleteMenteeReference(deleteConfirmation, mentee, relationship)"
+                <button (click)="deleteMenteeReference(deleteConfirmation, mentee, relationshipType)"
                         class="btn btn-delete btn-sm mr-1" ngbTooltip="Delete Mentee Reference">&times;</button>
               </div>
               <div class="col-5 text-left">
-                <p>{{ relationship.referred.firstName }} {{ relationship.referred.lastName }}</p>
+                <p>{{ relationshipType.referred.firstName }} {{ relationshipType.referred.lastName }}</p>
               </div>
               <div class="col-2 text-left">
-                <p>{{ relationship.relationship.name }}</p>
+                <p>{{ relationshipType.relationshipType.name }}</p>
               </div>
               <div class="col-3 text-right">
-                <p>{{ relationship.startDate | date:'y-MMM-d' }}</p>
+                <p>{{ relationshipType.startDate | date:'y-MMM-d' }}</p>
               </div>
             </div>
           </li>

@@ -6,13 +6,13 @@
  * @author Ruben Jimenez
  */
 
-.list_mentees, .list_references {
-    list-style-type: none;
-    padding: 0px;
+li + li {
+    margin-top: 0px;
 }
 
-.list_mentees li {
-    margin: 2px;
+ .list_mentees, .list_references {
+    list-style-type: none;
+    padding: 0px;
 }
 
 .list_references li {
@@ -56,4 +56,8 @@
 
 p {
     margin: 0;
+}
+
+.mentee_information { 
+    margin-top: 10px;
 }
