@@ -11,10 +11,10 @@ import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../../../environments/environment';
 import {Employee} from '../../../../model/employee/employee';
 import {EmployeeRelationship} from '../../../../model/employee/employee-relationship';
-import {Relationship} from '../../../../model/employee/relationship';
+import {RelationshipType} from '../../../../model/employee/relationshipType';
 import {EmployeeRelationshipService} from '../../../../service/employee-relationship.service';
 import {EmployeeService} from '../../../../service/employee.service';
-import {RelationshipService} from '../../../../service/relationship.service';
+import {RelationshipTypeService} from '../../../../service/relationship-type.service';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -31,8 +31,8 @@ export class AddMenteeReferencesComponent implements OnInit {
   public menteeRelationships: EmployeeRelationship[];
 
   public model: Employee;
-  public relationshipTypes: Relationship[];
-  public selectedRelationship: Relationship;
+  public relationshipTypes: RelationshipType[];
+  public selectedRelationship: RelationshipType;
 
   // Behavior for the typeahead: Triggers after 200ms, after 3 letters and waits for changes on the input.
   public searchTerm = (text$: Observable<string>) =>
@@ -54,11 +54,11 @@ export class AddMenteeReferencesComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private employeeRelationshipService: EmployeeRelationshipService,
-    private relationshipService: RelationshipService
+    private relationshipTypeService: RelationshipTypeService
   ) { }
 
   public ngOnInit(): void {
-    this.relationshipService.getRelationships().subscribe(res => this.relationshipTypes = res);
+    this.relationshipTypeService.getRelationshipTypes().subscribe(res => this.relationshipTypes = res);
   }
 
   public addMenteeReference(referred: Employee, form: NgForm): void {

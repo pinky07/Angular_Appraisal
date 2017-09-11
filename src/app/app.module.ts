@@ -34,7 +34,7 @@ import {EmployeeService} from './service/employee.service';
 import {ErrorHandlerService} from './service/error-handler.service';
 import {MeService} from './service/me.service';
 import {MenuService} from './service/menu.service';
-import {RelationshipService} from './service/relationship.service';
+import {RelationshipTypeService} from './service/relationship-type.service';
 import {TitleService} from './service/title.service';
 import {AdminDashboardGuard} from './guard/admin-dashboard.guard';
 import {SearchEmployeeComponent} from './component/admin-dashboard/search-employee/search-employee.component';
@@ -87,7 +87,7 @@ import {AddMenteesComponent} from './component/admin-dashboard/add-mentees/add-m
     TitleService,
     EmployeeService,
     EmployeeRelationshipService,
-    RelationshipService,
+    RelationshipTypeService,
     MeService,
     ErrorHandlerService,
     ActionItemService,
