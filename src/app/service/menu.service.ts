@@ -1,7 +1,7 @@
-import {Employee} from '../model/employee/employee';
-import {MeService} from './me.service';
-import {Injectable, OnInit} from '@angular/core';
+import { Injectable } from '@angular/core';
 
+import { Employee } from '../model/backend/employee';
+import { MeService } from './me.service';
 
 /**
  * Logic that decides whether certain UI menu tabs should be enabled or not.
@@ -96,23 +96,23 @@ export class MenuService {
         return this.appraisalDashboardEnabled;
     }
 
-  /**
-   * To enable/disable the Admin Dashboard.
-   * Keep this method private to ensure that this service is self contain and can decide on its own.
-   * @private
-   * @param {boolean} enabled Whether to enable or disable
-   * @memberof MenuService
-   */
-  private setAdminDashboardEnabled(enabled: boolean) {
-    this.adminDashboardEnabled = enabled;
-  }
+    /**
+     * To enable/disable the Admin Dashboard.
+     * Keep this method private to ensure that this service is self contain and can decide on its own.
+     * @private
+     * @param {boolean} enabled Whether to enable or disable
+     * @memberof MenuService
+     */
+    private setAdminDashboardEnabled(enabled: boolean) {
+        this.adminDashboardEnabled = enabled;
+    }
 
-  /**
-   * Whether the Appraisal Dashboard should be enabled.
-   * @returns {boolean} True if the Appraisal Dashboard should be enabled
-   * @memberof MenuService
-   */
-  public isAdminDashboardEnabled(): boolean {
-    return this.adminDashboardEnabled;
-  }
+    /**
+     * Whether the Appraisal Dashboard should be enabled.
+     * @returns {boolean} True if the Appraisal Dashboard should be enabled
+     * @memberof MenuService
+     */
+    public isAdminDashboardEnabled(): boolean {
+        return this.adminDashboardEnabled;
+    }
 }

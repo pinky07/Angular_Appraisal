@@ -1,4 +1,4 @@
-import {Employee} from '../../model/employee/employee';
+import { Employee } from '../../model/backend/employee';
 
 export const REFERENCES: Employee[] = [
     {

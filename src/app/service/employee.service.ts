@@ -1,3 +1,5 @@
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -5,18 +7,15 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/operator/take';
 
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
-import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-
-import {environment} from '../../environments/environment';
-import {Employee} from '../model/employee/employee';
-import {EmployeeRelationship} from '../model/employee/employee-relationship';
-import {AuthService} from './auth.service';
-import {ErrorHandlerService} from './error-handler.service';
+import { environment } from '../../environments/environment';
+import { Employee } from '../model/backend/employee';
+import { EmployeeRelationship } from '../model/backend/employee-relationship';
+import { AuthService } from './auth.service';
+import { ErrorHandlerService } from './error-handler.service';
 
 /**
  * Communicates with /employees endpoints.
@@ -100,9 +99,9 @@ export class EmployeeService {
         return this.http
             .get(url, this.authService.getOptionsWithToken())
             .retryWhen(errors => {
-              return errors
-                .mergeMap(error => (error.status === 404) ? Observable.throw(error) : Observable.of(error))
-                .take(this.maxRetries);
+                return errors
+                    .mergeMap(error => (error.status === 404) ? Observable.throw(error) : Observable.of(error))
+                    .take(this.maxRetries);
             })
             .map(response => response.json() as Employee)
             .catch(ErrorHandlerService.handleError);
@@ -116,11 +115,11 @@ export class EmployeeService {
      * @memberof EmployeeService
      */
     public putMentor(id: number, mentor: Employee): Observable<any> {
-      const url = `${this.employeeUrl}/${id}/mentor`;
-      return this.http
-        .put(url, mentor, this.authService.getOptionsWithToken())
-        .retry(this.maxRetries)
-        .catch(ErrorHandlerService.handleError);
+        const url = `${this.employeeUrl}/${id}/mentor`;
+        return this.http
+            .put(url, mentor, this.authService.getOptionsWithToken())
+            .retry(this.maxRetries)
+            .catch(ErrorHandlerService.handleError);
     }
 
     /**
@@ -130,25 +129,25 @@ export class EmployeeService {
      * @memberof EmployeeService
      */
     public deleteMentor(id: number): Observable<any> {
-      const url = `${this.employeeUrl}/${id}/mentor`;
-      return this.http
-        .delete(url, this.authService.getOptionsWithToken())
-        .retry(this.maxRetries)
-        .catch(ErrorHandlerService.handleError);
+        const url = `${this.employeeUrl}/${id}/mentor`;
+        return this.http
+            .delete(url, this.authService.getOptionsWithToken())
+            .retry(this.maxRetries)
+            .catch(ErrorHandlerService.handleError);
     }
 
-  /**
-   * Gets the /employees/:id/mentees endpoint.
-   * @param {number} id Internal lookup ID for the Employee
-   * @returns {Observable<Employee[]>}
-   * @memberof EmployeeService
-   */
-  public getMentees(id: number): Observable<Employee[]> {
-    const url = `${this.employeeUrl}/${id}/mentees`;
-    return this.http
-      .get(url, this.authService.getOptionsWithToken())
-      .retry(this.maxRetries)
-      .map(response => response.json() as Employee[])
-      .catch(ErrorHandlerService.handleError);
-  }
+    /**
+     * Gets the /employees/:id/mentees endpoint.
+     * @param {number} id Internal lookup ID for the Employee
+     * @returns {Observable<Employee[]>}
+     * @memberof EmployeeService
+     */
+    public getMentees(id: number): Observable<Employee[]> {
+        const url = `${this.employeeUrl}/${id}/mentees`;
+        return this.http
+            .get(url, this.authService.getOptionsWithToken())
+            .retry(this.maxRetries)
+            .map(response => response.json() as Employee[])
+            .catch(ErrorHandlerService.handleError);
+    }
 }

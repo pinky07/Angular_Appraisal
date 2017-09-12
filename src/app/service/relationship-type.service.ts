@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
-import {Http} from '@angular/http';
-import {AuthService} from './auth.service';
-import {RelationshipType} from '../model/employee/relationshipType';
-import {ErrorHandlerService} from './error-handler.service';
-import {Observable} from 'rxjs/Observable';
-
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/publishReplay';
+
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { environment } from '../../environments/environment';
+import { RelationshipType } from '../model/backend/relationship-type';
+import { AuthService } from './auth.service';
+import { ErrorHandlerService } from './error-handler.service';
 
 /**
  * Communicates with /relationships endpoints.
@@ -22,7 +23,7 @@ export class RelationshipTypeService {
   private relationships: Observable<RelationshipType[]>;
 
   constructor(private http: Http,
-              private authService: AuthService) { }
+    private authService: AuthService) { }
 
   /**
    * Fetches RelationshipType types by Id.
