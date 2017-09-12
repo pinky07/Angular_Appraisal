@@ -1,3 +1,6 @@
+import {
+  EvaluationFormViewComponent,
+} from './component/appraisal-dashboard/evaluation-form-view/evaluation-form-view.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -18,11 +21,36 @@ const routes: Routes = [
   { path: 'callback', component: LoginCallbackComponent },
 
   // All paths below must have the SilentLoginGuard!
-  { path: 'error', component: ErrorComponent, canActivate: [SilentLoginGuard] },
-  { path: 'employeeDashboard', component: EmployeeDashboardComponent, canActivate: [SilentLoginGuard] },
-  { path: 'mentoringDashboard', component: MentoringDashboardComponent, canActivate: [SilentLoginGuard, MentoringDashboardGuard] },
-  { path: 'appraisalDashboard', component: AppraisalDashboardComponent, canActivate: [SilentLoginGuard, AppraisalDashboardGuard] },
-  { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [SilentLoginGuard, AdminDashboardGuard] },
+  {
+    path: 'error',
+    component: ErrorComponent,
+    canActivate: [SilentLoginGuard]
+  },
+  {
+    path: 'employeeDashboard',
+    component: EmployeeDashboardComponent,
+    canActivate: [SilentLoginGuard]
+  },
+  {
+    path: 'mentoringDashboard',
+    component: MentoringDashboardComponent,
+    canActivate: [SilentLoginGuard, MentoringDashboardGuard]
+  },
+  {
+    path: 'appraisalDashboard',
+    component: AppraisalDashboardComponent,
+    canActivate: [SilentLoginGuard, AppraisalDashboardGuard]
+  },
+  {
+    path: 'employees/:employeeId/appraisals/:appraisalId/forms/:formId',
+    component: EvaluationFormViewComponent,
+    canActivate: [SilentLoginGuard, AppraisalDashboardGuard]
+  },
+  {
+    path: 'adminDashboard',
+    component: AdminDashboardComponent,
+    canActivate: [SilentLoginGuard, AdminDashboardGuard]
+  },
 
   // Default page
   { path: '**', component: PageNotFoundComponent, canActivate: [SilentLoginGuard] }

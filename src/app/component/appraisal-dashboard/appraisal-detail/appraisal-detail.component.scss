@@ -40,3 +40,15 @@ li {
 .list_feedback li:not(.li__header):hover {
   background: #f0f0f0;
 }
+
+.btn-fill {
+  background: #213e7f;
+  color: white;
+  padding: 5px 20px;
+  border-radius: 25%;
+  border: 0px;
+
+  &:hover {
+      cursor: pointer;
+  }
+}

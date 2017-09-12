@@ -12,10 +12,13 @@ import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashb
 import { SearchEmployeeComponent } from './component/admin-dashboard/search-employee/search-employee.component';
 import { AppraisalDashboardComponent } from './component/appraisal-dashboard/appraisal-dashboard.component';
 import { AppraisalDetailComponent } from './component/appraisal-dashboard/appraisal-detail/appraisal-detail.component';
+import {
+  EvaluationFormViewComponent,
+} from './component/appraisal-dashboard/evaluation-form-view/evaluation-form-view.component';
 import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
 import { EmployeeSummaryComponent } from './component/employee-dashboard/employee-summary/employee-summary.component';
 import {
-    AddMenteeReferencesComponent,
+  AddMenteeReferencesComponent,
 } from './component/mentoring-dashboard/mentee-summary/add-mentee-reference/add-mentee-reference.component';
 import { MenteeSummaryComponent } from './component/mentoring-dashboard/mentee-summary/mentee-summary.component';
 import { MentoringDashboardComponent } from './component/mentoring-dashboard/mentoring-dashboard.component';
@@ -70,7 +73,8 @@ import { TitleService } from './service/title.service';
     AppraisalDashboardComponent,
     AddMenteeReferencesComponent,
     SearchEmployeeComponent,
-    AddMenteesComponent
+    AddMenteesComponent,
+    EvaluationFormViewComponent
   ],
   imports: [
     AppRoutingModule,

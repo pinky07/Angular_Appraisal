@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-xs-12 col-lg-8 ml-lg-auto mr-lg-auto">
+        <div *ngIf="evaluationForm">
+            <h1>{{ evaluationForm.name }}</h1>
+            <p><b>Id: </b>{{ evaluationForm.id }}</p>
+            <p><b>Description: </b>{{ evaluationForm.description }}</p>
+            <p><b>Sections: </b></p>
+            <ul class="list_sections">
+                <li *ngFor="let section of evaluationForm.sections">
+                    <p><b>Section Id: </b>{{ section.id }}</p>
+                    <p><b>Section Name: </b>{{ section.name }}</p>
+                    <p><b>Section Description: </b>{{ section.description }}</p>
+                    <p><b>Section Position: </b>{{ section.position }}</p>
+                    <p><b>Section Score Type Id: </b>{{ section.scoreType.id }}</p>
+                    <p><b>Section Score Type Definition: </b>{{ section.scoreType.definition }}</p>
+                    <ul class="list_questions">
+                        <li *ngFor="let question of section.questions">
+                            <p><b>Question Id: </b>{{ question.id }}</p>
+                            <p><b>Question Name: </b>{{ question.name }}</p>
+                            <p><b>Question Description: </b>{{ question.description }}</p>
+                            <p><b>Question Position: </b>{{ question.position }}</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -19,7 +19,7 @@
               <p>Submitted Date</p>
             </div>
             <div class="col-3 text-right">
-              <p>Evaluation Form Id</p>
+              <p>Evaluation Form</p>
             </div>
           </div>
         </li>
@@ -40,7 +40,7 @@
             <ng-template #noSubmitDate>Pending</ng-template>
           </div>
           <div class="col-3 text-right">
-            <p>{{ employeeEvaluationForm.evaluationFormId }}</p>
+            <button *ngIf="employeeEvaluationForm.employee.id === employeeEvaluationForm.filledByEmployee.id" class="btn btn-fill" (click)="evaluationFormClick(appraisal, employeeEvaluationForm.employee, employeeEvaluationForm.evaluationFormId)">Fill</button>
           </div>
         </div>
       </li>

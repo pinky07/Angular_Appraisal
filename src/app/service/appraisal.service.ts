@@ -1,3 +1,4 @@
+import { EvaluationForm } from '../model/backend/evaluation-form';
 import { EmployeeEvaluationForm } from '../model/backend/employee-evaluation-form';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -23,6 +24,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class AppraisalService {
 
   private maxRetries: number = environment.maxRetries;
+  private employeeUrl = environment.employeeUrl;
   private meUrl = environment.meUrl;
 
   /**
@@ -52,13 +54,34 @@ export class AppraisalService {
 
   /**
    * Obtains all employee evaluation forms in which the logged user has taken part.
-   * 
    * @param {number} id Appraisal Id
    * @returns {Observable<EmployeeEvaluationForm[]>}  EmployeeEvaluationForm array Observable
    * @memberof AppraisalService
    */
   public getMeAppraisalsByIdForms(id: number): Observable<EmployeeEvaluationForm[]> {
     const url = `${this.meUrl}/appraisals/${id}/forms`;
+    return this.http
+      .get(url, this.authService.getOptionsWithToken())
+      .retry(this.maxRetries)
+      .map(response => response.json() as Appraisal[])
+      .catch(ErrorHandlerService.handleError);
+  }
+
+
+  /**
+   * Obtains an evaluation form
+   * @param {number} employeeId Employee Id
+   * @param {number} appraisalId  Appraisal Id
+   * @param {number} formId EvaluationForm Id
+   * @returns {Observable<EvaluationForm>} EvaluationForm Observable
+   * @memberof AppraisalService
+   */
+  public getEmployeesByIdAppraisalsByIdFormsById(
+    employeeId: number,
+    appraisalId: number,
+    formId: number): Observable<EvaluationForm> {
+
+    const url = `${this.employeeUrl}/${employeeId}/appraisals/${appraisalId}/forms/${formId}`;
     return this.http
       .get(url, this.authService.getOptionsWithToken())
       .retry(this.maxRetries)

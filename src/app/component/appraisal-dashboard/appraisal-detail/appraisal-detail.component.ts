@@ -1,7 +1,9 @@
-import { EmployeeEvaluationForm } from '../../../model/backend/employee-evaluation-form';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Appraisal } from '../../../model/backend/appraisal';
+import { Employee } from '../../../model/backend/employee';
+import { EmployeeEvaluationForm } from '../../../model/backend/employee-evaluation-form';
 import { AppraisalService } from '../../../service/appraisal.service';
 
 /**
@@ -32,11 +34,16 @@ export class AppraisalDetailComponent implements OnInit {
      * @memberof AppraisalDetailComponent
      */
     public constructor(
-        private appraisalService: AppraisalService
+        private appraisalService: AppraisalService,
+        private router: Router
     ) { }
 
     public ngOnInit(): void {
         this.appraisalService.getMeAppraisalsByIdForms(this.appraisal.id)
-        .subscribe(employeeEvaluationForms => this.employeeEvaluationForms = employeeEvaluationForms);
+            .subscribe(employeeEvaluationForms => this.employeeEvaluationForms = employeeEvaluationForms);
+    }
+
+    public evaluationFormClick(appraisal: Appraisal, employee: Employee, evaluationFormId: number) {
+        this.router.navigate(['/employees', employee.id, 'appraisals', appraisal.id, 'forms', evaluationFormId]);
     }
 }
