@@ -1,18 +1,18 @@
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs/Observable';
 
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Employee} from '../../../model/employee/employee';
-import {EmployeeService} from '../../../service/employee.service';
-import {environment} from '../../../../environments/environment';
-import {Observable} from 'rxjs/Observable';
-import {NgForm} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { environment } from '../../../../environments/environment';
+import { Employee } from '../../../model/backend/employee';
+import { EmployeeService } from '../../../service/employee.service';
 
 @Component({
   selector: 'app-add-mentees',
@@ -67,14 +67,14 @@ export class AddMenteesComponent implements OnInit, OnChanges {
       this.employeeService.getMentor(this.mentee.id).toPromise()
         .then(mentor => {
           // Cambiar mentor
-          console.log('menteeAdd', mentee);
-          console.log('mentor', mentor);
+          // console.log('menteeAdd', mentee);
+          // console.log('mentor', mentor);
           this.existingMentor = mentor;
           this.modalAddConfirmation(addConfirmation, mentee, form);
         })
         .catch(e => {
           if (e.status === 404) {
-            console.log('No mentor');
+            // console.log('No mentor');
             this.employeeService.putMentor(mentee.id, this.mentor)
               .subscribe(() => this.mentees.push(mentee));
           } else {

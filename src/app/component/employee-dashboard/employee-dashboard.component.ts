@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Employee } from '../../model/employee/employee';
+import { Employee } from '../../model/backend/employee';
 import { AlertService } from '../../service/alert.service';
 import { EmployeeService } from '../../service/employee.service';
 import { MeService } from '../../service/me.service';
@@ -56,7 +56,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
             .getMeMentor()
             .subscribe(employee => this.changeCurrentEmployeeMentor(employee));
 
-        this.titleService.setTitle('Employee Dashboard');            
+        this.titleService.setTitle('Employee Dashboard');
     }
 
 

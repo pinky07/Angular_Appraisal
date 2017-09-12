@@ -1,5 +1,5 @@
-import {Employee} from './employee';
-import {RelationshipType} from './relationshipType';
+import { Employee } from './employee';
+import { RelationshipType } from './relationship-type';
 
 /**
  * Models an Employee Relationship

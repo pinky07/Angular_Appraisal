@@ -1,17 +1,17 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {AppraisalDashboardComponent} from './component/appraisal-dashboard/appraisal-dashboard.component';
-import {EmployeeDashboardComponent} from './component/employee-dashboard/employee-dashboard.component';
-import {MentoringDashboardComponent} from './component/mentoring-dashboard/mentoring-dashboard.component';
-import {ErrorComponent} from './component/shared/error/error.component';
-import {LoginCallbackComponent} from './component/shared/login-callback/login-callback.component';
-import {PageNotFoundComponent} from './component/shared/page-not-found/page-not-found.component';
-import {AppraisalDashboardGuard} from './guard/appraisal-dashboard.guard';
-import {MentoringDashboardGuard} from './guard/mentoring-dashboard.guard';
-import {SilentLoginGuard} from './guard/silent-login-guard.service';
-import {AdminDashboardComponent} from './component/admin-dashboard/admin-dashboard.component';
-import {AdminDashboardGuard} from './guard/admin-dashboard.guard';
+import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { AppraisalDashboardComponent } from './component/appraisal-dashboard/appraisal-dashboard.component';
+import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
+import { MentoringDashboardComponent } from './component/mentoring-dashboard/mentoring-dashboard.component';
+import { ErrorComponent } from './component/shared/error/error.component';
+import { LoginCallbackComponent } from './component/shared/login-callback/login-callback.component';
+import { PageNotFoundComponent } from './component/shared/page-not-found/page-not-found.component';
+import { AdminDashboardGuard } from './guard/admin-dashboard.guard';
+import { AppraisalDashboardGuard } from './guard/appraisal-dashboard.guard';
+import { MentoringDashboardGuard } from './guard/mentoring-dashboard.guard';
+import { SilentLoginGuard } from './guard/silent-login-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/employeeDashboard', pathMatch: 'full' },

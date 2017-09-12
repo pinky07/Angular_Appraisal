@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
-import {Http} from '@angular/http';
-import {AuthService} from './auth.service';
-import {EmployeeRelationship} from '../model/employee/employee-relationship';
-import {ErrorHandlerService} from './error-handler.service';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import { environment } from '../../environments/environment';
+import { EmployeeRelationship } from '../model/backend/employee-relationship';
+import { AuthService } from './auth.service';
+import { ErrorHandlerService } from './error-handler.service';
 
 /**
  * Communicates with /employees/relationships endpoints.

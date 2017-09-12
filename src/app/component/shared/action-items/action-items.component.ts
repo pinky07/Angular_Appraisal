@@ -27,7 +27,7 @@ export class ActionItemsComponent implements OnInit {
             .getActionItems()
             .subscribe(
             actionItems => this.actionItems = actionItems,
-            error => console.log(error)
+            error => console.error(error)
             );
     }
 

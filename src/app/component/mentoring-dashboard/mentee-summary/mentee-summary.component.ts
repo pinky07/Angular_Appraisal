@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import {Employee} from '../../../model/employee/employee';
-import {EmployeeRelationship} from '../../../model/employee/employee-relationship';
-import {EmployeeService} from '../../../service/employee.service';
-import {MeService} from '../../../service/me.service';
-import {TitleService} from '../../../service/title.service';
-import {EmployeeRelationshipService} from '../../../service/employee-relationship.service';
+import { Employee } from '../../../model/backend/employee';
+import { EmployeeRelationship } from '../../../model/backend/employee-relationship';
+import { EmployeeRelationshipService } from '../../../service/employee-relationship.service';
+import { EmployeeService } from '../../../service/employee.service';
+import { MeService } from '../../../service/me.service';
+import { TitleService } from '../../../service/title.service';
 
 /**
  * Displays Mentee information if the logged on Employee is a Mentor
@@ -76,7 +76,7 @@ export class MenteeSummaryComponent implements OnInit {
     }
 
     private changeMenteeReferences(menteeId: number, references: EmployeeRelationship[]) {
-      console.log('mentee references', references);
+        // console.log('mentee references', references);
         this.menteeRelationshipsMap[menteeId] = references;
     }
 }

@@ -1,8 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import {AlertService} from '../../service/alert.service';
-import {TitleService} from '../../service/title.service';
-import {Employee} from '../../model/employee/employee';
+import { Employee } from '../../model/backend/employee';
+import { AlertService } from '../../service/alert.service';
+import { TitleService } from '../../service/title.service';
 
 /**
  * Shows the Admin dashboard.

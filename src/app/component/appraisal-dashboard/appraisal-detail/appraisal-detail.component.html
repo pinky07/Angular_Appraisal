@@ -1,6 +1,49 @@
 <app-collapsable-card title="{{ appraisal.name }}" collapseState="show">
-  <div class="card-body">
-    <p>{{ appraisal.description }}</p>
-    <p>Del {{ appraisal.startDate  | date:'d-MMM-y' }} al {{ appraisal.endDate  | date:'d-MMM-y' }}</p>
+  <div class="appraisal_detail">
+    <p class="appraisal_description">{{ appraisal.description }}</p>
+    <p class="appraisal_dates">From: {{ appraisal.startDate | date:'d-MMM-y' }} to: {{ appraisal.endDate | date:'d-MMM-y' }}</p>
+    <h2>Feedback references</h2>
+    <ul class="list_feedback">
+      <li *ngIf="!employeeEvaluationForms">
+        <i>No feedback references for this appraisal</i>
+      </li>
+      <li class="li__header">
+          <div class="row">
+            <div class="col-3 text-left">
+              <p>Filled By</p>
+            </div>
+            <div class="col-3 text-right">
+              <p>Created Date</p>
+            </div>
+            <div class="col-3 text-right">
+              <p>Submitted Date</p>
+            </div>
+            <div class="col-3 text-right">
+              <p>Evaluation Form Id</p>
+            </div>
+          </div>
+        </li>
+      <li *ngFor="let employeeEvaluationForm of employeeEvaluationForms">
+        <div class="row">
+          <div class="col-3 text-left">
+            <p>
+              {{ employeeEvaluationForm.filledByEmployee.firstName }}
+              <span *ngIf="employeeEvaluationForm.employee.id === employeeEvaluationForm.filledByEmployee.id">(Self)</span>
+              <span *ngIf="employeeEvaluationForm.filledByEmployee.id === employeeEvaluationForm.mentor.id">(Mentor)</span>
+            </p>
+          </div>
+          <div class="col-3 text-right">
+            <p>{{ employeeEvaluationForm.createDate | date:'d-MMM-y' }}</p>
+          </div>
+          <div class="col-3 text-right">
+            <p *ngIf="employeeEvaluationForm.submitDate;else noSubmitDate">{{ employeeEvaluationForm.submitDate | date:'d-MMM-y' }}</p>
+            <ng-template #noSubmitDate>Pending</ng-template>
+          </div>
+          <div class="col-3 text-right">
+            <p>{{ employeeEvaluationForm.evaluationFormId }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </app-collapsable-card>

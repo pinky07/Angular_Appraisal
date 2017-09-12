@@ -3,11 +3,12 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {EmployeeService} from '../../../service/employee.service';
-import {Employee} from '../../../model/employee/employee';
-import {Observable} from 'rxjs/Observable';
-import {environment} from '../../../../environments/environment';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { environment } from '../../../../environments/environment';
+import { Employee } from '../../../model/backend/employee';
+import { EmployeeService } from '../../../service/employee.service';
 
 @Component({
   selector: 'app-search-employee',

@@ -6,11 +6,9 @@
  * @author Ruben Jimenez
  */
 
-li + li {
-    margin-top: 0px;
-}
 
- .list_mentees, .list_references {
+
+.list_mentees, .list_references {
     list-style-type: none;
     padding: 0px;
 }
@@ -18,14 +16,22 @@ li + li {
 .list_references li {
     padding: 5px;
     margin: 5px 0;
+}
 
-    &:hover {
-        background: #f0f0f0;
-    }
+.li__header p {
+    color: #213e7f;
+}
+
+.list_references li:not(.li__header):hover {
+    background: #f0f0f0;
+}
+
+li + li {
+    margin-top: 0px;
 }
 
 .mentee_information {
-    padding: 0 20px 20px 20px;
+    padding: 10px 20px 20px 20px;
 }
 
 .mentee_name {
@@ -50,14 +56,6 @@ li + li {
     }
 }
 
-.row {
+.row, p {
     margin: 0;
-}
-
-p {
-    margin: 0;
-}
-
-.mentee_information { 
-    margin-top: 10px;
 }

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Employee } from '../../../model/employee/employee';
+import { Employee } from '../../../model/backend/employee';
 
 /**
  * Displays a summary of the Employee information.

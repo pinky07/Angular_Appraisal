@@ -11,18 +11,18 @@
           <li *ngIf="!menteeRelationshipsMap[mentee.id] || menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length <= 0">
             <i>No references were found</i>
           </li>
-          <li *ngIf="menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length > 0">
+          <li class="li__header" *ngIf="menteeRelationshipsMap[mentee.id] && menteeRelationshipsMap[mentee.id].length > 0">
             <div class="row">
               <div class="col-1">
               </div>
               <div class="col-5 text-left">
-                <h6>Reference name</h6>
+                <p>Reference name</p>
               </div>
-              <div class="col-2 text-left">
-                <h6>Relationship type</h6>
+              <div class="col-3 text-left">
+                <p>Relationship type</p>
               </div>
               <div class="col-3 text-right">
-                <h6>Referral start date</h6>
+                <p>Referral start date</p>
               </div>
             </div>
           </li>
@@ -51,7 +51,7 @@
               <div class="col-5 text-left">
                 <p>{{ relationshipType.referred.firstName }} {{ relationshipType.referred.lastName }}</p>
               </div>
-              <div class="col-2 text-left">
+              <div class="col-3 text-left">
                 <p>{{ relationshipType.relationshipType.name }}</p>
               </div>
               <div class="col-3 text-right">

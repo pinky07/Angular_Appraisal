@@ -1,3 +1,42 @@
-a:hover {
-  cursor: pointer;
+/**
+ * appraisal-detail.component.scss - Version 1.0.0
+ * 
+ * Appraisal Detail Style
+ * 
+ * @author Ruben Jimenez
+ */
+
+.appraisal_detail {
+  padding: 10px 20px 20px 20px;
+}
+
+.list_feedback {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.row, p {
+  margin: 0;
+}
+
+.appraisal_description, .appraisal_dates {
+  margin-bottom: 10px;
+}
+
+.appraisal_dates {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+li {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.li__header p {
+  color: #213e7f;
+}
+
+.list_references li:not(.li__header):hover {
+  background: #f0f0f0;
 }

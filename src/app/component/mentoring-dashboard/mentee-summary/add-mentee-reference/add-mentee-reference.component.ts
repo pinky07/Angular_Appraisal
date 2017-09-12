@@ -4,18 +4,18 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import * as _ from 'lodash';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
-import {environment} from '../../../../../environments/environment';
-import {Employee} from '../../../../model/employee/employee';
-import {EmployeeRelationship} from '../../../../model/employee/employee-relationship';
-import {RelationshipType} from '../../../../model/employee/relationshipType';
-import {EmployeeRelationshipService} from '../../../../service/employee-relationship.service';
-import {EmployeeService} from '../../../../service/employee.service';
-import {RelationshipTypeService} from '../../../../service/relationship-type.service';
-import {NgForm} from '@angular/forms';
+import { environment } from '../../../../../environments/environment';
+import { Employee } from '../../../../model/backend/employee';
+import { EmployeeRelationship } from '../../../../model/backend/employee-relationship';
+import { RelationshipType } from '../../../../model/backend/relationship-type';
+import { EmployeeRelationshipService } from '../../../../service/employee-relationship.service';
+import { EmployeeService } from '../../../../service/employee.service';
+import { RelationshipTypeService } from '../../../../service/relationship-type.service';
 
 @Component({
   selector: 'app-add-mentee-reference',
