@@ -9,7 +9,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AdminDashboardComponent} from './component/admin-dashboard/admin-dashboard.component';
 import {AppraisalDashboardComponent} from './component/appraisal-dashboard/appraisal-dashboard.component';
-import {AppraisalSummaryComponent} from './component/appraisal-dashboard/appraisal-summary/appraisal-summary.component';
+import {AppraisalDetailComponent} from './component/appraisal-dashboard/appraisal-detail/appraisal-detail.component';
 import {EmployeeDashboardComponent} from './component/employee-dashboard/employee-dashboard.component';
 import {EmployeeSummaryComponent} from './component/employee-dashboard/employee-summary/employee-summary.component';
 import {AddMenteeReferencesComponent,} from './component/mentoring-dashboard/mentee-summary/add-mentee-reference/add-mentee-reference.component';
@@ -63,7 +63,7 @@ import {AppraisalService} from './service/appraisal.service';
     MenteeSummaryComponent,
     AdminDashboardComponent,
     ActionItemsComponent,
-    AppraisalSummaryComponent,
+    AppraisalDetailComponent,
     CollapsableCardComponent,
     AppraisalDashboardComponent,
     AddMenteeReferencesComponent,

@@ -1,0 +1,6 @@
+<app-collapsable-card title="{{ appraisal.name }}" collapseState="show">
+  <div class="card-body">
+    <p>{{ appraisal.description }}</p>
+    <p>Del {{ appraisal.startDate  | date:'d-MMM-y' }} al {{ appraisal.endDate  | date:'d-MMM-y' }}</p>
+  </div>
+</app-collapsable-card>
