@@ -8,38 +8,45 @@
         <i>No feedback references for this appraisal</i>
       </li>
       <li class="li__header">
-          <div class="row">
-            <div class="col-3 text-left">
-              <p>Filled By</p>
-            </div>
-            <div class="col-3 text-right">
-              <p>Created Date</p>
-            </div>
-            <div class="col-3 text-right">
-              <p>Submitted Date</p>
-            </div>
-            <div class="col-3 text-right">
-              <p>Evaluation Form</p>
-            </div>
+        <div class="row">
+          <div class="col-3 text-left">
+            <p>Employee</p>
           </div>
-        </li>
+          <div class="col-3 text-left">
+            <p>Filled By</p>
+          </div>
+          <div class="col-2 text-right">
+            <p>Created Date</p>
+          </div>
+          <div class="col-2 text-right">
+            <p>Submitted Date</p>
+          </div>
+          <div class="col-2 text-right">
+          </div>
+        </div>
+      </li>
       <li *ngFor="let employeeEvaluationForm of employeeEvaluationForms">
         <div class="row">
           <div class="col-3 text-left">
             <p>
-              {{ employeeEvaluationForm.filledByEmployee.firstName }}
+              {{ employeeEvaluationForm.employee.firstName }} {{ employeeEvaluationForm.employee.lastName }}
+            </p>
+          </div>
+          <div class="col-3 text-left">
+            <p>
+              {{ employeeEvaluationForm.filledByEmployee.firstName }} {{ employeeEvaluationForm.filledByEmployee.lastName }}
               <span *ngIf="employeeEvaluationForm.employee.id === employeeEvaluationForm.filledByEmployee.id">(Self)</span>
               <span *ngIf="employeeEvaluationForm.filledByEmployee.id === employeeEvaluationForm.mentor.id">(Mentor)</span>
             </p>
           </div>
-          <div class="col-3 text-right">
+          <div class="col-2 text-right">
             <p>{{ employeeEvaluationForm.createDate | date:'d-MMM-y' }}</p>
           </div>
-          <div class="col-3 text-right">
+          <div class="col-2 text-right">
             <p *ngIf="employeeEvaluationForm.submitDate;else noSubmitDate">{{ employeeEvaluationForm.submitDate | date:'d-MMM-y' }}</p>
             <ng-template #noSubmitDate>Pending</ng-template>
           </div>
-          <div class="col-3 text-right">
+          <div class="col-2 text-right">
             <button *ngIf="employeeEvaluationForm.employee.id === employeeEvaluationForm.filledByEmployee.id" class="btn btn-fill" (click)="evaluationFormClick(appraisal, employeeEvaluationForm.employee, employeeEvaluationForm.evaluationFormId)">Fill</button>
           </div>
         </div>
