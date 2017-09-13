@@ -1,0 +1,9 @@
+<div *ngIf="section">
+    <h2>{{ section.name }}</h2>
+    <ul class="list_questions">
+        <li *ngFor="let question of section.questions">
+            <h3>{{ question.description }}</h3>
+            <textarea name="question-{{ question.id }}" id="question-{{ question.id }}"></textarea>
+        </li>
+    </ul>
+</div>

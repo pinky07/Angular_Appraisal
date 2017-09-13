@@ -15,6 +15,10 @@ import { AppraisalDetailComponent } from './component/appraisal-dashboard/apprai
 import {
   EvaluationFormViewComponent,
 } from './component/appraisal-dashboard/evaluation-form-view/evaluation-form-view.component';
+import { Section1To5Component } from './component/appraisal-dashboard/evaluation-form-view/section/section-1-to-5.component';
+import {
+  SectionCommentComponent,
+} from './component/appraisal-dashboard/evaluation-form-view/section/section-comment.component';
 import { EmployeeDashboardComponent } from './component/employee-dashboard/employee-dashboard.component';
 import { EmployeeSummaryComponent } from './component/employee-dashboard/employee-summary/employee-summary.component';
 import {
@@ -46,6 +50,7 @@ import { MenuService } from './service/menu.service';
 import { RelationshipTypeService } from './service/relationship-type.service';
 import { TitleService } from './service/title.service';
 
+
 /**
  * TODO Document this!
  * @author Manuel Yepez
@@ -74,7 +79,9 @@ import { TitleService } from './service/title.service';
     AddMenteeReferencesComponent,
     SearchEmployeeComponent,
     AddMenteesComponent,
-    EvaluationFormViewComponent
+    EvaluationFormViewComponent,
+    Section1To5Component,
+    SectionCommentComponent
   ],
   imports: [
     AppRoutingModule,

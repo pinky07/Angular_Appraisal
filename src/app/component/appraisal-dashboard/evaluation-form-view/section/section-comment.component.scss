@@ -1,0 +1,28 @@
+/**
+ * section-comment.component.scss - Version 1.0.0
+ * 
+ * Section Comment Style
+ * 
+ * @author Ruben Jimenez
+ */
+
+ .list_questions {
+    list-style: none;
+    margin: 0;
+    padding: 0;            
+
+    li {
+        margin: 0;
+        padding: 0 15px;
+    }
+}
+
+.row, p {
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+}

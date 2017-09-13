@@ -1,0 +1,31 @@
+/**
+ * section-1-to-5.component.scss - Version 1.0.0
+ * 
+ * Section 1 to 5 Style
+ * 
+ * @author Ruben Jimenez
+ */
+
+ .list_questions {
+     list-style: none;
+     margin: 0;
+     padding: 0;            
+  
+     li {
+        margin: 0 0 40px 0;
+        padding: 0;            
+     }
+ }
+
+ .row, p {
+     margin: 0;
+     padding: 0;
+ }
+
+.form-check:first-child {
+    margin-top: 20px;
+}
+
+.form-check {
+     padding-left: 40px;
+ }

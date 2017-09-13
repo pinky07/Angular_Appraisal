@@ -1,0 +1,21 @@
+<div *ngIf="section">
+    <h2>{{ section.name }}</h2>
+    <ul class="list_questions">
+        <li *ngFor="let question of section.questions">
+            <div class="row">
+                <div class="col-12 text-left">
+                    <h3>{{ question.name }}</h3>
+                    <p>{{ question.description }}</p>
+                </div>
+                <div class="col-12 text-left">
+                    <div class="form-check" *ngFor="let scoreValue of section.scoreType.scoreValues">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="question-{{ question.id }}" id="question-{{ question.id }}-{{ scoreValue.id }}" value="{{ scoreValue.value }} " required/>
+                            {{ scoreValue.description }}    
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
