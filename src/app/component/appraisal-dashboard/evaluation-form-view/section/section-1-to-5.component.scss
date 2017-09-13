@@ -7,25 +7,32 @@
  */
 
  .list_questions {
-     list-style: none;
-     margin: 0;
-     padding: 0;            
-  
-     li {
-        margin: 0 0 40px 0;
-        padding: 0;            
-     }
+    list-style: none;
+    margin: 0;
+    padding: 0;            
+
+    li:not(:first-child) {
+        margin: 0 0 40px 0;       
+    }
+
+    li:not(.li_header):hover {
+        background: #f0f0f0;
+    }
  }
 
- .row, p {
-     margin: 0;
-     padding: 0;
- }
-
-.form-check:first-child {
-    margin-top: 20px;
+.row, p {
+    margin: 0;
+    padding: 0;
 }
 
-.form-check {
-     padding-left: 40px;
+.score_value {
+     width: 20%;
+     display: inline-block;
+     font-size: 0.5rem;
+     margin: 0;
+     padding: 0
  }
+ 
+.form-check-inline {
+    margin-top: 20px;
+}
