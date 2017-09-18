@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { Appraisal } from '../../../model/backend/appraisal';
-import { Employee } from '../../../model/backend/employee';
-import { EmployeeEvaluationForm } from '../../../model/backend/employee-evaluation-form';
-import { AppraisalService } from '../../../service/appraisal.service';
+import {Appraisal} from '../../../model/backend/appraisal';
+import {Employee} from '../../../model/backend/employee';
+import {EmployeeEvaluationForm} from '../../../model/backend/employee-evaluation-form';
+import {AppraisalService} from '../../../service/appraisal.service';
 
 /**
  * Show a list of Appraisals for the logged in user.
@@ -31,6 +31,7 @@ export class AppraisalDetailComponent implements OnInit {
     /**
      * Creates an instance of AppraisalDetailComponent.
      * @param {AppraisalService} appraisalService Appraisal service
+     * @param router Routing service
      * @memberof AppraisalDetailComponent
      */
     public constructor(
