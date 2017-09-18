@@ -1,17 +1,15 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 
-import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
-import { Router } from '@angular/router';
-import { JwtHelper } from 'angular2-jwt';
+import {Injectable} from '@angular/core';
+import {Headers, Http, RequestOptions} from '@angular/http';
+import {Router} from '@angular/router';
+import {JwtHelper} from 'angular2-jwt';
 
-import { environment } from '../../environments/environment';
-import { ErrorHandlerService } from './error-handler.service';
+import {environment} from '../../environments/environment';
+import {ErrorHandlerService} from './error-handler.service';
 
 /**
  * TODO Document this!
@@ -196,6 +194,7 @@ export class AuthService {
             this.refreshToken();
         }
         // TODO Ensure that no other place in the app is accessing the token from local storage
+        console.log('getting accessToken from localStorage: ', localStorage.getItem('accessToken'));
         return localStorage.getItem('accessToken');
     }
 
