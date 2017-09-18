@@ -32,7 +32,7 @@ export class EvaluationFormViewComponent implements OnInit, OnDestroy {
     public getForm(employeeId: number, appraisalId: number, formId: number) {
         this.appraisalService.getEmployeesByIdAppraisalsByIdFormsById(employeeId, appraisalId, formId)
             .subscribe(evaluationForm => {
-                console.log(evaluationForm);
+                // console.log(evaluationForm);
                 this.evaluationForm = evaluationForm;
             });
     }

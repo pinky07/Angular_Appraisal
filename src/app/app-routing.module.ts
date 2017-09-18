@@ -24,36 +24,36 @@ const routes: Routes = [
   {
     path: 'error',
     component: ErrorComponent,
-    canActivate: [SilentLoginGuard]
+    canLoad: [SilentLoginGuard]
   },
   {
     path: 'employeeDashboard',
     component: EmployeeDashboardComponent,
-    canActivate: [SilentLoginGuard]
+    canLoad: [SilentLoginGuard]
   },
   {
     path: 'mentoringDashboard',
     component: MentoringDashboardComponent,
-    canActivate: [SilentLoginGuard, MentoringDashboardGuard]
+    canLoad: [SilentLoginGuard, MentoringDashboardGuard]
   },
   {
     path: 'appraisalDashboard',
     component: AppraisalDashboardComponent,
-    canActivate: [SilentLoginGuard, AppraisalDashboardGuard]
+    canLoad: [SilentLoginGuard, AppraisalDashboardGuard]
   },
   {
     path: 'employees/:employeeId/appraisals/:appraisalId/forms/:formId',
     component: EvaluationFormViewComponent,
-    canActivate: [SilentLoginGuard, AppraisalDashboardGuard]
+    canLoad: [SilentLoginGuard, AppraisalDashboardGuard]
   },
   {
     path: 'adminDashboard',
     component: AdminDashboardComponent,
-    canActivate: [SilentLoginGuard, AdminDashboardGuard]
+    canLoad: [SilentLoginGuard, AdminDashboardGuard]
   },
 
   // Default page
-  { path: '**', component: PageNotFoundComponent, canActivate: [SilentLoginGuard] }
+  { path: '**', component: PageNotFoundComponent, canLoad: [SilentLoginGuard] }
 ];
 
 /**

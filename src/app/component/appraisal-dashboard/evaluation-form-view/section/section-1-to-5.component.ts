@@ -18,7 +18,7 @@ export class Section1To5Component implements OnInit, OnDestroy {
     ) { }
 
     public ngOnInit(): void {
-        console.log(this.section);
+        // console.log(this.section);
     }
 
     public ngOnDestroy(): void {

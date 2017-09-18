@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
-    CanActivate,
+    CanLoad,
     Router,
-    ActivatedRouteSnapshot,
+    Route,
     RouterStateSnapshot
 } from '@angular/router';
 
@@ -16,7 +16,7 @@ import { AuthService } from '../service/auth.service';
  * @implements {CanActivate}
  */
 @Injectable()
-export class SilentLoginGuard implements CanActivate {
+export class SilentLoginGuard implements CanLoad {
 
     /**
      * Creates an instance of SilentLoginGuard.
@@ -36,8 +36,9 @@ export class SilentLoginGuard implements CanActivate {
      * @returns {boolean}
      * @memberof SilentLoginGuard
      */
-    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const url: string = state.url;
+    public canLoad(route: Route): boolean {
+        const url: string = route.path;
+        // console.log('URL', url);
         return this.checkLogin(url);
     }
 

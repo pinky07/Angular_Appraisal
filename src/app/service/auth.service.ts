@@ -194,7 +194,7 @@ export class AuthService {
             this.refreshToken();
         }
         // TODO Ensure that no other place in the app is accessing the token from local storage
-        console.log('getting accessToken from localStorage: ', localStorage.getItem('accessToken'));
+        // console.log('getting accessToken from localStorage: ', localStorage.getItem('accessToken'));
         return localStorage.getItem('accessToken');
     }
 
