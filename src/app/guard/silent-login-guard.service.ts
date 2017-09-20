@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-    CanLoad,
-    Router,
-    Route,
-    RouterStateSnapshot
-} from '@angular/router';
+import { CanLoad, Route, Router, RouterStateSnapshot } from '@angular/router';
 
 import { AuthService } from '../service/auth.service';
 
@@ -37,6 +32,7 @@ export class SilentLoginGuard implements CanLoad {
      * @memberof SilentLoginGuard
      */
     public canLoad(route: Route): boolean {
+        console.log('Can Load');
         const url: string = route.path;
         // console.log('URL', url);
         return this.checkLogin(url);

@@ -1,3 +1,8 @@
+import { Injectable } from '@angular/core';
+import { CanLoad, Route } from '@angular/router';
+
+import { MenuService } from '../service/menu.service';
+
 /**
  * Protects the /adminDashboard route
  * @author Manuel Yepez
@@ -5,12 +10,8 @@
  * @class AdminDashboardGuard
  * @implements {CanActivate}
  */
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
-import {MenuService} from '../service/menu.service';
-
 @Injectable()
-export class AdminDashboardGuard implements CanActivate {
+export class AdminDashboardGuard implements CanLoad {
 
   /**
    * Creates an instance of AppraisalDashboardGuard.
@@ -28,7 +29,7 @@ export class AdminDashboardGuard implements CanActivate {
    * @returns {boolean} True if the route can be accessed
    * @memberof SilentLoginGuard
    */
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  public canLoad(route: Route): boolean {
     // To implement this logic we're relying on whether the menu item for the Admin Dashboard is enabled
     return this.menuService.isAdminDashboardEnabled();
   }

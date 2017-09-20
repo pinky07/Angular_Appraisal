@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanLoad, Route } from '@angular/router';
 
 import { MenuService } from '../service/menu.service';
 
@@ -11,7 +12,7 @@ import { MenuService } from '../service/menu.service';
  * @implements {CanActivate}
  */
 @Injectable()
-export class MentoringDashboardGuard implements CanActivate {
+export class MentoringDashboardGuard implements CanLoad {
 
     /**
      * Creates an instance of MentoringDashboardGuard.
@@ -29,7 +30,7 @@ export class MentoringDashboardGuard implements CanActivate {
      * @returns {boolean} True if the route can be accessed
      * @memberof SilentLoginGuard
      */
-    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    public canLoad(route: Route): boolean {
         // To implement this logic we're relying on whether the menu item for the Mentoring Dashboard is enabled
         return this.menuService.isMentoringDashboardEnabled();
     }
