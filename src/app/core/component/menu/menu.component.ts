@@ -1,3 +1,5 @@
+import 'rxjs/add/operator/catch';
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
@@ -44,10 +46,14 @@ export class MenuComponent implements OnInit {
                 this.mentoringDashboardSet = true;
                 this.mentoringDashboardEnabled = mentoringDashboard;
             } else if (mentoringDashboard instanceof Observable) {
-                mentoringDashboard.subscribe(result => {
-                    this.mentoringDashboardSet = true;
-                    this.mentoringDashboardEnabled = result;
-                });
+                mentoringDashboard
+                    .subscribe(result => {
+                        this.mentoringDashboardSet = true;
+                        this.mentoringDashboardEnabled = result;
+                    }, error => {
+                        this.mentoringDashboardSet = true;
+                        this.mentoringDashboardEnabled = false;
+                    });
             }
         }
         return this.mentoringDashboardEnabled;
@@ -60,10 +66,14 @@ export class MenuComponent implements OnInit {
                 this.appraisalDashboardSet = true;
                 this.appraisalDashboardEnabled = appraisalDashboard;
             } else if (appraisalDashboard instanceof Observable) {
-                appraisalDashboard.subscribe(result => {
-                    this.appraisalDashboardSet = true;
-                    this.appraisalDashboardEnabled = result;
-                });
+                appraisalDashboard
+                    .subscribe(result => {
+                        this.appraisalDashboardSet = true;
+                        this.appraisalDashboardEnabled = result;
+                    }, error => {
+                        this.appraisalDashboardSet = true;
+                        this.appraisalDashboardEnabled = false;
+                    });
             }
         }
         return this.appraisalDashboardEnabled;
@@ -76,10 +86,14 @@ export class MenuComponent implements OnInit {
                 this.adminDashboardSet = true;
                 this.adminDashboardEnabled = adminDashboard;
             } else if (adminDashboard instanceof Observable) {
-                adminDashboard.subscribe(result => {
-                    this.adminDashboardSet = true;
-                    this.adminDashboardEnabled = result;
-                });
+                adminDashboard
+                    .subscribe(result => {
+                        this.adminDashboardSet = true;
+                        this.adminDashboardEnabled = result;
+                    }, error => {
+                        this.adminDashboardSet = true;
+                        this.adminDashboardEnabled = false;
+                    });
             }
         }
         return this.adminDashboardEnabled;
