@@ -1,5 +1,9 @@
 // Angular imports
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { environment } from '../../../environments/environment';
+
 
 /**
  * TODO Document this!
@@ -9,6 +13,16 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ErrorHandlerService {
+
+    private static maxRetries: number = environment.maxRetries;
+    private static retryDelay: number = environment.retryDelay;
+
+    public static retry(errors: Observable<any>): Observable<any> {
+        return errors
+            .mergeMap((error) => (400 <= error.status && error.status < 500) ? Observable.throw(error) : Observable.of(error))
+            .delay(ErrorHandlerService.retryDelay)
+            .take(ErrorHandlerService.maxRetries);
+    }
 
     /**
      * TODO Document this!

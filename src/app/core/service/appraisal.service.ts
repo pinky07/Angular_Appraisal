@@ -24,7 +24,6 @@ import { ErrorHandlerService } from './error-handler.service';
 @Injectable()
 export class AppraisalService {
 
-  private maxRetries: number = environment.maxRetries;
   private employeeUrl = environment.employeeUrl;
   private meUrl = environment.meUrl;
 
@@ -48,7 +47,7 @@ export class AppraisalService {
     const url = `${this.meUrl}/appraisals`;
     return this.http
       .get(url, this.authService.getOptionsWithToken())
-      .retry(this.maxRetries)
+      .retryWhen(ErrorHandlerService.retry)
       .map(response => response.json() as Appraisal[])
       .catch(ErrorHandlerService.handleError);
   }
@@ -63,7 +62,7 @@ export class AppraisalService {
     const url = `${this.meUrl}/appraisals/${id}/forms`;
     return this.http
       .get(url, this.authService.getOptionsWithToken())
-      .retry(this.maxRetries)
+      .retryWhen(ErrorHandlerService.retry)
       .map(response => response.json() as Appraisal[])
       .catch(ErrorHandlerService.handleError);
   }
@@ -85,7 +84,7 @@ export class AppraisalService {
     const url = `${this.employeeUrl}/${employeeId}/appraisals/${appraisalId}/forms/${formId}`;
     return this.http
       .get(url, this.authService.getOptionsWithToken())
-      .retry(this.maxRetries)
+      .retryWhen(ErrorHandlerService.retry)
       .map(response => response.json() as Appraisal[])
       .catch(ErrorHandlerService.handleError);
   }

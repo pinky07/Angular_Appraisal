@@ -28,6 +28,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class EmployeeService {
 
     private maxRetries: number = environment.maxRetries;
+    private retryDelay: number = environment.retryDelay;
     private employeeUrl = environment.employeeUrl;
 
     /**
@@ -53,7 +54,7 @@ export class EmployeeService {
         }
         return this.http
             .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
+            .retryWhen(ErrorHandlerService.retry)
             .map(response => response.json() as Employee[])
             .catch(ErrorHandlerService.handleError);
     }
@@ -68,7 +69,7 @@ export class EmployeeService {
         const url = `${this.employeeUrl}/${id}`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
+            .retryWhen(ErrorHandlerService.retry)
             .map(response => response.json() as Employee)
             .catch(ErrorHandlerService.handleError);
     }
@@ -83,7 +84,7 @@ export class EmployeeService {
         const url = `${this.employeeUrl}/${id}/relationships`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
+            .retryWhen(ErrorHandlerService.retry)
             .map(response => response.json() as EmployeeRelationship[])
             .catch(ErrorHandlerService.handleError);
     }
@@ -118,7 +119,7 @@ export class EmployeeService {
         const url = `${this.employeeUrl}/${id}/mentor`;
         return this.http
             .put(url, mentor, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
+            .retryWhen(ErrorHandlerService.retry)
             .catch(ErrorHandlerService.handleError);
     }
 
@@ -132,7 +133,7 @@ export class EmployeeService {
         const url = `${this.employeeUrl}/${id}/mentor`;
         return this.http
             .delete(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
+            .retryWhen(ErrorHandlerService.retry)
             .catch(ErrorHandlerService.handleError);
     }
 
@@ -146,7 +147,7 @@ export class EmployeeService {
         const url = `${this.employeeUrl}/${id}/mentees`;
         return this.http
             .get(url, this.authService.getOptionsWithToken())
-            .retry(this.maxRetries)
+            .retryWhen(ErrorHandlerService.retry)
             .map(response => response.json() as Employee[])
             .catch(ErrorHandlerService.handleError);
     }

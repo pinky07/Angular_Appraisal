@@ -22,8 +22,8 @@ import { ErrorHandlerService } from './error-handler.service';
 export class MeService {
 
     private maxRetries: number = environment.maxRetries;
+    private retryDelay: number = environment.retryDelay;
     private meUrl: string = environment.meUrl;
-
     private getMeObservable: Observable<Employee>;
     private getMeMentorObservable: Observable<Employee>;
     private getMeMenteesObservable: Observable<Employee[]>;
@@ -50,7 +50,7 @@ export class MeService {
             const url = `${this.meUrl}`;
             this.getMeObservable = this.http
                 .get(url, this.authService.getOptionsWithToken())
-                .retry(this.maxRetries)
+                .retryWhen(ErrorHandlerService.retry)
                 .map(response => response.json() as Employee)
                 .publishReplay(1)
                 .refCount()
@@ -70,7 +70,7 @@ export class MeService {
             const url = `${this.meUrl}/mentor`;
             this.getMeMentorObservable = this.http
                 .get(url, this.authService.getOptionsWithToken())
-                .retry(this.maxRetries)
+                .retryWhen(ErrorHandlerService.retry)
                 .map(response => response.json() as Employee)
                 .catch(ErrorHandlerService.handleError);
         }
@@ -88,7 +88,7 @@ export class MeService {
             const url = `${this.meUrl}/mentees`;
             this.getMeMenteesObservable = this.http
                 .get(url, this.authService.getOptionsWithToken())
-                .retry(this.maxRetries)
+                .retryWhen(ErrorHandlerService.retry)
                 .map(response => response.json() as Employee)
                 .catch(ErrorHandlerService.handleError);
         }

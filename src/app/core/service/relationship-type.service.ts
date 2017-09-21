@@ -19,6 +19,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class RelationshipTypeService {
 
   private maxRetries: number = environment.maxRetries;
+  private retryDelay: number = environment.retryDelay;
   private relationshipUrl = environment.relationshipUrl;
   private relationships: Observable<RelationshipType[]>;
 
@@ -33,7 +34,7 @@ export class RelationshipTypeService {
   public getRelationshipTypeById(id: number): Observable<RelationshipType> {
     const url = `${this.relationshipUrl}/${id}`;
     return this.http.get(url, this.authService.getOptionsWithToken())
-      .retry(this.maxRetries)
+      .retryWhen(ErrorHandlerService.retry)
       .map(response => response.json() as RelationshipType)
       .catch(ErrorHandlerService.handleError);
   }
@@ -48,7 +49,7 @@ export class RelationshipTypeService {
     // Cached call
     if (!this.relationships) {
       this.relationships = this.http.get(this.relationshipUrl, this.authService.getOptionsWithToken())
-        .retry(this.maxRetries)
+        .retryWhen(ErrorHandlerService.retry)
         .map(response => response.json() as RelationshipType[])
         .publishReplay(1)
         .refCount()

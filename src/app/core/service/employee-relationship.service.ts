@@ -16,6 +16,7 @@ import { ErrorHandlerService } from './error-handler.service';
 export class EmployeeRelationshipService {
 
   private maxRetries: number = environment.maxRetries;
+  private retryDelay: number = environment.retryDelay;
   private employeeUrl = environment.employeeUrl;
 
   constructor(private http: Http,
@@ -32,7 +33,7 @@ export class EmployeeRelationshipService {
     const url = `${this.employeeUrl}/${id}/relationships`;
     return this.http
       .post(url, employeeRelationship, this.authService.getOptionsWithToken())
-      .retry(this.maxRetries)
+      .retryWhen(ErrorHandlerService.retry)
       .map(response => response.json().data as EmployeeRelationship)
       .catch(ErrorHandlerService.handleError);
   }
@@ -47,7 +48,7 @@ export class EmployeeRelationshipService {
     const url = `${this.employeeUrl}/${employeeId}/relationships/${relationshipId}`;
     return this.http
       .delete(url, this.authService.getOptionsWithToken())
-      .retry(this.maxRetries)
+      .retryWhen(ErrorHandlerService.retry)
       .catch(ErrorHandlerService.handleError);
   }
 }
