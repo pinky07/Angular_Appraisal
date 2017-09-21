@@ -47,38 +47,6 @@ export class MenuService {
     }
 
     /**
-     * TODO Document this!
-     * @private
-     * @memberof MenuService
-     */
-    private checkCurrentEmployee() {
-        // console.log('checkCurrentEmployee');
-        if (this.authService.isLoggedIn() && !this.currentEmployee && Date.now() >= this.future) {
-            this.future = Date.now() + MenuService.TOLERANCE_MS;
-            this.meService
-                .getMe()
-                .subscribe(
-                employee => this.getMeCallback(employee));
-        }
-    }
-
-    /**
-     * According to the logged in employee, decides which tabs should be enabled.
-     * @private
-     * @param {Employee} employee Logged in employee
-     * @memberof MenuService
-     */
-    private getMeCallback(employee: Employee) {
-        console.log('getMeCallback');
-        if (employee) {
-            this.currentEmployee = employee;
-            this.setAppraisalDashboardEnabled(true);
-            this.setMentoringDashboardEnabled(this.currentEmployee.isMentor);
-            this.setAdminDashboardEnabled(this.currentEmployee.isAdmin);
-        }
-    }
-
-    /**
      * To enable/disable the Mentoring Dashboard.
      * Keep this method private to ensure that this service is self contain and can decide on its own.
      * @private

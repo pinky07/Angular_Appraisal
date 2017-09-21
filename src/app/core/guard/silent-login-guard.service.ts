@@ -35,7 +35,7 @@ export class SilentLoginGuard implements CanLoad, CanActivate {
      */
     public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const url: string = state.url;
-        console.log('canActivate', 'URL', url);
+        // console.log('canActivate', 'URL', url);
         return this.checkLogin(url);
     }
 
@@ -47,7 +47,7 @@ export class SilentLoginGuard implements CanLoad, CanActivate {
      */
     public canLoad(route: Route): Observable<boolean> | boolean {
         const url = `/${route.path}`;
-        console.log('canLoad', 'URL', url);
+        // console.log('canLoad', 'URL', url);
         return this.checkLogin(url);
     }
 
