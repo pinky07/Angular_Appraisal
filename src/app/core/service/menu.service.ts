@@ -71,7 +71,7 @@ export class MenuService {
             return this.meService
                 .getMe()
                 .map(employee => {
-                    this.mentoringDashboardEnabled = employee.isMentor;
+                    this.setMentoringDashboardEnabled(employee.isMentor);
                     return this.mentoringDashboardEnabled;
                 });
         }
@@ -95,7 +95,10 @@ export class MenuService {
      * @memberof MenuService
      */
     public isAppraisalDashboardEnabled(): Observable<boolean> | boolean {
-        return true;
+        if (!this.appraisalDashboardSet) {
+            this.setAppraisalDashboardEnabled(true);
+        }
+        return this.appraisalDashboardEnabled;
     }
 
     /**
@@ -122,7 +125,7 @@ export class MenuService {
             return this.meService
                 .getMe()
                 .map(employee => {
-                    this.adminDashboardEnabled = employee.isAdmin;
+                    this.setAdminDashboardEnabled(employee.isAdmin);
                     return this.adminDashboardEnabled;
                 });
         }

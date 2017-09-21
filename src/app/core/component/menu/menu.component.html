@@ -11,15 +11,15 @@
             <li class="nav-item" routerLinkActive="active" routerLink="employeeDashboard">
                 <a class="nav-link">Employee</a>
             </li>
-            <li *ngIf="menuService.isMentoringDashboardEnabled()" class="nav-item" routerLinkActive="active"
+            <li *ngIf="isMentoringDashboardEnabled()" class="nav-item" routerLinkActive="active"
                 routerLink="mentoringDashboard">
                 <a class="nav-link">Mentoring</a>
             </li>
-            <li *ngIf="menuService.isAppraisalDashboardEnabled()" class="nav-item" routerLinkActive="active"
+            <li *ngIf="isAppraisalDashboardEnabled()" class="nav-item" routerLinkActive="active"
                 routerLink="appraisalDashboard">
                 <a class="nav-link">Appraisal</a>
             </li>
-          <li *ngIf="menuService.isAdminDashboardEnabled()" class="nav-item" routerLinkActive="active"
+          <li *ngIf="isAdminDashboardEnabled()" class="nav-item" routerLinkActive="active"
               routerLink="adminDashboard">
               <a class="nav-link">Admin</a>
           </li>
