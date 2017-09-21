@@ -124,7 +124,7 @@ export class AuthService {
                     this.setLoggedIn(true);
 
                     // Redirect the user to the Employee Dashboard
-                    console.log('Redirecting to:', this.getRedirectUrl());
+                    // console.log('Redirecting to:', this.getRedirectUrl());
                     this.router.navigate([this.getRedirectUrl()]);
                 },
                 ErrorHandlerService.handleError
@@ -267,7 +267,7 @@ export class AuthService {
      * @memberof AuthService
      */
     public setRedirectUrl(url: string): void {
-        console.log('setRedirectUrl', url);
+        // console.log('setRedirectUrl', url);
         localStorage.setItem('redirectURL', url);
     }
 
