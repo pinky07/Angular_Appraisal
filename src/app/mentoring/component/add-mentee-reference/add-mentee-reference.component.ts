@@ -4,25 +4,25 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
-import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
-import { environment } from '../../../../environments/environment';
-import { Employee } from '../../../core/model/backend/employee';
-import { EmployeeRelationship } from '../../../core/model/backend/employee-relationship';
-import { RelationshipType } from '../../../core/model/backend/relationship-type';
-import { EmployeeRelationshipService } from '../../../core/service/employee-relationship.service';
-import { EmployeeService } from '../../../core/service/employee.service';
-import { RelationshipTypeService } from '../../../core/service/relationship-type.service';
+import {environment} from '../../../../environments/environment';
+import {Employee} from '../../../core/model/backend/employee';
+import {EmployeeRelationship} from '../../../core/model/backend/employee-relationship';
+import {RelationshipType} from '../../../core/model/backend/relationship-type';
+import {EmployeeRelationshipService} from '../../../core/service/employee-relationship.service';
+import {EmployeeService} from '../../../core/service/employee.service';
+import {RelationshipTypeService} from '../../../core/service/relationship-type.service';
 
 @Component({
   selector: 'app-add-mentee-reference',
   templateUrl: './add-mentee-reference.component.html',
   styleUrls: ['./add-mentee-reference.component.scss']
 })
-export class AddMenteeReferencesComponent implements OnInit {
+export class AddMenteeReferencesComponent implements OnInit, OnChanges {
 
   @Input()
   public mentee: Employee;
@@ -33,6 +33,8 @@ export class AddMenteeReferencesComponent implements OnInit {
   public model: Employee;
   public relationshipTypes: RelationshipType[];
   public selectedRelationship: RelationshipType;
+
+  referenceLimitReached: boolean;
 
   // Behavior for the typeahead: Triggers after 200ms, after 3 letters and waits for changes on the input.
   public searchTerm = (text$: Observable<string>) =>
@@ -57,6 +59,10 @@ export class AddMenteeReferencesComponent implements OnInit {
     private relationshipTypeService: RelationshipTypeService
   ) { }
 
+  ngOnChanges(): void {
+    this.referenceLimitReached = this.menteeRelationships.length >= environment.maxMenteeReferences;
+  }
+
   public ngOnInit(): void {
     this.relationshipTypeService.getRelationshipTypes().subscribe(res => this.relationshipTypes = res);
   }
@@ -64,19 +70,21 @@ export class AddMenteeReferencesComponent implements OnInit {
   public addMenteeReference(referred: Employee, form: NgForm): void {
     // console.log('addMenteeReference', referred);
     if (this.selectedRelationship
-      && this.menteeRelationships.length < environment.maxMenteeReferences
+      && !this.referenceLimitReached
       && _.has(referred, 'id')) {
       const newEmployeeRelationship = new EmployeeRelationship(referred, this.selectedRelationship);
       // console.log('newEmployeeRelationship', newEmployeeRelationship);
       this.employeeRelationshipService.postEmployeesByIdRelationships(this.mentee.id, newEmployeeRelationship)
-        .subscribe(employeeRelationship => this.addMenteeReferenceCallback(employeeRelationship));
+        .subscribe(employeeRelationship => {
+          this.addMenteeReferenceCallback(employeeRelationship);
+          form.resetForm();
+        });
     }
-
-    form.resetForm();
   }
 
   private addMenteeReferenceCallback(employeeRelationship: EmployeeRelationship) {
     // console.log('addMenteeReferenceCallback', employeeRelationship)
     this.menteeRelationships.push(employeeRelationship);
+    this.referenceLimitReached = this.menteeRelationships.length >= environment.maxMenteeReferences;
   }
 }

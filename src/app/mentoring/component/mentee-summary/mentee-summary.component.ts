@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
-import { Employee } from '../../../core/model/backend/employee';
-import { EmployeeRelationship } from '../../../core/model/backend/employee-relationship';
-import { EmployeeRelationshipService } from '../../../core/service/employee-relationship.service';
-import { EmployeeService } from '../../../core/service/employee.service';
-import { MeService } from '../../../core/service/me.service';
+import {Employee} from '../../../core/model/backend/employee';
+import {EmployeeRelationship} from '../../../core/model/backend/employee-relationship';
+import {EmployeeRelationshipService} from '../../../core/service/employee-relationship.service';
+import {EmployeeService} from '../../../core/service/employee.service';
+import {MeService} from '../../../core/service/me.service';
 
 /**
  * Displays Mentee information if the logged on Employee is a Mentor
@@ -26,8 +26,7 @@ export class MenteeSummaryComponent implements OnInit {
     private menteeRelationshipsMap: Map<number, EmployeeRelationship[]>;
 
     /**
-     * Creates an instance of MentoringDashboardComponent.
-     * @param {TitleService} titleService Title service
+     * Creates an instance of MenteeSummaryComponent.
      * @param {MeService} meService Me service
      * @param {EmployeeService} employeeService Employee service
      * @param employeeRelationshipService EmployeeRelationship service

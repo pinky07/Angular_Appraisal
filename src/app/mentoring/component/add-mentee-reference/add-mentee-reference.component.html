@@ -24,7 +24,8 @@
     </div>
     <div class="col-3 text-right">
       <div class="form-group">
-        <button (click)="addMenteeReference(model, menteeReference)" class="btn btn-add btn-sm" placement="top" ngbTooltip="Add Mentee Reference">+</button>
+        <button (click)="addMenteeReference(model, menteeReference)" [disabled]="referenceLimitReached"
+                class="btn btn-add btn-sm" placement="top" ngbTooltip="Add Mentee Reference">+</button>
       </div>
     </div>
   </div>
@@ -41,6 +42,9 @@
           </li>
         </ul>
       </div>
+      <ngb-alert *ngIf="referenceLimitReached" [dismissible]="false">
+        You cannot add more references.
+      </ngb-alert>
     </div>
   </div>
 </form>
