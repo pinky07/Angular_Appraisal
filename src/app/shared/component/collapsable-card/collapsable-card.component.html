@@ -1,0 +1,13 @@
+<div class="card bg-white">
+    <div class="card-body">
+        <h2 (click)="showHideCollapse()" class="card-title">
+            {{ title }}
+            <button class="btn btn-collapse" type="button">
+                <i [ngClass]="collapseSign" class="fa" aria-hidden="true"></i>
+            </button>
+        </h2>
+        <div class="collapsable" [@collapse]="collapseState">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
