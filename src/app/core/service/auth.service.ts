@@ -112,13 +112,13 @@ export class AuthService {
                     // console.log(refreshTokenDecoded);
 
                     // Saves the token in local storage
-                    localStorage.setItem('accessToken', accessTokenString);
-                    localStorage.setItem('refreshToken', refreshTokenString);
+                    sessionStorage.setItem('accessToken', accessTokenString);
+                    sessionStorage.setItem('refreshToken', refreshTokenString);
 
                     // Save additional user information in local storage
-                    localStorage.setItem('userEmail', accessTokenDecoded.user_name);
-                    localStorage.setItem('userFirstName', accessTokenDecoded.first_name);
-                    localStorage.setItem('userLastName', accessTokenDecoded.last_name);
+                    sessionStorage.setItem('userEmail', accessTokenDecoded.user_name);
+                    sessionStorage.setItem('userFirstName', accessTokenDecoded.first_name);
+                    sessionStorage.setItem('userLastName', accessTokenDecoded.last_name);
 
                     // Indicate that the user has successfully logged in the application
                     this.setLoggedIn(true);
@@ -144,7 +144,7 @@ export class AuthService {
      */
     public generateStateValue(): string {
         const state = this.randomString(256);
-        localStorage.setItem('state', state);
+        sessionStorage.setItem('state', state);
         return state;
     }
 
@@ -172,7 +172,7 @@ export class AuthService {
      * @memberof AuthService
      */
     public compareStateValue(state: string): boolean {
-        return localStorage.getItem('state') === state;
+        return sessionStorage.getItem('state') === state;
     }
 
     /**
@@ -194,8 +194,8 @@ export class AuthService {
             this.refreshToken();
         }
         // TODO Ensure that no other place in the app is accessing the token from local storage
-        // console.log('getting accessToken from localStorage: ', localStorage.getItem('accessToken'));
-        return localStorage.getItem('accessToken');
+        // console.log('getting accessToken from sessionStorage: ', sessionStorage.getItem('accessToken'));
+        return sessionStorage.getItem('accessToken');
     }
 
     /**
@@ -209,7 +209,7 @@ export class AuthService {
             this.refreshToken();
         }
         // TODO Ensure that no other place in the app is accessing the token from local storage
-        return this.jwtHelper.decodeToken(localStorage.getItem('accessToken'));
+        return this.jwtHelper.decodeToken(sessionStorage.getItem('accessToken'));
     }
 
     /**
@@ -268,7 +268,7 @@ export class AuthService {
      */
     public setRedirectUrl(url: string): void {
         // console.log('setRedirectUrl', url);
-        localStorage.setItem('redirectURL', url);
+        sessionStorage.setItem('redirectURL', url);
     }
 
 
@@ -278,6 +278,6 @@ export class AuthService {
      * @memberof AuthService
      */
     public getRedirectUrl(): string {
-        return localStorage.getItem('redirectURL')
+        return sessionStorage.getItem('redirectURL')
     }
 }

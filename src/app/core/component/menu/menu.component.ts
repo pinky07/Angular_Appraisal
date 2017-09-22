@@ -3,6 +3,7 @@ import 'rxjs/add/operator/catch';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import { AuthService } from '../../service/auth.service';
 import { MenuService } from '../../service/menu.service';
 
 /**
@@ -30,7 +31,8 @@ export class MenuComponent implements OnInit {
      * @memberof MenuComponent
      */
     constructor(
-        public menuService: MenuService
+        public authService: AuthService,
+        public menuService: MenuService,
     ) { }
 
     /**
@@ -39,8 +41,13 @@ export class MenuComponent implements OnInit {
     public ngOnInit() {
     }
 
+    /**
+     * Will return false until the user is logged in and the menu service can be queried.
+     * @returns {boolean} true if the tab is enabled
+     * @memberof MenuComponent
+     */
     public isMentoringDashboardEnabled(): boolean {
-        if (!this.mentoringDashboardSet) {
+        if (this.authService.isLoggedIn() && !this.mentoringDashboardSet) {
             const mentoringDashboard: Observable<boolean> | boolean = this.menuService.isMentoringDashboardEnabled();
             if (typeof (mentoringDashboard) === 'boolean') {
                 this.mentoringDashboardSet = true;
@@ -59,8 +66,13 @@ export class MenuComponent implements OnInit {
         return this.mentoringDashboardEnabled;
     }
 
+    /**
+     * Will return false until the user is logged in and the menu service can be queried.
+     * @returns {boolean} true if the tab is enabled
+     * @memberof MenuComponent
+     */
     public isAppraisalDashboardEnabled(): boolean {
-        if (!this.appraisalDashboardSet) {
+        if (this.authService.isLoggedIn() && !this.appraisalDashboardSet) {
             const appraisalDashboard: Observable<boolean> | boolean = this.menuService.isAppraisalDashboardEnabled();
             if (typeof (appraisalDashboard) === 'boolean') {
                 this.appraisalDashboardSet = true;
@@ -79,8 +91,13 @@ export class MenuComponent implements OnInit {
         return this.appraisalDashboardEnabled;
     }
 
+    /**
+     * Will return false until the user is logged in and the menu service can be queried.
+     * @returns {boolean} true if the tab is enabled
+     * @memberof MenuComponent
+     */
     public isAdminDashboardEnabled(): boolean {
-        if (!this.adminDashboardSet) {
+        if (this.authService.isLoggedIn() && !this.adminDashboardSet) {
             const adminDashboard: Observable<boolean> | boolean = this.menuService.isAdminDashboardEnabled();
             if (typeof (adminDashboard) === 'boolean') {
                 this.adminDashboardSet = true;
