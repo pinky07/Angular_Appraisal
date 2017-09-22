@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
-import { Employee } from '../model/backend/employee';
-import { AuthService } from './auth.service';
-import { MeService } from './me.service';
+import {AuthService} from './auth.service';
+import {MeService} from './me.service';
 
 /**
  * Logic that decides whether certain UI menu tabs should be enabled or not.
@@ -15,11 +14,6 @@ import { MeService } from './me.service';
 @Injectable()
 export class MenuService {
 
-    // Minimum time between two calls to Me service
-    private static readonly TOLERANCE_MS = 100;
-
-    private currentEmployee: Employee;
-
     private appraisalDashboardEnabled: boolean;
     private mentoringDashboardEnabled: boolean;
     private adminDashboardEnabled: boolean;
@@ -28,12 +22,9 @@ export class MenuService {
     private mentoringDashboardSet: boolean;
     private adminDashboardSet: boolean;
 
-    // Helps preventing multiple calls to Me Service
-    private future = Date.now();
-
     /**
      * Creates an instance of MenuService. Uses the MeService to identify the logged in user and
-     * enable the correspondant menu tabs.
+     * enable the corresponding menu tabs.
      * @param {MeService} meService Me service.
      * @memberof MenuService
      */

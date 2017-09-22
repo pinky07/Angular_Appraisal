@@ -2,14 +2,14 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
-import { environment } from '../../../environments/environment';
-import { Employee } from '../model/backend/employee';
-import { AuthService } from './auth.service';
-import { ErrorHandlerService } from './error-handler.service';
+import {environment} from '../../../environments/environment';
+import {Employee} from '../model/backend/employee';
+import {AuthService} from './auth.service';
+import {ErrorHandlerService} from './error-handler.service';
 
 /**
  * Handles web service calls to the /me endpoint
@@ -21,8 +21,6 @@ import { ErrorHandlerService } from './error-handler.service';
 @Injectable()
 export class MeService {
 
-    private maxRetries: number = environment.maxRetries;
-    private retryDelay: number = environment.retryDelay;
     private meUrl: string = environment.meUrl;
     private getMeObservable: Observable<Employee>;
     private getMeMentorObservable: Observable<Employee>;
@@ -35,8 +33,7 @@ export class MeService {
      */
     public constructor(
         private http: Http,
-        private authService: AuthService,
-        private errorHandlerService: ErrorHandlerService
+        private authService: AuthService
     ) { }
 
     /**

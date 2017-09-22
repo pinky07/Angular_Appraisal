@@ -3,13 +3,13 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 
-import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
-import { Router } from '@angular/router';
-import { JwtHelper } from 'angular2-jwt';
+import {Injectable} from '@angular/core';
+import {Headers, Http, RequestOptions} from '@angular/http';
+import {Router} from '@angular/router';
+import {JwtHelper} from 'angular2-jwt';
 
-import { environment } from '../../../environments/environment';
-import { ErrorHandlerService } from './error-handler.service';
+import {environment} from '../../../environments/environment';
+import {ErrorHandlerService} from './error-handler.service';
 
 /**
  * TODO Document this!
@@ -22,7 +22,6 @@ import { ErrorHandlerService } from './error-handler.service';
 export class AuthService {
 
     private loggedIn = false;
-    private redirectUrl = '/';
 
     private oauth2Url = environment.oauth2Url;
     private oauth2ClientId = 'app';
