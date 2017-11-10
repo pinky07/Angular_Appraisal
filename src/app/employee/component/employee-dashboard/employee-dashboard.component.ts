@@ -6,7 +6,7 @@ import { AlertService } from '../../../core/service/alert.service';
 import { EmployeeService } from '../../../core/service/employee.service';
 import { MeService } from '../../../core/service/me.service';
 import { TitleService } from '../../../core/service/title.service';
-
+import { EmployeeRelationship } from '../../../core/model/backend/employee-relationship';
 /**
  * Shows the Employee dashboard.
  * @author Manuel Yepez
@@ -24,7 +24,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
 
     public currentEmployee: Employee;
     public mentor: Employee;
-
+    public userRelationshipsArray: EmployeeRelationship[];
     /**
      * Creates an instance of EmployeeDashboardComponent.
      * @param {EmployeeService} employeeService
@@ -95,6 +95,9 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
     private changeCurrentEmployee(employee: Employee) {
         // Change the field that is presented in the view
         this.currentEmployee = employee;
+      this.employeeService
+        .getEmployeeByIdRelationships(this.currentEmployee.id)
+        .subscribe(references => this.changeUserReferences(references));
     }
 
     /**
@@ -105,4 +108,28 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
     private changeCurrentEmployeeMentor(employee: Employee) {
         this.mentor = employee;
     }
-}
+
+    /**
+     * Changes the reference currently shown in the summary
+     * @returns {array} Employee relationship
+     * @memberof EmployeeDashboardComponent
+     */
+    private changeUserReferences(references: EmployeeRelationship[]) {
+      console.log('user references', references);
+      this.userRelationshipsArray = references;
+    }
+
+    /**
+     * If present, returns the Employee Reference Count
+     * @returns {string} Number of references
+     * @memberof EmployeeReferencesComponent
+     */
+    public getEmployeeReferenceCount(): string {
+      let result = 'No Reference Found';
+      if (this.userRelationshipsArray &&
+        this.userRelationshipsArray.length  > 0) {
+        result = 'References'
+      }
+      return result;
+    }
+  }

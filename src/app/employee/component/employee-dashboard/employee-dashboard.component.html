@@ -4,6 +4,10 @@
 		<app-collapsable-card title="{{ getEmployeeName() }}" collapseState="show">
 			<app-employee-summary [employee]="currentEmployee" [mentor]="mentor"></app-employee-summary>
 		</app-collapsable-card>
+    <h1>Feedback References</h1>
+    <app-collapsable-card title="{{getEmployeeReferenceCount()}}" collapseState="show">
+      <app-employee-references [references]="userRelationshipsArray"></app-employee-references>
+    </app-collapsable-card>
 	</div>
 	<!--
 	<div class="col-xs-12 col-lg-4 mr-lg-auto">

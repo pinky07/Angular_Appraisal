@@ -1,0 +1,32 @@
+<div class="mentee_information">
+  <ul class="list_references_dashboard">
+          <li class="li__header" *ngIf="references && references.length > 0">
+            <div class="row">
+              <div class="col-5 text-left">
+                <p>Reference name</p>
+              </div>
+              <div class="col-3 text-left">
+                <p>Relationship type</p>
+              </div>
+              <div class="col-3 text-right">
+                <p>Reference Since</p>
+              </div>
+            </div>
+          </li>
+          <li *ngFor="let reference of references">
+                <div class="row">
+                  <div class="col-5 text-left">
+                    <p>{{reference.referred.firstName}} {{reference.referred.lastName}}</p>
+                  </div>
+                  <div class="col-3 text-left">
+                    <p>{{reference.relationshipType.name}}</p>
+                  </div>
+                  <div class="col-3 text-right">
+                    <p>{{reference.startDate | date:'d-MMM-y'}}</p>
+                  </div>
+                </div>
+           </li>
+
+  </ul>
+</div>
+
