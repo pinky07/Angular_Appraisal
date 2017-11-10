@@ -1,8 +1,8 @@
 /**
  * add-mentee-reference.component.scss - Version 1.0.0
- * 
+ *
  * Add Mentee Reference Style
- * 
+ *
  * @author Ruben Jimenez
  */
 
@@ -15,7 +15,7 @@
     height: 31px;
     width: 31px;
     border-radius: 25%;
-    border: 0px;
+    border: 0;
 
     &:hover {
         cursor: pointer;
@@ -27,9 +27,9 @@
 }
 
 .ng-valid[required], .ng-valid.required  {
-    border: 1px solid #42A948; 
+    border: 1px solid #42A948;
 }
 
 .ng-invalid:not(form) {
-    border: 1px solid #a94442; 
+    border: 1px solid #a94442;
 }
